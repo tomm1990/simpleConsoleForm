@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Button", "Button\Button.vcxproj", "{B956BAB4-8192-4EAA-A4C4-9B1244404288}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CheckList", "CheckList\CheckList.vcxproj", "{5C46F3EC-8E99-48AC-ACA9-85492EF387C4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -15,6 +17,10 @@ Global
 		{B956BAB4-8192-4EAA-A4C4-9B1244404288}.Debug|Win32.Build.0 = Debug|Win32
 		{B956BAB4-8192-4EAA-A4C4-9B1244404288}.Release|Win32.ActiveCfg = Release|Win32
 		{B956BAB4-8192-4EAA-A4C4-9B1244404288}.Release|Win32.Build.0 = Release|Win32
+		{5C46F3EC-8E99-48AC-ACA9-85492EF387C4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5C46F3EC-8E99-48AC-ACA9-85492EF387C4}.Debug|Win32.Build.0 = Debug|Win32
+		{5C46F3EC-8E99-48AC-ACA9-85492EF387C4}.Release|Win32.ActiveCfg = Release|Win32
+		{5C46F3EC-8E99-48AC-ACA9-85492EF387C4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
