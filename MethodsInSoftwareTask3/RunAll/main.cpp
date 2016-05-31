@@ -10,7 +10,7 @@
 int main(void)
 {
 	int width = 10;
-	int widthhhhhh = 100;
+	int widthhhhhh = 400;
 
 	//Combox example
 	vector<string> list;
