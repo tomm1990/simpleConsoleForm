@@ -18,6 +18,12 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Panel.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Panel.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{055E2726-3306-4751-94CA-B0ACDBF75518}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

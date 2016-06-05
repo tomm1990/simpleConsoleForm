@@ -63,6 +63,15 @@ SHORT Control::getTop()
 	return 1;
 }
 
+void Control::setFocus(const Control& it)
+{
+}
+
+Control* Control::getFocus()
+{
+	return nullptr;
+}
+
 Control::~Control()
 {
 }
