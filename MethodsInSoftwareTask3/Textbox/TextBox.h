@@ -4,6 +4,11 @@
 class TextBox:
 	public Control
 {
+protected:
+	string _value;
+	int _textLength, _widthTextBox, counter;
+
+
 public:
 	TextBox(int width);
 	virtual ~TextBox();
@@ -14,7 +19,7 @@ public:
 	void SetForeground(ForegroundColor color) override;
 	void SetBackground(BackgroundColor color) override;
 	void SetBorder(BorderType border) override;
-	void setValue(string value);
+	void SetText(string value);
 	string getValuse();
 
 	void draw(const Graphics& graphics, int i, int i1, size_t size_t) override;
@@ -23,6 +28,4 @@ public:
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;
 
-protected:
-	string value;
 };

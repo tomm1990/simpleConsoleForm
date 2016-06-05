@@ -2,6 +2,8 @@
 
 TextBox::TextBox(int width): Control(width)
 {
+	_widthTextBox = width;
+
 }
 
 TextBox::~TextBox()
@@ -34,10 +36,16 @@ void TextBox::SetBackground(BackgroundColor color)
 
 void TextBox::SetBorder(BorderType border)
 {
+
 }
 
-void TextBox::setValue(string value)
+void TextBox::SetText(string value)
 {
+	cout << "Left is : " << getLeft();
+	cout << "Top is : " << getTop();
+	SetConsoleCursorPosition(hOut, { getLeft() , getTop() });
+	_value = value;
+	cout << value;
 }
 
 string TextBox::getValuse()

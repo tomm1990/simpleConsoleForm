@@ -5,6 +5,7 @@ class Label : public TextBox
 {
 public:
 	Label(int width);
+	void SetText(string);
 	void MouseEventProc(MOUSE_EVENT_RECORD) override;
 	void KeyEventProc(KEY_EVENT_RECORD) override;
 	void Show() override;

@@ -1,7 +1,8 @@
 #include "Label.h"
 
-Label::Label(int width): TextBox(width)
+Label::Label(int width ): TextBox(width)
 {
+
 }
 
 void Label::MouseEventProc(MOUSE_EVENT_RECORD)
@@ -34,4 +35,9 @@ void Label::SetBorder(BorderType border)
 
 Label::~Label()
 {
+}
+
+
+void Label::SetText(string) {
+
 }
