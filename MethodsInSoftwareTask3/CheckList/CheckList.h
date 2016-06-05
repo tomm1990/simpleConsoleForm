@@ -5,7 +5,7 @@ class CheckList:
 	public Control
 {
 public:
-	CheckList(int width);
+	CheckList(int height, int width, vector<string> options);
 	void MouseEventProc(MOUSE_EVENT_RECORD) override;
 	void KeyEventProc(KEY_EVENT_RECORD) override;
 	void Show() override;
