@@ -43,7 +43,9 @@ public:
 	virtual void SetBackground(BackgroundColor color) =0;
 	virtual void SetBorder(BorderType border) =0;
 	void listen();
-	virtual void draw(const Graphics& graphics, int i, int i1, size_t size_t) =0;
+	virtual void draw(const Graphics& graphics, int i, int i1, size_t size_t) = 0;
+	virtual void draw(const Graphics& graphics, int i, int i1) = 0;
+
 	virtual void keyDown(WORD code, CHAR chr) =0;
 	virtual SHORT getLeft();
 	virtual SHORT getTop();
