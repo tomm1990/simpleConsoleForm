@@ -1,8 +1,7 @@
-
 #include "../CheckList/CheckList.h"
 
 int main()
 {
-	vector<string> options = { "[ ] Tommy", "[ ] Golden", "[ ] Lady", "[ ] Boy" };
+	vector<string> options = { "[ ] Tommyyyy", "[ ] Goldennnn", "[ ] Ladyyyy", "[ ] Boyyy" };
 	CheckList(10, 20, options);
 }
