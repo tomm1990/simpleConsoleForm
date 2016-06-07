@@ -11,8 +11,8 @@ public:
 	~RadioList() override;
 	void Show() override;
 	void Hide() override;
-	void SetForeground(ForegroundColor color) override;
-	void SetBackground(BackgroundColor color) override;
+	void SetForeground(Color color) override;
+	void SetBackground(Color color) override;
 	void SetBorder(BorderType border) override;
 
 	void draw(const Graphics& graphics, int i, int i1, size_t size_t) override;

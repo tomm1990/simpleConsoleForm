@@ -26,8 +26,8 @@ protected:
 	int width;
 	COORD position;
 	bool isVisibile;
-	ForegroundColor forColor;
-	BackgroundColor backcolor;
+	Color forColor;
+	Color backcolor;
 	BorderType border;
 
 public:
@@ -39,8 +39,8 @@ public:
 	virtual void Hide() = 0;
 	void getCursorXY(int& x, int& y) const;
 	void setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD, const int);
-	virtual void SetForeground(ForegroundColor color) =0;
-	virtual void SetBackground(BackgroundColor color) =0;
+	virtual void SetForeground(Color color) =0;
+	virtual void SetBackground(Color color) =0;
 	virtual void SetBorder(BorderType border) =0;
 	void listen();
 	virtual void draw(  const Graphics& graphics, int i, int i1, size_t size_t  ) = 0;

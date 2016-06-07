@@ -125,11 +125,11 @@ void CheckList::Hide()
 {
 }
 
-void CheckList::SetForeground(ForegroundColor color)
+void CheckList::SetForeground(Color color)
 {
 }
 
-void CheckList::SetBackground(BackgroundColor color)
+void CheckList::SetBackground(Color color)
 {
 }
 

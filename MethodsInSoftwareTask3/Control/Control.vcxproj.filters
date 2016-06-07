@@ -41,9 +41,6 @@
     <ClInclude Include="BorderType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Control.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -24,11 +24,11 @@ void TextBox::Hide()
 {
 }
 
-void TextBox::SetForeground(ForegroundColor color)
-{
+void TextBox::SetForeground(Color color){
+
 }
 
-void TextBox::SetBackground(BackgroundColor color)
+void TextBox::SetBackground(Color color)
 {
 }
 

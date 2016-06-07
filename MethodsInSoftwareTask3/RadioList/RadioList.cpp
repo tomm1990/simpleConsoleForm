@@ -20,11 +20,11 @@ void RadioList::Hide()
 {
 }
 
-void RadioList::SetForeground(ForegroundColor color)
+void RadioList::SetForeground(Color color)
 {
 }
 
-void RadioList::SetBackground(BackgroundColor color)
+void RadioList::SetBackground(Color color)
 {
 }
 

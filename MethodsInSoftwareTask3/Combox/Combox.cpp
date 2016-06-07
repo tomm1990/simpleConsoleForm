@@ -4,11 +4,11 @@ Combox::Combox(int width, vector<string> options): Control(width), list(options)
 {
 }
 
-void Combox::SetForeground(ForegroundColor color)
+void Combox::SetForeground(Color color)
 {
 }
 
-void Combox::SetBackground(BackgroundColor color)
+void Combox::SetBackground(Color color)
 {
 }
 

@@ -21,11 +21,11 @@ void Label::Hide()
 {
 }
 
-void Label::SetForeground(ForegroundColor color)
+void Label::SetForeground(Color color)
 {
 }
 
-void Label::SetBackground(BackgroundColor color)
+void Label::SetBackground(Color color)
 {
 }
 

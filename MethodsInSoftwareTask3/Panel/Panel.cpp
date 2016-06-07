@@ -21,11 +21,11 @@ void Panel::Hide()
 {
 }
 
-void Panel::SetForeground(ForegroundColor color)
+void Panel::SetForeground(Color color)
 {
 }
 
-void Panel::SetBackground(BackgroundColor color)
+void Panel::SetBackground(Color color)
 {
 }
 
