@@ -3,5 +3,5 @@
 int main()
 {
 	vector<string> options = { "[ ] Tommyyyy", "[ ] Goldennnn", "[ ] Ladyyyy", "[ ] Boyyy" };
-	CheckList(10, 20, options);
+	CheckList(10, 20, options );
 }
