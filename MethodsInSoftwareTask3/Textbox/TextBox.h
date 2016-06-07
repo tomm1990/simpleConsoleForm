@@ -6,8 +6,16 @@ class TextBox:
 {
 protected:
 	string _value;
-	int _textLength, _widthTextBox, counter;
+	int _textLength, counter;
 
+	struct textBoxBorder {
+		char top_left = '\xDA';
+		char horizontal_line = '\xC4';
+		char top_right = '\xBF';
+		char vertical_line = '\xB3';
+		char buttom_left = '\xC0';
+		char buttom_right = '\xD9';
+	} _textBoxBorder;
 
 public:
 	TextBox(int width);
@@ -23,6 +31,8 @@ public:
 	string getValuse();
 
 	void draw(const Graphics& graphics, int i, int i1, size_t size_t) override;
+	//virtual void draw(const Graphics& graphics, int i, int i1);
+	
 	void keyDown(WORD code, CHAR chr) override;
 	void mousePressed(int i, int y, bool b) override;
 	void getAllControls(vector<Control*>* vector) override;

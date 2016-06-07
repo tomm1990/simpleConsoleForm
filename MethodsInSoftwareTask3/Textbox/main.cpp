@@ -1,16 +1,20 @@
 #include "TextBox.h"
+#include <stdio.h>
 #include <iostream>>
 using namespace std;
 
 
-int main() {
+int main(int argv , char* argc[]) {
 	TextBox tName(20);
-	tName.SetText("Sherlock Holmes");
 	tName.SetBorder( BorderType::Single );
+	Graphics A;
+	tName.draw(A , 25, 2 , 0 );
 
 
 
 
-	system("pause");
-	return 0;
+
+
+	
+	return system("pause");
 }
