@@ -2,6 +2,7 @@
 
 TextBox::TextBox(int width): Control(width)
 {
+
 }
 
 TextBox::~TextBox()
@@ -17,11 +18,11 @@ void TextBox::KeyEventProc(KEY_EVENT_RECORD)
 }
 
 void TextBox::SetForeground(Color color){
-
+	graphics.setForeground(color);
 }
 
-void TextBox::SetBackground(Color color)
-{
+void TextBox::SetBackground(Color color){
+	graphics.setBackground(color);
 }
 
 void TextBox::SetBorder(BorderType border)
