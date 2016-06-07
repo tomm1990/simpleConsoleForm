@@ -17,6 +17,7 @@ enum class Color
 	White
 };
 
+
 class Graphics
 {
 public:
@@ -33,7 +34,6 @@ public:
 private:
 	HANDLE _console;
 	Color _background, _foreground;
-
 	void updateConsoleAttributes();
 };
 

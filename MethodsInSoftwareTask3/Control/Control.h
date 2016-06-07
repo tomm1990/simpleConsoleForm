@@ -29,7 +29,7 @@ protected:
 	Color forColor;
 	Color backcolor;
 	BorderType border;
-
+	Graphics graphics;
 public:
 	virtual void MouseEventProc(MOUSE_EVENT_RECORD) =0;
 	virtual void KeyEventProc(KEY_EVENT_RECORD) =0;

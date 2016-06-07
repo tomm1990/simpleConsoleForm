@@ -18,7 +18,8 @@ protected:
 	} _textBoxBorder;
 
 public:
-	TextBox(const int width);
+	//Defualt Constructor
+	TextBox(int width);
 	virtual ~TextBox();
 	void MouseEventProc(MOUSE_EVENT_RECORD) override;
 	void KeyEventProc(KEY_EVENT_RECORD) override;
