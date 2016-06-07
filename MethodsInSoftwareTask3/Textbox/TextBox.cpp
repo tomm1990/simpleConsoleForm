@@ -16,14 +16,6 @@ void TextBox::KeyEventProc(KEY_EVENT_RECORD)
 {
 }
 
-void TextBox::Show()
-{
-}
-
-void TextBox::Hide()
-{
-}
-
 void TextBox::SetForeground(Color color){
 
 }

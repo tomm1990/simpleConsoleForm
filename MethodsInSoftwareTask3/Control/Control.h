@@ -35,8 +35,8 @@ public:
 	virtual void KeyEventProc(KEY_EVENT_RECORD) =0;
 	virtual ~Control() =0;
 	explicit Control(int width);
-	virtual void Show() = 0;
-	virtual void Hide() = 0;
+	virtual void Show();
+	virtual void Hide();
 	void getCursorXY(int& x, int& y) const;
 	void setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD, const int);
 	virtual void SetForeground(Color color) =0;

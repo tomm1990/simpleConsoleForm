@@ -12,13 +12,6 @@ void RadioList::KeyEventProc(KEY_EVENT_RECORD)
 {
 }
 
-void RadioList::Show()
-{
-}
-
-void RadioList::Hide()
-{
-}
 
 void RadioList::SetForeground(Color color)
 {

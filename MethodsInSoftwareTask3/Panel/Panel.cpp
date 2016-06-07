@@ -13,13 +13,6 @@ void Panel::KeyEventProc(KEY_EVENT_RECORD)
 {
 }
 
-void Panel::Show()
-{
-}
-
-void Panel::Hide()
-{
-}
 
 void Panel::SetForeground(Color color)
 {

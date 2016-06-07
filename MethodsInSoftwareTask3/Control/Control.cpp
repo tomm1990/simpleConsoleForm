@@ -83,3 +83,13 @@ Control::~Control()
 Control::Control(int width) : hOut(GetStdHandle(STD_OUTPUT_HANDLE)), hIn(GetStdHandle(STD_INPUT_HANDLE)), width(width), position({0,0})
 {
 }
+
+void Control::Show()
+{
+	isVisibile = true;
+}
+
+void Control::Hide()
+{
+	isVisibile = false;
+}

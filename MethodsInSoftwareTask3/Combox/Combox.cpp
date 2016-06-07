@@ -15,15 +15,15 @@ void Combox::SetBackground(Color color)
 void Combox::SetBorder(BorderType border)
 {
 }
-
-void Combox::Show()
+/*
+void Show()
 {
 	SetConsoleCursorPosition(hOut, position);
 	cout << currentWord;
 	SetConsoleCursorPosition(hOut, position);
 }
 
-void Combox::Hide()
+void Hide()
 {
 	SetConsoleCursorPosition(hOut, position);
 	for (auto i = 0; i < size + 1; i++ , SetConsoleCursorPosition(hOut, {position.X,position.Y + static_cast<SHORT>(i)}))
@@ -34,7 +34,7 @@ void Combox::Hide()
 		}
 	}
 }
-
+*/
 void Combox::open()
 {
 	for (size_t i = 0; i < size; i++)

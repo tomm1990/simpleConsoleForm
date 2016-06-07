@@ -13,13 +13,6 @@ void Label::KeyEventProc(KEY_EVENT_RECORD)
 {
 }
 
-void Label::Show()
-{
-}
-
-void Label::Hide()
-{
-}
 
 void Label::SetForeground(Color color)
 {

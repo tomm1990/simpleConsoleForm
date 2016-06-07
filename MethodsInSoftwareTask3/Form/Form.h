@@ -6,6 +6,5 @@ class Form :
 {
 public:
 	virtual ~Form();
-	void Show() override;
-	void Hide() override;
+
 };

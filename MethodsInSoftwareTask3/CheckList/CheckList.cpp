@@ -117,13 +117,6 @@ void CheckList::KeyEventProc(KEY_EVENT_RECORD)
 {
 }
 
-void CheckList::Show()
-{
-}
-
-void CheckList::Hide()
-{
-}
 
 void CheckList::SetForeground(Color color)
 {

@@ -4,10 +4,3 @@ Form::~Form()
 {
 }
 
-void Form::Hide()
-{
-}
-
-void Form::Show()
-{
-}
