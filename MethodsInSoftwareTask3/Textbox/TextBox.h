@@ -44,4 +44,6 @@ public:
 	bool canGetFocus() override;
 	WORD GetConsoleTextAttribute(HANDLE hCon);
 	void setcursor(bool visible, DWORD size);
+	void MoveToRight();
+	void MoveToLeft();
 };

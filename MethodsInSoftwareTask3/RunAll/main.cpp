@@ -10,9 +10,7 @@ int main()
 	TextBox tName(10);
 	//tName.SetText("Hello");
 	tName.SetBorder(BorderType::Single);
-	tName.SetForeground(Color::Blue);
-	Graphics A;
-	tName.draw(A, 10, 10, 0);
+	//tName.SetForeground(Color::Blue);
 
 	EventEngine engine;
 	engine.run(tName);

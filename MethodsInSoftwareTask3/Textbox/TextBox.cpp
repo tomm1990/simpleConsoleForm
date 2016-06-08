@@ -114,12 +114,25 @@ void TextBox::keyDown(WORD code, CHAR chr)
 			(chr >= 47 &&
 				chr <= 58) ||
 		chr == 32) {
-		if (counter < width) {
+		if (counter < width-1) {
 			counter++;
-			cout << chr;
-			_value.push_back(chr);
-			_CursorPosition.X++;
+			getCursorXY(_CursorPosition.X, _CursorPosition.Y);
+			if (_CursorPosition.X >= position.X + _value.size() + 1 ) {
+				cout << chr;
+				_value.push_back(chr);
+				_CursorPosition.X++;
+				resetOutput();
+			}
+			else{
+				_value.insert((_value.begin() + _CursorPosition.X - position.X -1), chr);
+				_CursorPosition.X++;
+				resetOutput();
+				setConsole_CursorPos_TextAttr(hOut, { _CursorPosition.X , position.Y + 1 }, _SavedColors); //test
+
+			}
+			
 		}
+		
 	}
 	else if (chr == 8) { // if backspace was clicked
 			//char endOfString;
@@ -130,7 +143,7 @@ void TextBox::keyDown(WORD code, CHAR chr)
 			}
 			counter--;
 			if (counter == -1) counter = 0;
-			getCursorXY(_CursorPosition.X, _CursorPosition.Y);
+			//getCursorXY(_CursorPosition.X, _CursorPosition.Y);
 
 			if (_CursorPosition.X == _CursorPosition.X + _value.size() + 2) {
 				//SetConsoleCursorPosition(hOut, { (SHORT)(_CursorPosition.X + counter + 2), (SHORT)(_CursorPosition.Y + 2) });
@@ -150,9 +163,18 @@ void TextBox::keyDown(WORD code, CHAR chr)
 				//_value += endOfString;
 				//cout << _value.c_str();
 			}
-		}
+			resetOutput();
+	} 
+	else if(code == 39) {// right key pressed
+		MoveToRight();
+		
+	}
+	else if (code == 37) { // left key pressed
+		MoveToLeft();
 
-	resetOutput();
+	}
+
+	
 }
 
 void TextBox::mousePressed(int i, int y, bool b)
@@ -203,4 +225,18 @@ void TextBox::setcursor(bool visible, DWORD size) // set bool visible = 0 - invi
 	lpCursor.bVisible = visible;
 	lpCursor.dwSize = size;
 	SetConsoleCursorInfo(hOut , &lpCursor);
+}
+
+void TextBox::MoveToRight() {
+	getCursorXY(_CursorPosition.X, _CursorPosition.Y);
+	if (_CursorPosition.X < _value.size()+1 ) {
+		setConsole_CursorPos_TextAttr(hOut, { ++_CursorPosition.X, _CursorPosition.Y }, _SavedColors);
+	}
+}
+
+void TextBox::MoveToLeft() {
+	getCursorXY(_CursorPosition.X, _CursorPosition.Y);
+	if (_CursorPosition.X > position.X + 1) {
+		setConsole_CursorPos_TextAttr(hOut, { --_CursorPosition.X, _CursorPosition.Y }, _SavedColors);
+	}
 }
