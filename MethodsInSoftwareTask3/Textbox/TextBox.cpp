@@ -60,7 +60,7 @@ string TextBox::getValuse()
 	return tempValue;
 }
 
-void TextBox::draw(const Graphics& graphics, int i, int i1, size_t size_t)
+void TextBox::draw(const Graphics& graphics, int i, int i1)
 {
 	setcursor(true, 10);
 	// i = left

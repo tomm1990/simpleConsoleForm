@@ -1,7 +1,7 @@
 #pragma once
 #include "../Control/Control.h"
 
-class TextBox:
+class TextBox :
 	public Control
 {
 protected:
@@ -27,14 +27,14 @@ public:
 	virtual ~TextBox();
 	void MouseEventProc(MOUSE_EVENT_RECORD) override;
 	void KeyEventProc(KEY_EVENT_RECORD) override;
-	
+
 	void SetForeground(Color color) override;
 	void SetBackground(Color color) override;
 	void SetBorder(BorderType border) override;
 	void SetText(string value);
 	string getValuse();
-
-	void draw(const Graphics& graphics, int left, int top) override;
+	void draw(const Graphics& graphics, int i, int i1, size_t size_t){};
+	void draw(const Graphics& graphics, int left, int top);
 	//virtual void draw(const Graphics& graphics, int i, int i1);
 	
 	void resetOutput() ;
