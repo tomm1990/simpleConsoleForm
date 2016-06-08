@@ -49,9 +49,9 @@ public:
 	};
 
 
-	void draw(const Graphics& graphics, int i, int i1, size_t size_t) override;
+	void draw(const Graphics& graphics, int left, int top) override;
 	void keyDown(WORD code, CHAR chr) override;
-	void mousePressed(int i, int y, bool b) override;
+	void mousePressed(int x, int y, bool isLeft) override;
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;
 };

@@ -18,7 +18,7 @@ void Control::setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD coo
 	SetConsoleTextAttribute(handle, color);
 
 }
-
+/*
 void Control::listen()
 {
 	DWORD cNumRead, fdwMode, i;
@@ -59,7 +59,7 @@ void Control::listen()
 		}
 	}
 }
-
+*/
 SHORT Control::getLeft()
 {
 	return position.X;

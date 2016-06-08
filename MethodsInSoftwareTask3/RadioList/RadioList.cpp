@@ -25,7 +25,7 @@ void RadioList::SetBorder(BorderType border)
 {
 }
 
-void RadioList::draw(const Graphics& graphics, int i, int i1, size_t size_t)
+void RadioList::draw(const Graphics& graphics, int left, int top)
 {
 }
 
@@ -33,7 +33,7 @@ void RadioList::keyDown(WORD code, CHAR chr)
 {
 }
 
-void RadioList::mousePressed(int i, int y, bool b)
+void RadioList::mousePressed(int x, int y, bool isLeft)
 {
 }
 
