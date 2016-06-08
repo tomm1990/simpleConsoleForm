@@ -15,7 +15,7 @@ void Control::getCursorXY(int& x, int& y) const
 void Control::setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD, const int)
 {
 }
-
+/*
 void Control::listen()
 {
 	DWORD cNumRead, fdwMode, i;
@@ -56,7 +56,7 @@ void Control::listen()
 		}
 	}
 }
-
+*/
 SHORT Control::getLeft()
 {
 	return 1;

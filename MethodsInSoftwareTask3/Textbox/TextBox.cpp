@@ -44,11 +44,11 @@ string TextBox::getValuse()
 	return this->_value;
 }
 
-void TextBox::draw(const Graphics& graphics, int i, int i1, size_t size_t)
+void TextBox::draw(const Graphics& graphics, int left, int top)
 {
 	// i = left
 	// i1  =  top
-	this->position = { (SHORT)i ,(SHORT)i1 };
+	this->position = { (SHORT)left ,(SHORT)top };
 	if (border == BorderType::Single) {
 		SetConsoleCursorPosition(hOut, { position.X , position.Y });
 		cout << _textBoxBorder.top_left;
@@ -82,7 +82,7 @@ void TextBox::keyDown(WORD code, CHAR chr)
 {
 }
 
-void TextBox::mousePressed(int i, int y, bool b)
+void TextBox::mousePressed(int x, int y, bool isLeft)
 {
 }
 

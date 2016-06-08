@@ -26,7 +26,7 @@ void Panel::SetBorder(BorderType border)
 {
 }
 
-void Panel::draw(const Graphics& graphics, int i, int i1, size_t size_t)
+void Panel::draw(const Graphics& graphics, int left, int top)
 {
 }
 
@@ -34,7 +34,7 @@ void Panel::keyDown(WORD code, CHAR chr)
 {
 }
 
-void Panel::mousePressed(int i, int y, bool b)
+void Panel::mousePressed(int x, int y, bool isLeft)
 {
 }
 

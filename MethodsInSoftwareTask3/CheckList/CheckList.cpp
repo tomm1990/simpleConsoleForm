@@ -134,7 +134,7 @@ CheckList::~CheckList()
 {
 }
 
-void CheckList::draw(const Graphics& graphics, int i, int i1, size_t size_t)
+void CheckList::draw(const Graphics& graphics, int left, int top)
 {
 }
 
@@ -142,7 +142,7 @@ void CheckList::keyDown(WORD code, CHAR chr)
 {
 }
 
-void CheckList::mousePressed(int i, int y, bool b)
+void CheckList::mousePressed(int x, int y, bool isLeft)
 {
 }
 
