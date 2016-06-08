@@ -37,7 +37,7 @@ public:
 	explicit Control(int width);
 	virtual void Show();
 	virtual void Hide();
-	void getCursorXY(int& x, int& y) const;
+	void getCursorXY(SHORT& x, SHORT& y) const;
 	void setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD, const int);
 	virtual void SetForeground(Color color) =0;
 	virtual void SetBackground(Color color) =0;

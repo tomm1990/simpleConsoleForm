@@ -2,7 +2,7 @@
 
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
-void Control::getCursorXY(int& x, int& y) const
+void Control::getCursorXY(SHORT& x, SHORT& y) const
 {
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
 	if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
@@ -12,8 +12,11 @@ void Control::getCursorXY(int& x, int& y) const
 	}
 }
 
-void Control::setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD, const int)
+void Control::setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD coord, const int color)
 {
+	SetConsoleCursorPosition(handle, { coord.X, coord.Y });
+	SetConsoleTextAttribute(handle, color);
+
 }
 
 void Control::listen()
@@ -59,12 +62,12 @@ void Control::listen()
 
 SHORT Control::getLeft()
 {
-	return 1;
+	return position.X;
 }
 
 SHORT Control::getTop()
 {
-	return 1;
+	return position.Y;
 }
 
 void Control::setFocus(const Control& it)

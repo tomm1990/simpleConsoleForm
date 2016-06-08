@@ -5,8 +5,12 @@ class TextBox:
 	public Control
 {
 protected:
-	string _value;
-	int _textLength, counter;
+	vector<char> _value;
+	int _textLength, counter, _SavedColors;
+	COORD _CursorPosition;
+	DWORD _componentfdwMode;
+	CONSOLE_SCREEN_BUFFER_INFO _textBoxBufferInfo;
+	CONSOLE_CURSOR_INFO _ComponentCursor;			// keeps info about current cursor
 
 	struct textBoxBorder {
 		char top_left = '\xDA';
@@ -33,9 +37,11 @@ public:
 	void draw(const Graphics& graphics, int i, int i1, size_t size_t) override;
 	//virtual void draw(const Graphics& graphics, int i, int i1);
 	
+	void resetOutput() ;
 	void keyDown(WORD code, CHAR chr) override;
 	void mousePressed(int i, int y, bool b) override;
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;
-
+	WORD GetConsoleTextAttribute(HANDLE hCon);
+	void setcursor(bool visible, DWORD size);
 };

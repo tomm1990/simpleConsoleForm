@@ -7,7 +7,7 @@ EventEngine::EventEngine(DWORD input, DWORD output)
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
 
-void EventEngine::run(Control& c)
+void EventEngine::run( Control& c )
 {
 	for (bool redraw = true;;)
 	{
@@ -16,7 +16,7 @@ void EventEngine::run(Control& c)
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(false);
 			for (size_t p = 0; p < 5; ++p)
-				c.draw(_graphics, 0, 0, p);
+				c.draw( _graphics, (int)c.getLeft() , (int)c.getLeft(), p); // changed to control left-top corner
 			redraw = false;
 		}
 
@@ -28,15 +28,15 @@ void EventEngine::run(Control& c)
 		case KEY_EVENT:
 			{
 				auto f = Control::getFocus();
-				if (f != nullptr && record.Event.KeyEvent.bKeyDown)
+				if (f == nullptr && record.Event.KeyEvent.bKeyDown) // changed from (f!=nullptr ...)
 				{
 					auto code = record.Event.KeyEvent.wVirtualKeyCode;
 					auto chr = record.Event.KeyEvent.uChar.AsciiChar;
 					if (code == VK_TAB)
 						moveFocus(c, f);
 					else
-						f->keyDown(code, chr);
-					redraw = true;
+						c.keyDown(code, chr);
+					redraw = false; // changed to false
 				}
 				break;
 			}
@@ -49,7 +49,7 @@ void EventEngine::run(Control& c)
 				if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 				{
 					c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
-					redraw = true;
+					redraw = false; // changed to false
 				}
 				break;
 			}

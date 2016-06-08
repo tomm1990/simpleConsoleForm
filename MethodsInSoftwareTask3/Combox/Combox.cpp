@@ -49,7 +49,7 @@ void Combox::open()
 
 void Combox::KeyEventProc(KEY_EVENT_RECORD mer)
 {
-	int x, y;
+	SHORT x, y;
 	getCursorXY(x, y);
 	if (mer.bKeyDown)
 	{
