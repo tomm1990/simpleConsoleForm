@@ -31,10 +31,11 @@ public:
 	void write(wstring s);
 	void write(int x, int y, wstring s);
 	void setCursorVisibility(bool isVisible);
+	void updateConsoleAttributes();
 private:
 	HANDLE _console;
 	Color _background, _foreground;
-	void updateConsoleAttributes();
+	
 };
 
 bool isInside(int x, int y, int left, int top, int width, int height);

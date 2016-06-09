@@ -1,8 +1,7 @@
 #include "Graphics.h"
+#include <iostream>
 
-Graphics::Graphics(DWORD stdHandle)
-	: _console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White)
-{
+Graphics::Graphics(DWORD stdHandle): _console(GetStdHandle(stdHandle)), _background(Color::Black), _foreground(Color::White){
 	updateConsoleAttributes();
 }
 

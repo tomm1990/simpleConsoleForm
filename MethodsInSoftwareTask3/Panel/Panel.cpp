@@ -26,7 +26,7 @@ void Panel::SetBorder(BorderType border)
 {
 }
 
-void Panel::draw(const Graphics& graphics, int left, int top)
+void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 {
 }
 

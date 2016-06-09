@@ -8,7 +8,7 @@ protected:
 	vector<char> _value;
 	int _textLength, counter, _SavedColors;
 	COORD _CursorPosition;
-	DWORD _componentfdwMode;
+	//DWORD _componentfdwMode;
 	CONSOLE_SCREEN_BUFFER_INFO _textBoxBufferInfo;
 	CONSOLE_CURSOR_INFO _ComponentCursor;			// keeps info about current cursor
 
@@ -33,8 +33,8 @@ public:
 	void SetBorder(BorderType border) override;
 	void SetText(string value);
 	string getValuse();
-	void draw(const Graphics& graphics, int i, int i1, size_t size_t){};
-	void draw(const Graphics& graphics, int left, int top);
+	void draw(Graphics& graphics, int i, int i1, size_t size_t);
+	//void draw(const Graphics& graphics, int left, int top){};
 	//virtual void draw(const Graphics& graphics, int i, int i1);
 	
 	void resetOutput() ;

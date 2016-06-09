@@ -25,7 +25,7 @@ void RadioList::SetBorder(BorderType border)
 {
 }
 
-void RadioList::draw(const Graphics& graphics, int left, int top)
+void RadioList::draw(Graphics& graphics, int left, int top, size_t p)
 {
 }
 

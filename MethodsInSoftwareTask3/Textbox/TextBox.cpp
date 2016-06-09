@@ -1,4 +1,5 @@
 #include "TextBox.h"
+#include <iterator>
 
 TextBox::TextBox(int width): Control(width)
 {
@@ -8,7 +9,7 @@ TextBox::TextBox(int width): Control(width)
 	_CursorPosition.X = position.X;
 	_CursorPosition.Y = position.Y + 1;
 	_textLength = counter = 0;
-	_componentfdwMode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT;
+	//_componentfdwMode = ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT;
 	SetConsoleCursorPosition(hOut, _CursorPosition);
 	GetConsoleScreenBufferInfo(hOut, &_textBoxBufferInfo);
 	setConsole_CursorPos_TextAttr(hOut, _CursorPosition, 0); //test
@@ -32,10 +33,12 @@ void TextBox::KeyEventProc(KEY_EVENT_RECORD)
 
 void TextBox::SetForeground(Color color){
 	graphics.setForeground(color);
+	graphics.updateConsoleAttributes();
 }
 
 void TextBox::SetBackground(Color color){
 	graphics.setBackground(color);
+	graphics.updateConsoleAttributes();
 }
 
 void TextBox::SetBorder(BorderType border)
@@ -45,12 +48,8 @@ void TextBox::SetBorder(BorderType border)
 
 void TextBox::SetText(string value)
 {
-	//cout << "Left is : " << getLeft();
-	//cout << "Top is : " << getTop();
-	SetConsoleCursorPosition(hOut, { getLeft() , getTop() });
 	if (!_value.empty()) _value.erase(_value.begin(), _value.end());
-	for (int i = 0; i < value.length(); i++) _value[i] = value[i];
-	cout << value;
+	copy(value.begin(), value.end(), back_inserter(_value));
 }
 
 string TextBox::getValuse()
@@ -60,7 +59,7 @@ string TextBox::getValuse()
 	return tempValue;
 }
 
-void TextBox::draw(const Graphics& graphics, int i, int i1)
+void TextBox::draw(Graphics& graphics, int i, int i1, size_t p)
 {
 	setcursor(true, 10);
 	// i = left
@@ -92,7 +91,7 @@ void TextBox::draw(const Graphics& graphics, int i, int i1)
 	}
 	setConsole_CursorPos_TextAttr(hOut, { _CursorPosition.X, _CursorPosition.Y }, _SavedColors); //test
 	_ComponentCursor.bVisible = true;
-
+	resetOutput();
 }
 
 void TextBox::resetOutput() 
@@ -135,23 +134,30 @@ void TextBox::keyDown(WORD code, CHAR chr)
 		
 	}
 	else if (chr == 8) { // if backspace was clicked
-			//char endOfString;
-			if(_CursorPosition.X   >=  position.X + _value.size() +1 && _value.size()!=0 )  {
+		counter--;
+		if (counter == -1) counter = 0;
+		getCursorXY(_CursorPosition.X, _CursorPosition.Y);
+		if(_CursorPosition.X   >=  position.X + _value.size() + 1 && _value.size()!=0 )  {
 				//endOfString = _value.back();
 				try { _value.pop_back(); }
 				catch(EXCEPINFO){}
-			}
-			counter--;
-			if (counter == -1) counter = 0;
-			//getCursorXY(_CursorPosition.X, _CursorPosition.Y);
+				resetOutput();
+		}
+		else if(_CursorPosition.X > position.X+1){
+			_value.erase(_value.begin() + _CursorPosition.X - position.X -1);
+			resetOutput();
+			setConsole_CursorPos_TextAttr(hOut, { --_CursorPosition.X , position.Y + 1 }, _SavedColors); //test
 
-			if (_CursorPosition.X == _CursorPosition.X + _value.size() + 2) {
+		}
+			
+
+			//if (_CursorPosition.X == _CursorPosition.X + _value.size() + 2) {
 				//SetConsoleCursorPosition(hOut, { (SHORT)(_CursorPosition.X + counter + 2), (SHORT)(_CursorPosition.Y + 2) });
 				//cout << " ";
 				//SetConsoleCursorPosition(hOut, { (SHORT)(_CursorPosition.X + counter + 2), (SHORT)(_CursorPosition.Y + 2) });
 				//_CursorPosition.X--;
-			}
-			else if (_CursorPosition.X < position.X + _value.size() + 2) {
+			//}
+			//else if (_CursorPosition.X < position.X + _value.size() + 2) {
 				//SetConsoleCursorPosition(hOut, { (SHORT)(_CursorPosition.X), (SHORT)(_CursorPosition.Y + 2) });
 				//cout << " ";
 				//SetConsoleCursorPosition(hOut, { (SHORT)(--_CursorPosition.X),(SHORT)(_CursorPosition.Y + 2) });
@@ -162,8 +168,8 @@ void TextBox::keyDown(WORD code, CHAR chr)
 				//setConsole_CursorPos_TextAttr(hOut, { position.X + 1, position.Y + 1 }, _SavedColors);
 				//_value += endOfString;
 				//cout << _value.c_str();
-			}
-			resetOutput();
+			//}
+			
 	} 
 	else if(code == 39) {// right key pressed
 		MoveToRight();

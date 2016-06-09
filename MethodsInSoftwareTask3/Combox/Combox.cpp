@@ -130,7 +130,7 @@ void Combox::MouseEventProc(MOUSE_EVENT_RECORD mer)
 	}
 }
 
-void Combox::draw(const Graphics& graphics, int left, int top)
+void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 {
 }
 

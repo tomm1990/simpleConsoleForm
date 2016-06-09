@@ -18,6 +18,7 @@ using namespace std;
 // ReSharper disable once CppClassNeedsConstructorBecauseOfUninitializedMember
 class Control
 {
+	static Control* Focus;
 protected:
 	HANDLE hOut;
 	HANDLE hIn;
@@ -37,7 +38,7 @@ public:
 	virtual void mousePressed(int x, int y, bool isLeft) = 0;
 
 	virtual ~Control() =0;
-	explicit Control(int width);
+	 Control(int width);
 	virtual void Show();
 	virtual void Hide();
 	void getCursorXY(SHORT& x, SHORT& y) const;
@@ -45,7 +46,7 @@ public:
 	virtual void SetForeground(Color color) =0;
 	virtual void SetBackground(Color color) =0;
 	virtual void SetBorder(BorderType border) =0;
-	virtual void draw(const Graphics& graphics, int left, int top) = 0;
+	virtual void draw(Graphics& graphics, int left, int top, size_t p) = 0;
 	virtual SHORT getLeft();
 	virtual SHORT getTop();
 	virtual void getAllControls(vector<Control*>* vector) =0;

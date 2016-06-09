@@ -12,7 +12,7 @@ public:
 	void SetBackground(Color color) override;
 	void SetBorder(BorderType border) override;
 	virtual ~CheckList();
-	void draw(const Graphics& graphics, int left, int top) override;
+	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;
 	void mousePressed(int x, int y, bool isLeft) override;
 	void getAllControls(vector<Control*>* vector) override;

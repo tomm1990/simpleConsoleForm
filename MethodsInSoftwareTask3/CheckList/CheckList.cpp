@@ -120,6 +120,7 @@ void CheckList::KeyEventProc(KEY_EVENT_RECORD)
 
 void CheckList::SetForeground(Color color)
 {
+	
 }
 
 void CheckList::SetBackground(Color color)
@@ -134,7 +135,7 @@ CheckList::~CheckList()
 {
 }
 
-void CheckList::draw(const Graphics& graphics, int left, int top)
+void CheckList::draw(Graphics& graphics, int left, int top, size_t p)
 {
 }
 
