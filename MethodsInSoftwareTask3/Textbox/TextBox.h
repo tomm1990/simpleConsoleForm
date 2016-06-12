@@ -10,7 +10,7 @@ private:
 	stringstream s;
 	string out;
 	vector<char> _value;
-	int _textLength, counter, _SavedColors , i , j;
+	int _textLength, counter, _SavedColors , i , j , _CustomColor;
 	COORD _CursorPosition;
 	//DWORD _componentfdwMode;
 	CONSOLE_SCREEN_BUFFER_INFO _textBoxBufferInfo;
@@ -29,9 +29,10 @@ public:
 	//Defualt Constructor
 	TextBox(int width);
 	virtual ~TextBox();
-	
 	void setForeground(Color color) override;
 	void setBackground(Color color) override;
+	//void setForeground(Color color) override;
+	//void setBackground(Color color) override;
 	void SetBorder(BorderType border) override;
 	void SetText(string value);
 	void SetSavedColors(const int);

@@ -25,8 +25,19 @@ void Panel::draw(Graphics& graphics, int left, int top , size_t p)
 	}
 }
 
-void Panel::keyDown(WORD code, CHAR chr)
-{
+void Panel::keyDown(WORD code, CHAR chr){
+	auto it = children.begin();
+	//SHORT x, y;
+	//getCursorXY(x, y);
+	//if ( (*it)->getFocus()) {
+		for (it ; it != children.end(); ++it) {
+			//int X = x - (*it)->getLeft();
+			//int Y = y - (*it)->getTop();
+			//if (X >= 0 && Y >= 0 && X < (*it)->getWidth() && Y < (*it)->getHeight()) {
+				(*it)->keyDown(code, chr);
+			//}
+		}
+	//}
 }
 
 void Panel::mousePressed(int x, int y, bool isLeft)

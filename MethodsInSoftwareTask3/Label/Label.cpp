@@ -26,16 +26,21 @@ void Label::setBackground(Color color)
 
 void Label::SetBorder(BorderType border)
 {
+	TextBox::SetBorder(border);
 }
 
 void Label::draw(Graphics& graphics, int i, int i1, size_t size_t){
-	SetConsoleCursorPosition(hOut, position);
-	if (position.X < 0 || position.Y < 0) return;
-	SetSavedColors( GetConsoleTextAttribute(hOut));
+	//SetConsoleCursorPosition(hOut, position);
+	TextBox::draw(graphics, i, i1, size_t);
+	if (i < 0 || i1 < 0) return;
+	//SetSavedColors( GetConsoleTextAttribute(hOut));
+	position.X = i;
+	position.Y = i1;
 	graphics.setForeground(forColor);
 	graphics.setBackground(backcolor);
-	cout << _value << endl;
-	setConsole_CursorPos_TextAttr(hOut, { (SHORT)position.X, (SHORT)(position.Y + width) }, getSavedColors());
+	graphics.write(i+1, i1+1,_value);
+	//cout << _value << endl;
+	//setConsole_CursorPos_TextAttr(hOut, { (SHORT)position.X, (SHORT)(position.Y + width) }, getSavedColors());
 }
 
 Label::~Label()

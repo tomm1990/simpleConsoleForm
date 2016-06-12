@@ -14,6 +14,7 @@ TextBox::TextBox(int width): Control(width)
 	setConsole_CursorPos_TextAttr(hOut, _CursorPosition, 0); //test
 	_ComponentCursor = { (unsigned long)width , TRUE };
 	SetConsoleCursorInfo(hOut, &_ComponentCursor);
+	//_SavedColors = GetConsoleTextAttribute(hOut);
 }
 
 TextBox::~TextBox()
@@ -22,14 +23,29 @@ TextBox::~TextBox()
 
 
 
-void TextBox::setForeground(Color color){
-	graphics.setForeground(color);
-	graphics.updateConsoleAttributes();
+//void TextBox::setForeground(Color color){
+//	graphics.setForeground(color);
+//	graphics.updateConsoleAttributes();
+//}
+
+//void TextBox::setBackground(Color color){
+//	graphics.setBackground(color);
+//	graphics.updateConsoleAttributes();
+//}
+
+void TextBox::setForeground(Color color)
+{
+	Control::setForeground(color);
+	_CustomColor = GetConsoleTextAttribute(hOut);
+	resetOutput();
+
 }
 
-void TextBox::setBackground(Color color){
-	graphics.setBackground(color);
-	graphics.updateConsoleAttributes();
+void TextBox::setBackground(Color color = Color::Black)
+{
+	_CustomColor = GetConsoleTextAttribute(hOut);
+	resetOutput();
+
 }
 
 void TextBox::SetBorder(BorderType border)
@@ -56,14 +72,15 @@ string TextBox::getValuse()
 
 void TextBox::draw(Graphics& graphics, int i, int i1, size_t p)
 {
-	setcursor(true, 10);
+	Control::draw(graphics, i, i1, 0);
+	//setcursor(true, 10);
 	// i = left
 	// i1  =  top
 	_CursorPosition.X = (SHORT)i + 1;
 	_CursorPosition.Y = (SHORT)i1 + 1;
 	this->position = { (SHORT)i ,(SHORT)i1 };
 	if (border == BorderType::Single) {
-		SetConsoleCursorPosition(hOut, { position.X , position.Y });
+		//SetConsoleCursorPosition(hOut, { position.X , position.Y });
 		writeBorder(_textBoxBorder.top_left);
 		//s << _textBoxBorder.horizontal_line;
 		for ( i = 0; i < width; i ++) 	writeBorder(_textBoxBorder.horizontal_line);
@@ -92,7 +109,7 @@ void TextBox::draw(Graphics& graphics, int i, int i1, size_t p)
 	else {
 
 	}
-	setConsole_CursorPos_TextAttr(hOut, { _CursorPosition.X, _CursorPosition.Y }, _SavedColors); //test
+	//setConsole_CursorPos_TextAttr(hOut, { _CursorPosition.X, _CursorPosition.Y }, _SavedColors); //test
 	_ComponentCursor.bVisible = true;
 	resetOutput();
 }
