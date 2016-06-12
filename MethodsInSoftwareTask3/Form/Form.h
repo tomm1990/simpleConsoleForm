@@ -1,8 +1,8 @@
 #pragma once
-#include "../Control/Container.h"
+#include "../Control/Control.h"
 
 class Form :
-	public Container
+	public Control
 {
 public:
 	virtual ~Form();

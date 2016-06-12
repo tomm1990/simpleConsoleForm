@@ -1,5 +1,6 @@
 #include "Control.h"
 
+Control* Control::onFocus;
 
 // ReSharper disable once CppMemberFunctionMayBeStatic
 void Control::getCursorXY(SHORT& x, SHORT& y) const
@@ -18,6 +19,22 @@ void Control::setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD coo
 	SetConsoleTextAttribute(handle, color);
 
 }
+
+void Control::setForeground(Color color)
+{
+	forColor = color;
+}
+
+void Control::draw(Graphics& graphics, int left, int top, size_t p)
+{
+	if (isVisibile)
+	{
+		graphics.moveTo(left, top);
+		graphics.setBackground(backcolor);
+		graphics.setForeground(forColor);
+	}
+}
+
 /*
 void Control::listen()
 {
@@ -62,21 +79,24 @@ void Control::listen()
 */
 SHORT Control::getLeft()
 {
-	return position.X;
+	//return position.X;
+	return left;
 }
 
 SHORT Control::getTop()
 {
-	return position.Y;
+	//return position.Y;
+	return top;
 }
 
-void Control::setFocus(const Control& it)
+void Control::setFocus(Control& it)
 {
+	onFocus = &it;
 }
 
 Control* Control::getFocus()
 {
-	return nullptr;
+	return onFocus;
 }
 
 Control::~Control()
@@ -88,12 +108,3 @@ Control::Control(int width) : hOut(GetStdHandle(STD_OUTPUT_HANDLE)), hIn(GetStdH
 
 }
 
-void Control::Show()
-{
-	isVisibile = true;
-}
-
-void Control::Hide()
-{
-	isVisibile = false;
-}

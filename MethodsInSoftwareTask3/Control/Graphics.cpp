@@ -5,7 +5,7 @@ Graphics::Graphics(DWORD stdHandle): _console(GetStdHandle(stdHandle)), _backgro
 	updateConsoleAttributes();
 }
 
-void Graphics::clearScreen()
+void Graphics::clearScreen() const
 {
 	DWORD d;
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -15,7 +15,7 @@ void Graphics::clearScreen()
 	FillConsoleOutputCharacter(_console, L' ', size, {0, 0}, &d);
 }
 
-void Graphics::moveTo(int x, int y)
+void Graphics::moveTo(int x, int y) const
 {
 	COORD c;
 	c.X = x;
@@ -35,29 +35,29 @@ void Graphics::setForeground(Color color)
 	updateConsoleAttributes();
 }
 
-void Graphics::write(string s)
+void Graphics::write(const string s)const
 {
 	WriteConsoleA(_console, s.c_str(), s.size(), nullptr, nullptr);
 }
 
-void Graphics::write(wstring s)
+void Graphics::write(const wstring s)const
 {
 	WriteConsoleW(_console, s.c_str(), s.size(), nullptr, nullptr);
 }
 
-void Graphics::write(int x, int y, string s)
+void Graphics::write(const int x, const int y, const string s)const
 {
 	moveTo(x, y);
 	write(s);
 }
 
-void Graphics::write(int x, int y, wstring s)
+void Graphics::write(const int x, const int y, const wstring s)const
 {
 	moveTo(x, y);
 	write(s);
 }
 
-void Graphics::setCursorVisibility(bool isVisible)
+void Graphics::setCursorVisibility(bool isVisible) const
 {
 	CONSOLE_CURSOR_INFO cci;
 	GetConsoleCursorInfo(_console, &cci);

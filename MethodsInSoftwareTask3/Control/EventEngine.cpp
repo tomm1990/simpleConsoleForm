@@ -12,9 +12,9 @@ void EventEngine::run( Control& c )
 		if (redraw)
 		{
 			_graphics.clearScreen();
-			_graphics.setCursorVisibility(false);
-			for (size_t p = 0; p < 2; ++p)
-				c.draw( _graphics, (int)c.getLeft() , (int)c.getLeft() , p   ); // changed to control left-top corner
+			_graphics.setCursorVisibility(true);
+			for (size_t p = 0; p < 1; ++p)
+				c.draw( _graphics, 0 , 0 , p   ); // changed to control left-top corner
 			redraw = false;
 		}
 
@@ -46,8 +46,10 @@ void EventEngine::run( Control& c )
 				auto y = coord.Y - c.getTop();
 				if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 				{
-					c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
-					redraw = false; // changed to false
+					if (isInside(x, y, c.getLeft(), c.getTop(), c.getWidth(), c.getHeight())) {
+						c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
+						redraw = true; // changed to false
+					}
 				}
 				break;
 			}

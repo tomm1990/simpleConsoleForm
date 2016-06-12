@@ -1,5 +1,4 @@
 #include "TextBox.h"
-#include <iterator>
 
 TextBox::TextBox(int width): Control(width)
 {
@@ -15,28 +14,20 @@ TextBox::TextBox(int width): Control(width)
 	setConsole_CursorPos_TextAttr(hOut, _CursorPosition, 0); //test
 	_ComponentCursor = { (unsigned long)width , TRUE };
 	SetConsoleCursorInfo(hOut, &_ComponentCursor);
-
-
 }
 
 TextBox::~TextBox()
 {
 }
 
-void TextBox::MouseEventProc(MOUSE_EVENT_RECORD)
-{
-}
 
-void TextBox::KeyEventProc(KEY_EVENT_RECORD)
-{
-}
 
-void TextBox::SetForeground(Color color){
+void TextBox::setForeground(Color color){
 	graphics.setForeground(color);
 	graphics.updateConsoleAttributes();
 }
 
-void TextBox::SetBackground(Color color){
+void TextBox::setBackground(Color color){
 	graphics.setBackground(color);
 	graphics.updateConsoleAttributes();
 }
@@ -50,6 +41,10 @@ void TextBox::SetText(string value)
 {
 	if (!_value.empty()) _value.erase(_value.begin(), _value.end());
 	copy(value.begin(), value.end(), back_inserter(_value));
+}
+
+void TextBox::SetSavedColors(const int color){
+	_SavedColors = color;
 }
 
 string TextBox::getValuse()
@@ -69,19 +64,27 @@ void TextBox::draw(Graphics& graphics, int i, int i1, size_t p)
 	this->position = { (SHORT)i ,(SHORT)i1 };
 	if (border == BorderType::Single) {
 		SetConsoleCursorPosition(hOut, { position.X , position.Y });
-		cout << _textBoxBorder.top_left;
-		for (int i = 0; i < this->width ; i++) cout << _textBoxBorder.horizontal_line;
-		cout << _textBoxBorder.top_right << endl;
+		writeBorder(_textBoxBorder.top_left);
+		//s << _textBoxBorder.horizontal_line;
+		for ( i = 0; i < width; i ++) 	writeBorder(_textBoxBorder.horizontal_line);
+		writeBorder(_textBoxBorder.top_right);
+		graphics.write(s.str() + "\n");
 		SetConsoleCursorPosition(hOut, { position.X, position.Y+1  });
-		for (int j = 0; j < 1; j++) {
-			cout << _textBoxBorder.vertical_line;
-			for (int i = 0; i <  this->width; i++) cout << ' ';
-			cout << _textBoxBorder.vertical_line << endl;
-			SetConsoleCursorPosition(hOut, { position.X, position.Y + 2 });
-		}
-		cout << _textBoxBorder.buttom_left;
-		for (int i = 0; i <  this->width; i++) cout << _textBoxBorder.horizontal_line;
-		cout << _textBoxBorder.buttom_right << endl;
+		
+		writeBorder( _textBoxBorder.vertical_line);
+		//for ( j = 0; j < 1; j++) {
+		//graphics.write(s.str());
+		for ( i = 0; i <  width; i++) graphics.write(" ");
+		writeBorder(_textBoxBorder.vertical_line);
+		graphics.write(s.str()+"\n");
+		SetConsoleCursorPosition(hOut, { position.X, position.Y + 2 });
+		//}
+
+		writeBorder(_textBoxBorder.buttom_left);
+		//graphics.write(s.str());
+		//writeBorder( _textBoxBorder.horizontal_line);
+		for ( i = 0; i <  width; i++) writeBorder(_textBoxBorder.horizontal_line);
+		writeBorder( _textBoxBorder.buttom_right);	
 	}
 	else if (border == BorderType::Double) {
 		
@@ -94,18 +97,25 @@ void TextBox::draw(Graphics& graphics, int i, int i1, size_t p)
 	resetOutput();
 }
 
+void TextBox::writeBorder(char outPut)
+{
+	s << outPut;
+	graphics.write(s.str());
+	s.str("");
+}
+
 void TextBox::resetOutput() 
 {
-	int i;
 	_value.shrink_to_fit();
 	setConsole_CursorPos_TextAttr(hOut, { position.X+1, position.Y+1 }, _SavedColors); //test
-	for (i = 0; i < _value.size() + 1 ; i++) cout << " ";
+	for (i = 0; i < _value.size() + 1 ; i++) graphics.write(" ");
 	setConsole_CursorPos_TextAttr(hOut, { position.X + 1, position.Y + 1 }, _SavedColors); //test
-	for ( i = 0; i < _value.size(); i++) cout << _value[i];
+	for ( i = 0; i < _value.size(); i++) writeBorder( _value[i] );
 }
 
 void TextBox::keyDown(WORD code, CHAR chr)
 {
+	counter = _value.size();
 	if ((chr >= 64 &&
 		chr <= 91) ||
 		(chr >= 96 &&
@@ -117,7 +127,7 @@ void TextBox::keyDown(WORD code, CHAR chr)
 			counter++;
 			getCursorXY(_CursorPosition.X, _CursorPosition.Y);
 			if (_CursorPosition.X >= position.X + _value.size() + 1 ) {
-				cout << chr;
+				writeBorder(chr);
 				_value.push_back(chr);
 				_CursorPosition.X++;
 				resetOutput();
@@ -185,6 +195,9 @@ void TextBox::keyDown(WORD code, CHAR chr)
 
 void TextBox::mousePressed(int i, int y, bool b)
 {
+	if(b && i>getLeft() && i<getLeft()+width && y>getTop() && y<getTop()+2){
+		setConsole_CursorPos_TextAttr(hOut,{(SHORT)i,(SHORT)y} , _SavedColors);
+	}
 }
 
 void TextBox::getAllControls(vector<Control*>* vector)

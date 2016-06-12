@@ -84,14 +84,11 @@
   <ItemGroup>
     <ClInclude Include="BorderType.h" />
     <ClInclude Include="Control.h" />
-    <ClInclude Include="Container.h" />
     <ClInclude Include="EventEngine.h" />
     <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Root.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Control.cpp" />
-    <ClCompile Include="Container.cpp" />
     <ClCompile Include="EventEngine.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="main.cpp" />

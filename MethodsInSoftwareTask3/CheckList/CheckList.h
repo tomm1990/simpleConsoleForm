@@ -6,10 +6,10 @@ class CheckList:
 {
 public:
 	CheckList(int height, int width, vector<string> options);
-	void MouseEventProc(MOUSE_EVENT_RECORD) override;
-	void KeyEventProc(KEY_EVENT_RECORD) override;
-	void SetForeground(Color color) override;
-	void SetBackground(Color color) override;
+	void MouseEventProc(MOUSE_EVENT_RECORD) ;
+	void KeyEventProc(KEY_EVENT_RECORD) ;
+	void setForeground(Color color) override;
+	void setBackground(Color color) override;
 	void SetBorder(BorderType border) override;
 	virtual ~CheckList();
 	void draw(Graphics& graphics, int left, int top, size_t p) override;

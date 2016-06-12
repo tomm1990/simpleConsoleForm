@@ -7,19 +7,18 @@ class Combox:
 private:
 	vector<string> list;
 	bool isListOpen;
-	string currentWord;
-	size_t cursorCurrent;
 	size_t size;
+	int selection;
+
 public:
 	Combox(int width, vector<string> options);
-	void SetForeground(Color color) override;
-	void SetBackground(Color color) override;
+
 	void SetBorder(BorderType border) override;
 
 	void open();
-	void KeyEventProc(KEY_EVENT_RECORD mer) override;
-	void MouseEventProc(MOUSE_EVENT_RECORD mer) override;
+	void close();
 
+	void setBackground(Color color) override;
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;
 	void mousePressed(int x, int y, bool isLeft) override;

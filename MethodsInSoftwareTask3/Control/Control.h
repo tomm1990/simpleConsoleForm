@@ -10,47 +10,46 @@
 
 using namespace std;
 
-
-#define NO_BORDER 's'
-#define SINGLE_BORDER 'd'
-#define DOUBLE_BORDER 'f'
-
 // ReSharper disable once CppClassNeedsConstructorBecauseOfUninitializedMember
 class Control
 {
-	static Control* Focus;
 protected:
 	HANDLE hOut;
 	HANDLE hIn;
 	COORD dim;
 	DWORD fontColor;
-	int width;
+	int width, height, left = 0, top = 0;
 	COORD position;
 	bool isVisibile;
-	Color forColor;
-	Color backcolor;
+	Color forColor = Color::Black;
+	Color backcolor = Color::White;
 	BorderType border;
 	Graphics graphics;
+	static Control* onFocus;
+
 public:
-	virtual void MouseEventProc(MOUSE_EVENT_RECORD) =0;
-	virtual void KeyEventProc(KEY_EVENT_RECORD) =0;
 	virtual void keyDown(WORD code, CHAR chr) = 0;
 	virtual void mousePressed(int x, int y, bool isLeft) = 0;
 
-	virtual ~Control() =0;
-	 Control(int width);
-	virtual void Show();
-	virtual void Hide();
+	virtual ~Control() = 0;
+	explicit Control(int width);
+	virtual void show() { isVisibile = true; }
+	virtual void hide() { isVisibile = false; }
 	void getCursorXY(SHORT& x, SHORT& y) const;
 	void setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD, const int);
-	virtual void SetForeground(Color color) =0;
-	virtual void SetBackground(Color color) =0;
-	virtual void SetBorder(BorderType border) =0;
-	virtual void draw(Graphics& graphics, int left, int top, size_t p) = 0;
+	virtual void setForeground(Color color = Color::White);
+	virtual void setBackground(Color color) = 0;
+	virtual void SetBorder(BorderType border) = 0;
+	virtual void draw(Graphics& graphics, int left, int top, size_t p);
 	virtual SHORT getLeft();
 	virtual SHORT getTop();
+	int getWidth() const { return width; }
+	int getHeight() const { return height; }
+	void set_left(int left) { this->left = left; }
+	void set_top(int top) { this->top = top; }
+
 	virtual void getAllControls(vector<Control*>* vector) =0;
 	virtual bool canGetFocus() =0;
-	static void setFocus(const Control& it);
+	static void setFocus(Control& it);
 	static Control* getFocus();
 };

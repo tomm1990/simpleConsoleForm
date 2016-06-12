@@ -1,12 +1,16 @@
 #pragma once
+#include <iterator>
+#include <sstream>
 #include "../Control/Control.h"
 
 class TextBox :
 	public Control
 {
-protected:
+private:
+	stringstream s;
+	string out;
 	vector<char> _value;
-	int _textLength, counter, _SavedColors;
+	int _textLength, counter, _SavedColors , i , j;
 	COORD _CursorPosition;
 	//DWORD _componentfdwMode;
 	CONSOLE_SCREEN_BUFFER_INFO _textBoxBufferInfo;
@@ -25,15 +29,16 @@ public:
 	//Defualt Constructor
 	TextBox(int width);
 	virtual ~TextBox();
-	void MouseEventProc(MOUSE_EVENT_RECORD) override;
-	void KeyEventProc(KEY_EVENT_RECORD) override;
-
-	void SetForeground(Color color) override;
-	void SetBackground(Color color) override;
+	
+	void setForeground(Color color) override;
+	void setBackground(Color color) override;
 	void SetBorder(BorderType border) override;
 	void SetText(string value);
+	void SetSavedColors(const int);
+	int getSavedColors() const { return _SavedColors; }
 	string getValuse();
 	void draw(Graphics& graphics, int i, int i1, size_t size_t);
+	void writeBorder(char);
 	//void draw(const Graphics& graphics, int left, int top){};
 	//virtual void draw(const Graphics& graphics, int i, int i1);
 	
@@ -46,4 +51,6 @@ public:
 	void setcursor(bool visible, DWORD size);
 	void MoveToRight();
 	void MoveToLeft();
+
+	
 };

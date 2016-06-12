@@ -9,5 +9,5 @@ int main(void)
 	list.push_back("orange");
 	Combox combox(width, list);
 
-	combox.Show();
+	combox.show();
 }

@@ -118,12 +118,12 @@ void CheckList::KeyEventProc(KEY_EVENT_RECORD)
 }
 
 
-void CheckList::SetForeground(Color color)
+void CheckList::setForeground(Color color)
 {
 	
 }
 
-void CheckList::SetBackground(Color color)
+void CheckList::setBackground(Color color)
 {
 }
 

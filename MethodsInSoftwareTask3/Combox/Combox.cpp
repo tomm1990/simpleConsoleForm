@@ -1,146 +1,126 @@
 #include "Combox.h"
 
-Combox::Combox(int width, vector<string> options): Control(width), list(options), isListOpen(false), currentWord(options[0]), cursorCurrent(1), size(static_cast<SHORT>(options.size()))
+Combox::Combox(int width, vector<string> options) : Control(width), list(options), isListOpen(false), size(static_cast<SHORT>(options.size())), selection(0)
 {
-}
-
-void Combox::SetForeground(Color color)
-{
-}
-
-void Combox::SetBackground(Color color)
-{
+	height = 1;
 }
 
 void Combox::SetBorder(BorderType border)
 {
 }
-/*
-void Show()
-{
-	SetConsoleCursorPosition(hOut, position);
-	cout << currentWord;
-	SetConsoleCursorPosition(hOut, position);
-}
 
-void Hide()
-{
-	SetConsoleCursorPosition(hOut, position);
-	for (auto i = 0; i < size + 1; i++ , SetConsoleCursorPosition(hOut, {position.X,position.Y + static_cast<SHORT>(i)}))
-	{
-		for (auto j = 0; j < width; j++)
-		{
-			cout << " ";
-		}
-	}
-}
-*/
 void Combox::open()
 {
-	for (size_t i = 0; i < size; i++)
-	{
-		SetConsoleCursorPosition(hOut, {position.X, position.Y + static_cast<SHORT>(i) + 1});
-		cout << list[i];
-	}
-	SetConsoleCursorPosition(hOut, {position.X,position.Y + 1});
-	cursorCurrent = 1;
+	height = size;
 	isListOpen = true;
 }
 
-void Combox::KeyEventProc(KEY_EVENT_RECORD mer)
+void Combox::close()
 {
-	SHORT x, y;
-	getCursorXY(x, y);
-	if (mer.bKeyDown)
+	height = 1;
+	isListOpen = false;
+}
+
+
+void Combox::mousePressed(int x, int y, bool is)
+{
+	if (is)
 	{
 		if (!isListOpen)
 		{
 			open();
-			return;
 		}
-		switch (mer.wVirtualKeyCode)
+		else
 		{
-		case VK_UP:
-			{
-				if (cursorCurrent == 1)
-				{
-					SetConsoleCursorPosition(hOut, {position.X,position.Y + static_cast<SHORT>(size)});
-					cursorCurrent = size;
-				}
-				else
-				{
-					SetConsoleCursorPosition(hOut, {position.X,static_cast<SHORT>(y) - 1});
-					cursorCurrent--;
-				}
-				break;
-			}
-		case VK_DOWN:
-			{
-				if (cursorCurrent < size)
-				{
-					SetConsoleCursorPosition(hOut, {position.X,static_cast<SHORT>(y) + 1});
-					cursorCurrent++;
-				}
-				else
-				{
-					cursorCurrent = 1;
-					SetConsoleCursorPosition(hOut, {position.X,position.Y + 1});
-				}
-				break;
-			}
-		case VK_RETURN:
-			{
-				currentWord = list[cursorCurrent - 1];
-				SetConsoleCursorPosition(hOut, position);
-				cout << currentWord;
-				Hide();
-				Show();
-				isListOpen = false;
-				break;
-			}
+			selection = y;
+			close();
 		}
 	}
 }
 
-void Combox::MouseEventProc(MOUSE_EVENT_RECORD mer)
+
+void Combox::setBackground(Color color = Color::Black)
 {
-	if (mer.dwButtonState != FROM_LEFT_1ST_BUTTON_PRESSED)
-	{
-		return;
-	}
-	if (mer.dwMousePosition.X <= (position.X + width) &&
-		mer.dwMousePosition.X >= position.X)
-	{
-		if (!isListOpen)
-		{
-			open();
-			return;
-		}
-		if (mer.dwMousePosition.Y >= position.Y + 1 &&
-			mer.dwMousePosition.Y <= position.Y + size)
-		{
-			SetConsoleCursorPosition(hOut, mer.dwMousePosition);
-			cursorCurrent = mer.dwMousePosition.Y - position.Y - 1;
-			currentWord = list[cursorCurrent];
-		}
-		cout << currentWord;
-		Hide();
-		Show();
-		isListOpen = false;
-	}
 }
 
 void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 {
+	Control::draw(graphics, left, top , 0);
+	if (!isListOpen)
+	{
+		graphics.write(list[selection]);
+		auto i = list[0].size();
+		if (i < width)
+		{
+			for (; i < width; i++, graphics.moveTo(left + i, top))
+			{
+				graphics.write(" ");
+			}
+		}
+		graphics.moveTo(left, top);
+	}
+	else
+	{
+		for (auto i = 0; i < size; i++, graphics.moveTo(left, top + i))
+		{
+			graphics.write(list[i]);
+			for (auto j = list[i].size(); j < width; j++, graphics.moveTo(left + j, top + i))
+			{
+				graphics.write(" ");
+
+			}
+		}
+		graphics.moveTo(left, selection + top);
+	}
+
+	graphics.setBackground();
+	graphics.setForeground();
 }
 
 void Combox::keyDown(WORD code, CHAR chr)
 {
+	SHORT x, y;
+	getCursorXY(x, y);
+	if (!isListOpen)
+	{
+		open();
+		return;
+	}
+	switch (code)
+	{
+	case VK_UP:
+	{
+		if (selection == 0)
+		{
+			selection = size - 1;
+		}
+		else
+		{
+			--selection;
+		}
+		break;
+	}
+	case VK_DOWN:
+	{
+		if (selection < size - 1)
+		{
+			selection++;
+		}
+		else
+		{
+			selection = 0;
+		}
+		break;
+	}
+	case VK_RETURN:
+	{
+		isListOpen = false;
+		break;
+	}
+	}
 }
 
-void Combox::mousePressed(int x, int y, bool isLeft)
-{
-}
+
 
 void Combox::getAllControls(vector<Control*>* vector)
 {

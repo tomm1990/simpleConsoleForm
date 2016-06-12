@@ -13,11 +13,11 @@ void RadioList::KeyEventProc(KEY_EVENT_RECORD)
 }
 
 
-void RadioList::SetForeground(Color color)
+void RadioList::setForeground(Color color)
 {
 }
 
-void RadioList::SetBackground(Color color)
+void RadioList::setBackground(Color color)
 {
 }
 

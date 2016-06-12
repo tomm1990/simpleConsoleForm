@@ -4,18 +4,20 @@
 class Panel :
 	public Control
 {
+private:
+	vector < Control* > children;
 public:
 	Panel(int height, int width);
-	void MouseEventProc(MOUSE_EVENT_RECORD) override;
-	void KeyEventProc(KEY_EVENT_RECORD) override;
-	void SetForeground(Color color) override;
-	void SetBackground(Color color) override;
-	void SetBorder(BorderType border) override;
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
+
+
 	void keyDown(WORD code, CHAR chr) override;
 	void mousePressed(int x, int y, bool isLeft) override;
+	void setBackground(Color color) override;
+	void SetBorder(BorderType border) override;
+	void draw(Graphics& graphics, int left, int top , size_t p) override;
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;
+	void addControl(Control& element, int left, int top);
 	virtual ~Panel();
 };
 
