@@ -23,7 +23,7 @@ void Panel::draw(Graphics& graphics, int left, int top , size_t p)
 	{
 		(*it)->draw(graphics, (*it)->getLeft(), (*it)->getTop(), p);
 	}
-	graphics.moveTo(Control::getFocus()->getLeft(), Control::getFocus()->getTop());
+	getFocus()->draw(graphics, getFocus()->getLeft(), getFocus()->getTop(),p);
 }
 
 void Panel::keyDown(WORD code, CHAR chr) {
