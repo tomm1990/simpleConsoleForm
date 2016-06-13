@@ -14,17 +14,12 @@ using namespace std;
 class Control
 {
 protected:
-	HANDLE hOut;
-	HANDLE hIn;
-	COORD dim;
 	DWORD fontColor;
 	int width, height, left = 0, top = 0;
-	COORD position;
 	bool isVisibile;
 	Color forColor = Color::Black;
 	Color backcolor = Color::White;
 	BorderType border;
-	Graphics graphics;
 	static Control* onFocus;
 
 public:
@@ -35,12 +30,10 @@ public:
 	explicit Control(int width);
 	virtual void show() { isVisibile = true; }
 	virtual void hide() { isVisibile = false; }
-	void getCursorXY(SHORT& x, SHORT& y) const;
-	void setConsole_CursorPos_TextAttr(const HANDLE handle, const COORD, const int);
 	virtual void setForeground(Color color = Color::White);
-	virtual void setBackground(Color color) = 0;
+	virtual void setBackground(Color color);
 	virtual void SetBorder(BorderType border) = 0;
-	virtual void draw(Graphics& graphics, int left, int top, size_t p);
+	virtual void draw(Graphics& graphics, int left, int top, size_t p)=0;
 	virtual SHORT getLeft();
 	virtual SHORT getTop();
 	int getWidth() const { return width; }

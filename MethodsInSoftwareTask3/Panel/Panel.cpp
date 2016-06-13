@@ -16,7 +16,7 @@ void Panel::SetBorder(BorderType border)
 
 }
 
-void Panel::draw(Graphics& graphics, int left, int top , size_t p)
+void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 {
 	Control::draw(graphics, left, top , 0);
 	for (auto it = children.begin(); it != children.end(); ++it)

@@ -79,9 +79,7 @@ void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 
 void Combox::keyDown(WORD code, CHAR chr)
 {
-	SHORT x, y;
-	getCursorXY(x, y);
-	if (!isListOpen)
+	if (!isListOpen && (code==VK_UP  || code == VK_DOWN))
 	{
 		open();
 		return;
