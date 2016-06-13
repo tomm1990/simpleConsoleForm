@@ -124,6 +124,7 @@ void Combox::keyDown(WORD code, CHAR chr)
 
 void Combox::getAllControls(vector<Control*>* vector)
 {
+//	vector->push_back(this);
 }
 
 bool Combox::canGetFocus()

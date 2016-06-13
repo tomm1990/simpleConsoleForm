@@ -219,6 +219,7 @@ void TextBox::mousePressed(int i, int y, bool b)
 
 void TextBox::getAllControls(vector<Control*>* vector)
 {
+	//vector->push_back(this);
 }
 
 bool TextBox::canGetFocus()

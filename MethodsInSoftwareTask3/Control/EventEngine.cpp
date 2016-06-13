@@ -71,7 +71,9 @@ void EventEngine::moveFocus(Control& main, Control* focused)
 	auto it = find(controls.begin(), controls.end(), focused);
 	do
 		if (++it == controls.end())
+		{
 			it = controls.begin();
+		}
 	while (!(*it)->canGetFocus());
 	Control::setFocus(**it);
 }
