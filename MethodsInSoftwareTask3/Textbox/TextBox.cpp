@@ -3,7 +3,7 @@
 TextBox::TextBox(int width): Control(width)
 {
 	if (position.X < 0 || position.Y < 0) return;
-	dim = { (SHORT)width , 3 };
+	dim = { (SHORT)width , 1 };
 	_SavedColors = GetConsoleTextAttribute(hOut);
 	_CursorPosition.X = position.X;
 	_CursorPosition.Y = position.Y + 1;
@@ -112,6 +112,7 @@ void TextBox::draw(Graphics& graphics, int i, int i1, size_t p)
 	//setConsole_CursorPos_TextAttr(hOut, { _CursorPosition.X, _CursorPosition.Y }, _SavedColors); //test
 	_ComponentCursor.bVisible = true;
 	resetOutput();
+
 }
 
 void TextBox::writeBorder(char outPut)
@@ -212,9 +213,13 @@ void TextBox::keyDown(WORD code, CHAR chr)
 
 void TextBox::mousePressed(int i, int y, bool b)
 {
-	if(b && i>getLeft() && i<getLeft()+width && y>getTop() && y<getTop()+2){
+
+	
+	if(b && i>getLeft() && i<getLeft()+width && y>getTop() && y<getTop()+2)
+	{
 		setConsole_CursorPos_TextAttr(hOut,{(SHORT)i,(SHORT)y} , _SavedColors);
 	}
+	//getFocus()->draw(getFocus()->) should move focus
 }
 
 void TextBox::getAllControls(vector<Control*>* vector)

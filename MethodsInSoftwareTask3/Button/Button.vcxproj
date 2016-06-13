@@ -18,6 +18,17 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Button.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Button.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Label\Label.vcxproj">
+      <Project>{a15885a5-6913-4a8d-a21d-314c97dcb914}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{11F00F43-5E67-4883-BD30-2D95ED944F27}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

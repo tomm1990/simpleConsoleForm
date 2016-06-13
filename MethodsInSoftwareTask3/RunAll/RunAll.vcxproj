@@ -154,9 +154,6 @@
     <ProjectReference Include="..\Control\Control.vcxproj">
       <Project>{353c56a5-bff4-4280-915b-44d05147c317}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\Form\Form.vcxproj">
-      <Project>{f3ae673e-6b9b-4f45-9de4-75730a3bf4e4}</Project>
-    </ProjectReference>
     <ProjectReference Include="..\Label\Label.vcxproj">
       <Project>{a15885a5-6913-4a8d-a21d-314c97dcb914}</Project>
     </ProjectReference>

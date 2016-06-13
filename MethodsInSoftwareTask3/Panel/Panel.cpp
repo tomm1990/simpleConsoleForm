@@ -48,8 +48,10 @@ void Panel::mousePressed(int x, int y, bool isLeft)
 			if (X >= 0 && Y >= 0 && X < (*it)->getWidth() && Y < (*it)->getHeight())
 			{
 				(*it)->mousePressed(X, Y, isLeft);
+				setFocus(**it);
 			}
 		}
+
 	}
 }
 

@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Combox", "Combox\Combox.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Control", "Control\Control.vcxproj", "{353C56A5-BFF4-4280-915B-44D05147C317}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Form", "Form\Form.vcxproj", "{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Label", "Label\Label.vcxproj", "{A15885A5-6913-4A8D-A21D-314C97DCB914}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MessageBox", "MessageBox\MessageBox.vcxproj", "{27FD75F6-A1D1-443E-AE5B-F0923A2BFB81}"
@@ -25,7 +23,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RadioList", "RadioList\Radi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RunAll", "RunAll\RunAll.vcxproj", "{EEEA5ABA-8C83-45D9-954F-BA3D2BFF94AA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Textbox", "Textbox\Textbox.vcxproj", "{2FC07EC6-E803-436F-A159-AE6E0B41378D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Textbox", "TextBox\Textbox.vcxproj", "{2FC07EC6-E803-436F-A159-AE6E0B41378D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,14 +59,6 @@ Global
 		{353C56A5-BFF4-4280-915B-44D05147C317}.Release|Win32.ActiveCfg = Release|Win32
 		{353C56A5-BFF4-4280-915B-44D05147C317}.Release|Win32.Build.0 = Release|Win32
 		{353C56A5-BFF4-4280-915B-44D05147C317}.Release|x64.ActiveCfg = Release|Win32
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Debug|Win32.Build.0 = Debug|Win32
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Debug|x64.ActiveCfg = Debug|x64
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Debug|x64.Build.0 = Debug|x64
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Release|Win32.ActiveCfg = Release|Win32
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Release|Win32.Build.0 = Release|Win32
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Release|x64.ActiveCfg = Release|x64
-		{F3AE673E-6B9B-4F45-9DE4-75730A3BF4E4}.Release|x64.Build.0 = Release|x64
 		{A15885A5-6913-4A8D-A21D-314C97DCB914}.Debug|Win32.ActiveCfg = Debug|Win32
 		{A15885A5-6913-4A8D-A21D-314C97DCB914}.Debug|Win32.Build.0 = Debug|Win32
 		{A15885A5-6913-4A8D-A21D-314C97DCB914}.Debug|x64.ActiveCfg = Debug|Win32
