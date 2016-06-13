@@ -74,7 +74,7 @@ void Panel::addControl(Control& element, int left, int top)
 	element.set_left(left);
 	element.set_top(top);
 	children.push_back(&element);
-	//setFocus()
+	setFocus(element);
 }
 
 

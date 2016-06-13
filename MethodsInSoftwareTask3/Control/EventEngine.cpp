@@ -26,7 +26,7 @@ void EventEngine::run( Control& c )
 		case KEY_EVENT:
 			{
 				auto f = Control::getFocus();
-				if (f == nullptr && record.Event.KeyEvent.bKeyDown) // changed from (f!=nullptr ...)
+				if (f != nullptr && record.Event.KeyEvent.bKeyDown) 
 				{
 					auto code = record.Event.KeyEvent.wVirtualKeyCode;
 					auto chr = record.Event.KeyEvent.uChar.AsciiChar;
@@ -34,7 +34,7 @@ void EventEngine::run( Control& c )
 						moveFocus(c, f);
 					else
 						c.keyDown(code, chr);
-					redraw = false; // changed to false
+					redraw = true; 
 				}
 				break;
 			}

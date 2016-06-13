@@ -36,7 +36,8 @@ int main()
 
 
 	EventEngine events;
-	panel.addControl(A, 14, 2);
+	//panel.addControl(A, 14, 2);
+	panel.addControl(combox, 6, 10);
 	//panel.addControl(tAdrress, 30, 2);
 	//panel.addControl(combox, 14, 6);
 	//panel.addControl(combox2, 36, 6);
