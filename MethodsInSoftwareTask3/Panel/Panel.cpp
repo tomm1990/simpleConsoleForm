@@ -23,6 +23,7 @@ void Panel::draw(Graphics& graphics, int left, int top , size_t p)
 	{
 		(*it)->draw(graphics, (*it)->getLeft(), (*it)->getTop(), p);
 	}
+	graphics.moveTo(Control::getFocus()->getLeft(), Control::getFocus()->getTop());
 }
 
 void Panel::keyDown(WORD code, CHAR chr) {
@@ -58,7 +59,7 @@ void Panel::setBackground(Color color)
 
 void Panel::getAllControls(vector<Control*>* vector)
 {
-	vector = &children;
+	*vector = children;
 }
 bool Panel::canGetFocus()
 {
