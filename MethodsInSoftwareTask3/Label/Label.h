@@ -7,5 +7,7 @@ public:
 	Label(int width , string value);
 	void SetText(string);
 	void SetBorder(BorderType border) override;
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
+	virtual void draw(Graphics& graphics, int left, int top, size_t p) override;
+	virtual void keyDown(WORD code, CHAR chr) override{};
+	virtual void mousePressed(int x, int y, bool isLeft) override{};
 };
