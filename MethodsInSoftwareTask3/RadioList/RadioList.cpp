@@ -21,7 +21,7 @@ void RadioList::setBackground(Color color)
 {
 }
 
-void RadioList::SetBorder(BorderType border)
+void RadioList::setBorderDrawer(const BorderDrawer & borderDrawer)
 {
 }
 

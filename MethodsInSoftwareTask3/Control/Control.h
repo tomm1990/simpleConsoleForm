@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include "Graphics.h"
+#include "BorderDrawer.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ protected:
 	int width, height, left = 0, top = 0;
 	bool isVisibile;
 	Color forColor = Color::Black;
+	const BorderDrawer* drawer = nullptr; //changed to nullptr to note Panels
 	Color backcolor = Color::White;
 	static Control* onFocus;
 
@@ -32,7 +34,7 @@ public:
 	virtual void hide() { isVisibile = false; }
 	virtual void setForeground(Color color = Color::White);
 	virtual void setBackground(Color color);
-	virtual void SetBorder(BorderType border);
+	virtual void setBorderDrawer(const BorderDrawer & borderDrawer);
 	virtual void draw(Graphics& graphics, int left, int top, size_t p)=0;
 	virtual SHORT getLeft();
 	virtual SHORT getTop();

@@ -4,7 +4,7 @@
 int main(int argv , char* argc[]) {
 	TextBox tName(20);
 	//tName.SetText("Hello");
-	tName.SetBorder( BorderType::Single );
+	//tName.setBorderDrawer( SingleBorder );
 	tName.setForeground( Color::Blue );
 	
 	Graphics A;
