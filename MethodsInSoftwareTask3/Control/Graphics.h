@@ -31,7 +31,7 @@ public:
 	void write(const wstring s)const;
 	void write(const int x, const int y, const wstring s)const;
 	void setCursorVisibility(bool isVisible) const ;
-	void updateConsoleAttributes();
+	void updateConsoleAttributes() const;
 
 private:
 	HANDLE _console;

@@ -10,7 +10,6 @@ public:
 	void KeyEventProc(KEY_EVENT_RECORD) ;
 	void setForeground(Color color) override;
 	void setBackground(Color color) override;
-	void SetBorder(BorderType border) override;
 	virtual ~CheckList();
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;

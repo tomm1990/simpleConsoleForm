@@ -127,9 +127,6 @@ void CheckList::setBackground(Color color)
 {
 }
 
-void CheckList::SetBorder(BorderType border)
-{
-}
 
 CheckList::~CheckList()
 {

@@ -5,9 +5,7 @@ Combox::Combox(int width, vector<string> options) : Control(width), list(options
 	height = 1;
 }
 
-void Combox::SetBorder(BorderType border)
-{
-}
+
 
 void Combox::open()
 {

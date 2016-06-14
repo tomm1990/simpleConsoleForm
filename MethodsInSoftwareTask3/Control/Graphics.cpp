@@ -51,6 +51,7 @@ void Graphics::write(const int x, const int y, const string s)const
 	write(s);
 }
 
+
 void Graphics::write(const int x, const int y, const wstring s)const
 {
 	moveTo(x, y);
@@ -65,7 +66,7 @@ void Graphics::setCursorVisibility(bool isVisible) const
 	SetConsoleCursorInfo(_console, &cci);
 }
 
-void Graphics::updateConsoleAttributes()
+void Graphics::updateConsoleAttributes() const
 {
 	DWORD attributes = 0;
 

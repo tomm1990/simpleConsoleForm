@@ -13,6 +13,28 @@ void Control::setBackground(Color color)
 	backcolor = color;
 }
 
+void Control::SetBorder(BorderType border)
+{
+	switch (border)
+	{
+	case BorderType::None:
+	{	
+		
+		break;
+	}
+	case BorderType::Single:
+	{
+		
+		break;
+	}
+	case BorderType::Double:
+	{
+		
+		break;
+	}
+	}
+}
+
 void Control::draw(Graphics& graphics, int left, int top, size_t p)
 {
 	if (isVisibile)
@@ -25,13 +47,11 @@ void Control::draw(Graphics& graphics, int left, int top, size_t p)
 
 SHORT Control::getLeft()
 {
-	//return position.X;
 	return left;
 }
 
 SHORT Control::getTop()
 {
-	//return position.Y;
 	return top;
 }
 

@@ -6,6 +6,9 @@ class Button:
 {
 public:
 	Button(int width, string val);
-	virtual ~Button();
+
+	void SetBorder(BorderType border) override;
+	void draw(Graphics& graphics, int left, int top, size_t p) override;
+	void mousePressed(int x, int y, bool isLeft) override;
 };
 

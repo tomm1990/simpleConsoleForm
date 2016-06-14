@@ -8,7 +8,6 @@ public:
 	TextBox(int width);
 	virtual void keyDown(WORD code, CHAR chr) override;
 	virtual void mousePressed(int x, int y, bool isLeft) override;
-	void SetBorder(BorderType border) override;
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;
 

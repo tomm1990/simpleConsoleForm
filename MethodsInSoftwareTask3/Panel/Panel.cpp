@@ -10,12 +10,6 @@ Panel::Panel(int height, int width) : Control(width)
 
 
 
-
-void Panel::SetBorder(BorderType border)
-{
-
-}
-
 void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 {
 	Control::draw(graphics, left, top , 0);
@@ -55,9 +49,6 @@ void Panel::mousePressed(int x, int y, bool isLeft)
 	}
 }
 
-void Panel::setBackground(Color color)
-{
-}
 
 void Panel::getAllControls(vector<Control*>* vector)
 {

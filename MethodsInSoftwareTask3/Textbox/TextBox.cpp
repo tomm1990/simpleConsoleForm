@@ -63,9 +63,6 @@ void TextBox::mousePressed(int x, int y, bool isLeft)
 		cursor = value.size();
 }
 
-void TextBox::SetBorder(BorderType border)
-{
-}
 
 void TextBox::getAllControls(vector<Control*>* vector)
 {

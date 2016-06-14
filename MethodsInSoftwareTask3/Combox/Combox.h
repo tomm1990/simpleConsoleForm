@@ -12,12 +12,9 @@ private:
 
 public:
 	Combox(int width, vector<string> options);
-
-	void SetBorder(BorderType border) override;
-
 	void open();
 	void close();
-
+	void setSelectedIndex(int index) { selection = index - 1; };
 	void setBackground(Color color) override;
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;
