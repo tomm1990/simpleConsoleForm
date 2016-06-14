@@ -1,18 +1,20 @@
 #pragma once
 #include "../Control/Control.h"
 
-class RadioList:
+class RadioList :
 	public Control
 {
-public:
-	RadioList(int width);
-	void MouseEventProc(MOUSE_EVENT_RECORD) ;
-	void KeyEventProc(KEY_EVENT_RECORD) ;
-	~RadioList() override;
-	void setForeground(Color color) override;
-	void setBackground(Color color) override;
-	void setBorderDrawer(const BorderDrawer & borderDrawer) override;
+private:
+	vector<string> list;
+	bool isListOpen;
+	size_t size;
+	int selection = {};
 
+public:
+	RadioList(int width, vector<string> options);
+	void open();
+	void close();
+	void setSelectedIndex(int index) { selection = index - 1; };
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;
 	void mousePressed(int x, int y, bool isLeft) override;

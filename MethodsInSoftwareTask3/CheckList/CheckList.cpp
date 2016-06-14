@@ -1,151 +1,120 @@
 #include "CheckList.h"
-int flag = 0;
-int Cflag = 0;
 
-CheckList::CheckList(int height, int width, vector<string> options): Control(width) {
-	Graphics C;
-	C.setForeground(Color::Blue);
-	int arrayFlugs[4] = {};
-	DWORD fontColor = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-	for (int counter = 0; counter < options.size(); ++counter) {
-		COORD position = { 3, counter+1 };
-		arrayFlugs[counter] = 0;
-		C.moveTo(3, counter + 2);	
-		cout << options[counter]<<endl;	
-	}
-	POINT p;
-	if (GetCursorPos(&p))
+CheckList::CheckList(int width, vector<string> options) : Control(width), list(options), isListOpen(false), size(static_cast<SHORT>(options.size())), selection(0)
+{
+	height = 1;
+	open();
+}
+
+
+
+void CheckList::open()
+{
+	height = size;
+	isListOpen = true;
+}
+
+void CheckList::close()
+{
+	isListOpen = false;
+}
+
+
+
+void CheckList::mousePressed(int x, int y, bool is)
+{
+	if (is)
 	{
-		if (p.y > 0 && p.y < 580) {
-			if (arrayFlugs[0] == 0) {
-				C.setForeground(Color::Red);
-				options[0] = "[X] Tommy";
-				cout << options[0] << endl;
-				//CheckList test1(3, 1, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[ ] Hello", 1);;
+			selection = y;
+			if(listFlag[y]!=1)
+			{
+				listFlag[y] = 1;
 			}
-			if (arrayFlugs[0] == 1) {
-				//CheckList test1(3, 1, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[X] Hello", 1);;
+			else
+			{
+				listFlag[y] = 0;
 			}
-			//if ((mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) && (arrayFlugs[0] == 0))
-			//{
-				//arrayFlugs[0] = 1;
-				//CheckList test1(3, 1, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[X] Hello", 1);;
-			//}
-			//else if ((mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) && (arrayFlugs[0] == 1))
-			//{
-				//arrayFlugs[0] = 0;
-				//CheckList test1(3, 1, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[ ] Hello", 1);;
-			//}
-		}
-		else {
-			if (arrayFlugs[0] == 0) {
-				//CheckList test1(3, 1, 0, FOREGROUND_BLUE | FOREGROUND_INTENSITY, "[ ] Hello", 1);;
-			}
-			if (arrayFlugs[0] == 1) {
-				//CheckList test1(3, 1, 0, FOREGROUND_BLUE | FOREGROUND_INTENSITY, "[X] Hello", 1);;
-			}
-		}
-
-		if (p.y > 80 && p.y < 100) {
-			if (arrayFlugs[1] == 0) {
-				//CheckList test1(3, 2, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[ ] Beautiful", 1);;
-			}
-			if (arrayFlugs[1] == 1) {
-				//CheckList test1(3, 2, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[X] Beautiful", 1);;
-			}
-			//if ((mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) && (arrayFlugs[1] == 0))
-			//{
-				//arrayFlugs[1] = 1;
-				//CheckList test1(3, 2, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[X] Beautiful", 1);;
-			//}
-			//else if ((mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) && (arrayFlugs[1] == 1))
-			//{
-				//arrayFlugs[1] = 0;
-				//CheckList test1(3, 2, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[ ] Beautiful", 1);;
-			//}
-		}
-		else {
-			if (arrayFlugs[1] == 0) {
-				//CheckList test1(3, 2, 0, FOREGROUND_BLUE | FOREGROUND_INTENSITY, "[ ] Beautiful", 1);;
-			}
-			if (arrayFlugs[1] == 1) {
-				//CheckList test1(3, 2, 0, FOREGROUND_BLUE | FOREGROUND_INTENSITY, "[X] Beautiful", 1);;
-			}
-		}
-
-		if (p.y > 100 && p.y < 150) {
-			//if (arrayFlugs[2] == 0) {
-			//	CheckList test1(3, 3, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[ ] World", 1);;
-			//}
-			//if (arrayFlugs[2] == 1) {
-			//	CheckList test1(3, 3, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[X] World", 1);;
-			//}
-			//if ((mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) && (arrayFlugs[2] == 0))
-			//{
-			//	arrayFlugs[2] = 1;
-			//	CheckList test1(3, 3, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[X] World", 1);;
-			//}
-			//else if ((mer.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED) && (arrayFlugs[2] == 1))
-			//{
-			//	arrayFlugs[2] = 0;
-			//	//CheckList test1(3, 3, 0, FOREGROUND_RED | FOREGROUND_INTENSITY, "[ ] World", 1);;
-			//}
-		}
-		else {
-			if (arrayFlugs[2] == 0) {
-				//CheckList test1(3, 3, 0, FOREGROUND_BLUE | FOREGROUND_INTENSITY, "[ ] World", 1);;
-			}
-			if (arrayFlugs[2] == 1) {
-				//CheckList test1(3, 3, 0, FOREGROUND_BLUE | FOREGROUND_INTENSITY, "[X] World", 1);;
-			}
-		}
-		//printf("%d", p.x);
-		//printf("%d", p.y);
-		//cursor position now in p.x and p.y
+			
+			close();
 	}
-	//int y, x;
-	//getCursorXY(y, x);
-	//cout << x << "," << y << endl;
-	std::cin.get();
 }
 
-void CheckList::MouseEventProc(MOUSE_EVENT_RECORD)
-{
-}
-
-void CheckList::KeyEventProc(KEY_EVENT_RECORD)
-{
-}
-
-
-void CheckList::setForeground(Color color)
-{
-	
-}
-
-void CheckList::setBackground(Color color)
-{
-}
-
-
-CheckList::~CheckList()
-{
-}
 
 void CheckList::draw(Graphics& graphics, int left, int top, size_t p)
 {
+		Control::draw(graphics, left, top, 0);
+		if (!isListOpen)
+		{
+			auto j = list[selection].size();
+			for (auto i = 0; i < size; i++, graphics.moveTo(left, top + i))	
+			{
+				if (listFlag[i]==1)
+				{
+					graphics.write("[x] " + list[i]);
+				}
+				if (listFlag[i] != 1) {
+					graphics.write("[ ] " + list[i]);
+				}
+			}
+		}
+		else
+		{
+			for (auto i = 0; i < size; i++, graphics.moveTo(left, top + i))
+			{
+				graphics.write("[ ] "+list[i]);
+			}
+		}
+
+		graphics.setBackground();
+		graphics.setForeground();
 }
 
 void CheckList::keyDown(WORD code, CHAR chr)
 {
+	if (!isListOpen && (code == VK_UP || code == VK_DOWN))
+	{
+		open();
+		return;
+	}
+	switch (code)
+	{
+	case VK_UP:
+	{
+		if (selection == 0)
+		{
+			selection = size - 1;
+		}
+		else
+		{
+			--selection;
+		}
+		break;
+	}
+	case VK_DOWN:
+	{
+		if (selection < size - 1)
+		{
+			selection++;
+		}
+		else
+		{
+			selection = 0;
+		}
+		break;
+	}
+	case VK_RETURN:
+	{
+		isListOpen = false;
+		break;
+	}
+	}
 }
 
-void CheckList::mousePressed(int x, int y, bool isLeft)
-{
-}
+
 
 void CheckList::getAllControls(vector<Control*>* vector)
 {
+	//	vector->push_back(this);
 }
 
 bool CheckList::canGetFocus()
