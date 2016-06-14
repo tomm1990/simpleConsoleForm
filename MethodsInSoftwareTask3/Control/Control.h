@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include "Graphics.h"
-#include "BorderDrawer.h"
 
 using namespace std;
 
@@ -20,7 +19,6 @@ protected:
 	int width, height, left = 0, top = 0;
 	bool isVisibile;
 	Color forColor = Color::Black;
-	BorderDrawer* drawer;
 	Color backcolor = Color::White;
 	static Control* onFocus;
 

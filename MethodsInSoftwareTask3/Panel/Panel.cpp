@@ -54,6 +54,23 @@ void Panel::getAllControls(vector<Control*>* vector)
 {
 	*vector = children;
 }
+
+void Panel::setForeground(Color color)
+{
+	for(auto it=children.begin();it!=children.end();++it)
+	{
+		(**it).setForeground(color);
+	}
+}
+
+void Panel::setBackground(Color color)
+{
+	for (auto it = children.begin(); it != children.end(); ++it)
+	{
+		(**it).setBackground(color);
+	}
+}
+
 bool Panel::canGetFocus()
 {
 	return false;

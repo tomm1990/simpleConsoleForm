@@ -145,6 +145,9 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Button\Button.vcxproj">
+      <Project>{11f00f43-5e67-4883-bd30-2d95ed944f27}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Checklist\Checklist.vcxproj">
       <Project>{6484788b-77a6-4be4-b051-db86dd68178b}</Project>
     </ProjectReference>

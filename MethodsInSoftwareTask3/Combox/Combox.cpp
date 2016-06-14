@@ -37,9 +37,6 @@ void Combox::mousePressed(int x, int y, bool is)
 }
 
 
-void Combox::setBackground(Color color = Color::Black)
-{
-}
 
 void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 {
@@ -47,7 +44,7 @@ void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 	if (!isListOpen)
 	{
 		graphics.write(list[selection]);
-		auto i = list[0].size();
+		auto i = list[selection].size();
 		if (i < width)
 		{
 			for (; i < width; i++, graphics.moveTo(left + i, top))
