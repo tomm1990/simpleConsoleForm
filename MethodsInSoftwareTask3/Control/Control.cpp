@@ -13,55 +13,37 @@ void Control::setBackground(Color color)
 	backcolor = color;
 }
 
-void Control::SetBorder(BorderType border)
+void Control::setBorderDrawer(const BorderDrawer & borderDrawer)
 {
-	switch (border)
-	{
-	case BorderType::None:
-	{	
-		
-		break;
-	}
-	case BorderType::Single:
-	{
-		
-		break;
-	}
-	case BorderType::Double:
-	{
-		
-		break;
-	}
-	}
+	drawer = &borderDrawer;
 }
 
 void Control::draw(Graphics& graphics, int left, int top, size_t p)
 {
-	if (isVisibile)
-	{
-		graphics.moveTo(left, top);
+	if (isVisibile){
 		graphics.setBackground(backcolor);
 		graphics.setForeground(forColor);
+		if (drawer!=nullptr) {
+			try{ drawer->draw(graphics, left, top, this->getWidth(), this->getHeight()); }
+			catch (const std::exception& l){ }
+		}
+		graphics.moveTo(left, top);
 	}
 }
 
-SHORT Control::getLeft()
-{
+SHORT Control::getLeft(){
 	return left;
 }
 
-SHORT Control::getTop()
-{
+SHORT Control::getTop(){
 	return top;
 }
 
-void Control::setFocus(Control& it)
-{
+void Control::setFocus(Control& it){
 	onFocus = &it;
 }
 
-Control* Control::getFocus()
-{
+Control* Control::getFocus(){
 	return onFocus;
 }
 
@@ -72,6 +54,5 @@ Control::~Control()
 // ReSharper disable once CppPossiblyUninitializedMember
 Control::Control(int width) : width(width)
 {
-
 }
 

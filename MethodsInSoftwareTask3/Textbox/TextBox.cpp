@@ -1,13 +1,12 @@
 #include "TextBox.h"
 
-TextBox::TextBox(int width): Control(width),cursor(0)
+TextBox::TextBox(int width) : Control(width),cursor(0)
 {
 	height = 1;
 }
 
 void TextBox::keyDown(WORD code, CHAR chr)
 {
-
 	if (cursor >= 0 && cursor <= width)
 	{
 	if (chr >= VK_SPACE && chr<='~' && value.size()<width-1)

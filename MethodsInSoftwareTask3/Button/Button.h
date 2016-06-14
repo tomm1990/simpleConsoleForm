@@ -7,7 +7,7 @@ class Button:
 public:
 	Button(int width, string val);
 
-	void SetBorder(BorderType border) override;
+	void setBorderDrawer(const BorderDrawer & borderDrawer) override;
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void mousePressed(int x, int y, bool isLeft) override;
 };
