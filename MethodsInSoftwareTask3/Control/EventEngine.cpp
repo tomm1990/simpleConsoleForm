@@ -13,8 +13,10 @@ void EventEngine::run( Control& c )
 		{
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(true);
-			for (size_t p = 0; p < 1; ++p)
-				c.draw( _graphics, 0 , 0 , p   ); // changed to control left-top corner
+			for (size_t p = 0; p < 1; ++p) 
+			{
+				c.draw(_graphics, 0, 0, p); // changed to control left-top corner
+			}
 			redraw = false;
 		}
 

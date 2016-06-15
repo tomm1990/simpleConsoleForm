@@ -1,13 +1,5 @@
 #include "BorderDrawer.h"
 
-BorderDrawer::BorderDrawer()
-{
-}
-
-BorderDrawer::BorderDrawer(BorderDrawer& border)
-{
-	this->border = &border;
-}
 
 void BorderDrawer::draw(Graphics& graphics, int left, int top, int width, int height) const
 {
@@ -41,11 +33,21 @@ void BorderDrawer::setAssets(char assets[])
 	for (int i = 0; i < 6; i++) _assets[i] = assets[i];
 }
 
-SingleBorder::SingleBorder(BorderDrawer& border) : BorderDrawer(border)
-{
-}
+
 
 SingleBorder::~SingleBorder(){}
+
+void SingleBorder::draw(Graphics& graphics, int left, int top, int width, int height) const
+{
+	if ((left > 0) && (top > 0))
+	{
+		BorderDrawer::draw(graphics, left - 1, top - 1, width, height);
+	}
+	else
+	{
+		BorderDrawer::draw(graphics, left, top, width, height);
+	}
+}
 
 DoubleBorder::DoubleBorder()
 {
@@ -53,12 +55,15 @@ DoubleBorder::DoubleBorder()
 	BorderDrawer::setAssets(assets);
 }
 
-DoubleBorder::DoubleBorder(BorderDrawer& border) : BorderDrawer(border)
-{
-}
+
 
 DoubleBorder::~DoubleBorder()
 {
+}
+
+void DoubleBorder::draw(Graphics& graphics, int left, int top, int width, int height) const
+{
+	BorderDrawer::draw(graphics, left - 1, top - 1, width, height);
 }
 
 NoneBorder::NoneBorder()
@@ -67,9 +72,6 @@ NoneBorder::NoneBorder()
 	BorderDrawer::setAssets(assets);
 }
 
-NoneBorder::NoneBorder(BorderDrawer& border) : BorderDrawer(border)
-{
-}
 
 NoneBorder::~NoneBorder()
 {

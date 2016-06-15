@@ -26,38 +26,39 @@ int main()
 	Panel panel(17,60);
 	SingleBorder single;
 	DoubleBorder Double;
-	panel.setBorderDrawer(single);
+	NoneBorder none;;
+	panel.setBorderDrawer(BorderType::Single);
 	Label nameLabel(10,"Name:");
-	nameLabel.setBorderDrawer(Double);
+	nameLabel.setBorderDrawer(BorderType::Double);
 	Label addressLabel(10, "Address:");
-	addressLabel.setBorderDrawer(Double);
+	addressLabel.setBorderDrawer(BorderType::Double);
 	TextBox nameTextBox(15);
-	nameTextBox.setBorderDrawer(single);
+	nameTextBox.setBorderDrawer(BorderType::Single);
 	TextBox addressTextBox(15);
-	addressTextBox.setBorderDrawer(single);
+	addressTextBox.setBorderDrawer(BorderType::Single);
 	Label cityLabel(10,"City:");
-	cityLabel.setBorderDrawer(Double);
+	cityLabel.setBorderDrawer(BorderType::Double);
 	Combox cityCombox(15,{"Tel Aviv","Ramat Gan","Givataim","Hertzliya"});
-	cityCombox.setBorderDrawer(single);
+	cityCombox.setBorderDrawer(BorderType::Single);
 	Label gendarLabel(10, "Gender:");
-	gendarLabel.setBorderDrawer(Double);
+	gendarLabel.setBorderDrawer(BorderType::Double);
 	RadioList genderRadioList(10, { "Male","Female" });
-	genderRadioList.setBorderDrawer(single);
+	genderRadioList.setBorderDrawer(BorderType::Single);
 	Label hobbiesLabel(10, "Hobbies:");
-	hobbiesLabel.setBorderDrawer(Double);
+	hobbiesLabel.setBorderDrawer(BorderType::Double);
 	CheckList hobbiesChecklList(10,{"Music", "Sport", "Movies"});
-	hobbiesChecklList.setBorderDrawer(single);
+	hobbiesChecklList.setBorderDrawer(BorderType::Single);
 	
 	Label ageLabel(10, "Age :");
-	ageLabel.setBorderDrawer(Double);
+	ageLabel.setBorderDrawer(BorderType::Double);
 	
 	NumericBox ageNumericBox(6, 18, 120);
-	ageNumericBox.setBorderDrawer(single);
+	ageNumericBox.setBorderDrawer(BorderType::Single);
 	ageNumericBox.setValue(30);
 
 	Button button(8);
 	button.SetText("Submit");
-	button.setBorderDrawer(Double);
+	button.setBorderDrawer(BorderType::Double);
 	button.setForeground(Color::Blue);
 	button.setBackground(Color::Green);
 	

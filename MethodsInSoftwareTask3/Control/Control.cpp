@@ -13,20 +13,42 @@ void Control::setBackground(Color color)
 	backcolor = color;
 }
 
-void Control::setBorderDrawer(const BorderDrawer & borderDrawer)
+void Control::setBorderDrawer(BorderType type)
 {
-	drawer = &borderDrawer;
+	if (drawer) { delete(drawer); }
+	switch (type)
+	{
+	case BorderType::None:
+	{
+		drawer = new NoneBorder();
+		break;
+	}
+	case BorderType::Single:
+	{
+		drawer = new SingleBorder();
+		break;
+	}
+	case BorderType::Double:
+	{
+		drawer = new DoubleBorder();
+		break;
+	}
+	
+	}
 }
 
 void Control::draw(Graphics& graphics, int left, int top, size_t p)
 {
-	if (isVisibile){
+	if (isVisibile)
+	{
 		graphics.setBackground(backcolor);
 		graphics.setForeground(forColor);
-		if (drawer!=nullptr) {
-			try{ drawer->draw(graphics, left, top, this->getWidth(), this->getHeight()); }
-			catch (const std::exception& l){ }
+		try 
+		{
+			if (!drawer) throw exception();
+			drawer->draw(graphics, left, top, this->getWidth(), this->getHeight());
 		}
+		catch(exception){}
 		graphics.moveTo(left, top);
 	}
 }
