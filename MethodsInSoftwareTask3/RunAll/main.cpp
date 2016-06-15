@@ -6,6 +6,9 @@
 #include "../Panel/Panel.h"
 #include "../Button/Button.h"
 #include "../RadioList/RadioList.h"
+#include "../NumericBox/NumericBox.h"
+
+class NumericBox;
 
 class MyListener :public MouseListener
 {
@@ -32,10 +35,10 @@ int main()
 	nameTextBox.setBorderDrawer(single);
 	TextBox addressTextBox(15);
 	addressTextBox.setBorderDrawer(single);
-	Label ageLabel(10,"Age:");
-	ageLabel.setBorderDrawer(Double);
-	Combox ageCombox(15,{"20","21","22","23"});
-	ageCombox.setBorderDrawer(single);
+	Label cityLabel(10,"City:");
+	cityLabel.setBorderDrawer(Double);
+	Combox cityCombox(15,{"Tel Aviv","Ramat Gan","Givataim","Hertzliya"});
+	cityCombox.setBorderDrawer(single);
 	Label gendarLabel(10, "Gender:");
 	gendarLabel.setBorderDrawer(Double);
 	RadioList genderRadioList(10, { "Male","Female" });
@@ -44,13 +47,20 @@ int main()
 	hobbiesLabel.setBorderDrawer(Double);
 	CheckList hobbiesChecklList(10,{"Music", "Sport", "Movies"});
 	hobbiesChecklList.setBorderDrawer(single);
-
+	
+	Label ageLabel(10, "Age :");
+	ageLabel.setBorderDrawer(Double);
+	
+	NumericBox ageNumericBox(6, 18, 120);
+	ageNumericBox.setBorderDrawer(single);
+	ageNumericBox.setValue(30);
 
 	Button button(8);
 	button.SetText("Submit");
 	button.setBorderDrawer(Double);
 	button.setForeground(Color::Blue);
 	button.setBackground(Color::Green);
+	
 	panel.addControl(nameLabel, 3, 3);
 	panel.addControl(nameTextBox, 15,3);
 	panel.addControl(gendarLabel, 35, 3);
@@ -59,10 +69,11 @@ int main()
 	panel.addControl(addressTextBox, 15, 6);
 	panel.addControl(genderRadioList, 35, 6);
 	panel.addControl(hobbiesChecklList, 48, 6);
-	panel.addControl(ageLabel, 3, 9);
-	panel.addControl(ageCombox, 15, 9);
-	panel.addControl(button, 30, 14);
-
+	panel.addControl(cityLabel, 3, 9);
+	panel.addControl(cityCombox, 15, 9);
+	panel.addControl(ageLabel, 35, 11);
+	panel.addControl(ageNumericBox, 48, 11);
+	panel.addControl(button, 23, 15);
 	MyListener my(panel);
 	button.addListener(my);
 	EventEngine events;
