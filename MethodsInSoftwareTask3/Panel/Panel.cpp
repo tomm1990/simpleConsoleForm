@@ -80,8 +80,8 @@ bool Panel::canGetFocus()
 
 void Panel::addControl(Control& element, int left, int top)
 {
-	element.set_left(left);
-	element.set_top(top);
+	element.set_left(left+this->left);
+	element.set_top(top+this->top);
 	children.push_back(&element);
 	setFocus(element);
 }

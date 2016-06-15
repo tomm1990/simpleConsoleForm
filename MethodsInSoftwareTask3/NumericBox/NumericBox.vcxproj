@@ -24,6 +24,11 @@
   <ItemGroup>
     <ClCompile Include="NumericBox.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Label\Label.vcxproj">
+      <Project>{a15885a5-6913-4a8d-a21d-314c97dcb914}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{65C1DDBB-8D41-4C70-A8EE-429015685972}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
