@@ -1,10 +1,7 @@
 #pragma once
 #include "../Control/Control.h"
 
-class RadioList :
-	public Control
-{
-private:
+class RadioList : public Control{
 	vector<string> list;
 	bool isListOpen;
 	size_t size;
