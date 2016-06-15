@@ -18,7 +18,7 @@ class Control
 {
 protected:
 	int width, height, left = 0, top = 0;
-	bool isVisibile;
+	bool visibility;
 	Color forColor = Color::Black;
 	BorderDrawer* drawer=nullptr; //changed to nullptr to note Panels
 	Color backcolor = Color::White;
@@ -30,8 +30,9 @@ public:
 
 	virtual ~Control() = 0;
 	explicit Control(int width);
-	virtual void show() { isVisibile = true; }
-	virtual void hide() { isVisibile = false; }
+	virtual void show() { visibility = true; }
+	virtual void hide() { visibility = false; }
+	bool isVisible() { return visibility; }
 	virtual void setForeground(Color color = Color::White);
 	virtual void setBackground(Color color);
 	virtual void setBorderDrawer(BorderType type);

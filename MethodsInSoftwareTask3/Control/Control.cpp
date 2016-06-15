@@ -39,8 +39,6 @@ void Control::setBorderDrawer(BorderType type)
 
 void Control::draw(Graphics& graphics, int left, int top, size_t p)
 {
-	if (isVisibile)
-	{
 		graphics.setBackground(backcolor);
 		graphics.setForeground(forColor);
 		try 
@@ -50,7 +48,6 @@ void Control::draw(Graphics& graphics, int left, int top, size_t p)
 		}
 		catch(exception){}
 		graphics.moveTo(left, top);
-	}
 }
 
 SHORT Control::getLeft(){

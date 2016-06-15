@@ -16,8 +16,7 @@ public:
 	MyListener(Control& root) :MouseListener(root) {}
 	void mousePressed(Button& b, int x, int y, bool isLeft) override
 	{
-		get_root()->setForeground(Color::Blue);
-		get_root()->setBackground(Color::Orange);
+		get_root()->hide();
 	};
 };
 

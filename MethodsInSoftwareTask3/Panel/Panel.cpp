@@ -55,6 +55,8 @@ void Panel::getAllControls(vector<Control*>* vector)
 	*vector = children;
 }
 
+
+
 void Panel::setForeground(Color color)
 {
 	for(auto it=children.begin();it!=children.end();++it)
