@@ -18,5 +18,5 @@ void Label::draw(Graphics& graphics, int left, int top, size_t p){
 
 
 void Label::SetText(string value) {
-	TextBox::set_value(value);
+	TextBox::setValue(value);
 }
