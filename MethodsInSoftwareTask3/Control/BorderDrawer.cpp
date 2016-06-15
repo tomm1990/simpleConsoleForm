@@ -63,7 +63,14 @@ DoubleBorder::~DoubleBorder()
 
 void DoubleBorder::draw(Graphics& graphics, int left, int top, int width, int height) const
 {
-	BorderDrawer::draw(graphics, left - 1, top - 1, width, height);
+	if ((left > 0) && (top > 0))
+	{
+		BorderDrawer::draw(graphics, left - 1, top - 1, width, height);
+	}
+	else
+	{
+		BorderDrawer::draw(graphics, left, top, width, height);
+	}
 }
 
 NoneBorder::NoneBorder()

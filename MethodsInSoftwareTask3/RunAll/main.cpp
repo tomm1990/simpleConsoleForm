@@ -27,7 +27,7 @@ int main()
 	SingleBorder single;
 	DoubleBorder Double;
 	NoneBorder none;;
-	panel.setBorderDrawer(BorderType::Single);
+	panel.setBorderDrawer(BorderType::Double);
 	Label nameLabel(10,"Name:");
 	nameLabel.setBorderDrawer(BorderType::Double);
 	Label addressLabel(10, "Address:");
