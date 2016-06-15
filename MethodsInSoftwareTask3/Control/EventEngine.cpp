@@ -4,8 +4,8 @@ EventEngine::EventEngine(DWORD input, DWORD output):_graphics(output),_console(G
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
-
-void EventEngine::run( Control& c )
+//
+void EventEngine::run( Control & c )
 {
 	for (bool redraw = true;;)
 	{
