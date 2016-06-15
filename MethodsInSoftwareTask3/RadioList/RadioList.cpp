@@ -21,7 +21,8 @@ void RadioList::mousePressed(int x, int y, bool is){
 	}
 }
 
-void RadioList::draw(Graphics& graphics, int left, int top, size_t p){
+void RadioList::draw(Graphics& graphics, int left, int top, size_t p)
+{
 	Control::draw(graphics, left, top, 0);
 	if (!isListOpen){
 		auto j = list[selection].size();
@@ -34,6 +35,7 @@ void RadioList::draw(Graphics& graphics, int left, int top, size_t p){
 	}
 	graphics.setBackground();
 	graphics.setForeground();
+	graphics.moveTo(left+1, top);
 }
 
 void RadioList::keyDown(WORD code, CHAR chr){

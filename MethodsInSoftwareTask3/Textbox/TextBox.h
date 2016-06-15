@@ -8,9 +8,9 @@ public:
 	virtual void mousePressed(int x, int y, bool isLeft) override;
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
-	string getValue() const;
-	void setValue(const string& value);
+	virtual void draw(Graphics& graphics, int left, int top, size_t p) override;
+	virtual string getValue() const;
+	virtual void setValue(const string& value);
 
 private:
 	string value;

@@ -54,7 +54,7 @@ int main()
 	
 	NumericBox ageNumericBox(6, 18, 120);
 	ageNumericBox.setBorderDrawer(BorderType::Single);
-	ageNumericBox.setValue(30);
+	ageNumericBox.setValue("30");
 
 	Button button(8);
 	button.SetText("Submit");

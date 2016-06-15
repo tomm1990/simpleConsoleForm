@@ -71,6 +71,8 @@ Control* Control::getFocus(){
 
 Control::~Control()
 {
+	if (drawer)
+		delete(drawer);
 }
 
 // ReSharper disable once CppPossiblyUninitializedMember

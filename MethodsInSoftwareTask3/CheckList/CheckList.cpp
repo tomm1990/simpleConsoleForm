@@ -67,6 +67,8 @@ void CheckList::draw(Graphics& graphics, int left, int top, size_t p)
 
 		graphics.setBackground();
 		graphics.setForeground();
+		graphics.moveTo(left+1, top);
+
 }
 
 void CheckList::keyDown(WORD code, CHAR chr)

@@ -12,12 +12,14 @@ NumericBox::~NumericBox()
 }
 
 void NumericBox::draw(Graphics& graphics, int left, int top, size_t p){
-	Label::draw(graphics, left, top, 0);
+	Control::draw(graphics, left, top, 0);
 	graphics.write(left + width - 2, top ,"+");
 	graphics.write(left + width - 2, top + 2 , "-");
 	graphics.write(left + 1, top + 1,static_cast<ostringstream*>(&(ostringstream() << number))->str());
 	graphics.setBackground();
 	graphics.setForeground();
+	graphics.moveTo(left+1, top+1);
+
 }
 
 void NumericBox::keyDown(WORD code, CHAR chr)
@@ -26,12 +28,12 @@ void NumericBox::keyDown(WORD code, CHAR chr)
 	{
 	case VK_UP:
 	{
-		setValue(getValue() + 1);
+		++number;
 		break;
 	}
 	case VK_DOWN:
 	{
-		setValue(getValue() - 1);
+		--number;
 		break;
 	}
 	default:
@@ -42,19 +44,30 @@ void NumericBox::keyDown(WORD code, CHAR chr)
 void NumericBox::mousePressed(int x, int y, bool isLeft){
 	if (isLeft){
 		if(x>=getWidth()-2 && x<+getWidth()){
-			if( y >= 0 && y < 1) setValue(getValue()+1);
-			else if(y >  1 && y<=  getHeight()-1) setValue(getValue() - 1);	
+			if (y >= 0 && y < 1)
+			{
+				++number;
+			}
+			else
+			{
+				if (y > 1 && y <= getHeight() - 1)
+				{
+					--number;
+				}
+			}
+			setValue(getValue());
 		}
 	}
 }
 
-int NumericBox::getValue() const {
-	return number;
+string NumericBox::getValue() const {
+	return to_string(number);
 }
 
-void NumericBox::setValue(const int value){
-	if (value >= min && value <= 120) {
-		number = value;
+void NumericBox::setValue(const string& value){
+	int val = stoi(value);
+	if (val >= min && val <= 120) {
+		number = val;
 	}
 }
 

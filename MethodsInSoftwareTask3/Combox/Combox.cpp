@@ -49,7 +49,15 @@ void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 		{
 			for (; i < width; i++, graphics.moveTo(left + i, top))
 			{
-				graphics.write(" ");
+				if(i==width-1)
+				{
+					graphics.write("v");
+				}
+				else
+				{
+					graphics.write(" ");
+				}
+				
 			}
 		}
 		graphics.moveTo(left, top);
@@ -108,6 +116,7 @@ void Combox::keyDown(WORD code, CHAR chr)
 	case VK_RETURN:
 	{
 		isListOpen = false;
+		close();
 		break;
 	}
 	}
