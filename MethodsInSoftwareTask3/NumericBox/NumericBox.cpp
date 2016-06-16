@@ -46,13 +46,13 @@ void NumericBox::mousePressed(int x, int y, bool isLeft){
 		if(x>=getWidth()-2 && x<+getWidth()){
 			if (y >= 0 && y < 1)
 			{
-				++number;
+				if(number>min && number<max) ++number;
 			}
 			else
 			{
 				if (y > 1 && y <= getHeight() - 1)
 				{
-					--number;
+					if (number > min && number < max) --number;
 				}
 			}
 			setValue(getValue());
@@ -66,7 +66,7 @@ string NumericBox::getValue() const {
 
 void NumericBox::setValue(const string& value){
 	auto val = stoi(value);
-	if (val >= min && val <= 120) {
+	if (val >= min && val <= max) {
 		number = val;
 	}
 }

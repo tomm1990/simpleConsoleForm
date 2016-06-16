@@ -98,14 +98,13 @@ int main()
 //	buttonCancel.setBackground(Color::White);
 //	Messagebox messageBox(9, 39);
 //	messageBox.setBorderDrawer(BorderType::Double);
-//
+//	
 //	panel.addControl(messageBox, 10, 5);
 //	messageBox.addControl(messageBoxTitle, 13, 1);
 //	messageBox.addControl(messageBoxText, 2, 4);
 //	messageBox.addControl(buttonOkay, 8, 7);
 //	messageBox.addControl(buttonCancel, 25, 7);
 //#pragma endregion Messagebox
-	
 	
 	MyListener my(panel);
 	button.addListener(my);
