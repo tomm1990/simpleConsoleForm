@@ -1,7 +1,8 @@
 #include "Messagebox.h"
 
 Messagebox::Messagebox(int height, int width) : Panel(height, width) {
-
+	hide();
+	set_layer(1);
 }
 
 

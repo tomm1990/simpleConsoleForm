@@ -4,7 +4,7 @@ EventEngine::EventEngine(DWORD input, DWORD output):_graphics(output),_console(G
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
-//
+
 void EventEngine::run( Control & c )
 {
 	for (bool redraw = true;;)
@@ -13,9 +13,9 @@ void EventEngine::run( Control & c )
 		{
 			_graphics.clearScreen();
 			_graphics.setCursorVisibility(true);
-			for (size_t p = 0; p < 1; ++p) 
+			for (size_t p = 0; p < 3; ++p) 
 			{
-				if(c.isVisible())
+				if(c.isVisible() && p==c.get_layer())
 				{
 					c.draw(_graphics, 0, 0, p); // changed to control left-top corner
 				}

@@ -10,12 +10,14 @@ Combox::Combox(int width, vector<string> options) : Control(width), list(options
 void Combox::open()
 {
 	height = size;
+	set_layer(1);
 	isListOpen = true;
 }
 
 void Combox::close()
 {
 	height = 1;
+	set_layer(0);
 	isListOpen = false;
 }
 
@@ -44,34 +46,15 @@ void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 	if (!isListOpen)
 	{
 		graphics.write(list[selection]);
-		auto i = list[selection].size();
-		if (i < width)
-		{
-			for (; i < width; i++, graphics.moveTo(left + i, top))
-			{
-				if(i==width-1)
-				{
-					graphics.write("v");
-				}
-				else
-				{
-					graphics.write(" ");
-				}
-				
-			}
-		}
-		graphics.moveTo(left, top);
+		graphics.write(left+width - 1,top, "v");
+		graphics.moveTo(left,top);
+
 	}
 	else
 	{
 		for (auto i = 0; i < size; i++, graphics.moveTo(left, top + i))
 		{
 			graphics.write(list[i]);
-			for (auto j = list[i].size(); j < width; j++, graphics.moveTo(left + j, top + i))
-			{
-				graphics.write(" ");
-
-			}
 		}
 		graphics.moveTo(left, selection + top);
 	}

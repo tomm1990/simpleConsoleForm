@@ -1,48 +1,37 @@
 #include "RadioList.h"
 
-RadioList::RadioList(int width, vector<string> options) : Control(width), list(options), isListOpen(false), size(static_cast<SHORT>(options.size())), selection(0){
-	height = 1;
-	open();
+RadioList::RadioList(int height,int width, vector<string> options) : Control(width), list(options), size(static_cast<SHORT>(options.size())), selection(0){
+	this->height = height;
 }
 
-void RadioList::open(){
-	height = size;
-	isListOpen = true;
-}
-
-void RadioList::close(){
-	isListOpen = false;
-}
 
 void RadioList::mousePressed(int x, int y, bool is){
-	if (is)	{
-		selection = y;
-		close();
+	if (is)	
+	{
+		selection = y;	
 	}
 }
 
 void RadioList::draw(Graphics& graphics, int left, int top, size_t p)
 {
 	Control::draw(graphics, left, top, 0);
-	if (!isListOpen){
-		auto j = list[selection].size();
-		for (auto i = 0; i < size; i++, graphics.moveTo(left, top + i)){
-			if (i == selection)	graphics.write("(0) " + list[i]);
-			else graphics.write("( ) " + list[i]);
+	for(auto i=0;i<size;i++)
+	{
+		if(i==selection)
+		{
+			graphics.write(left, top + i, "(*) " + list[i]);
 		}
-	} else {
-		for (auto i = 0; i < size; i++, graphics.moveTo(left, top + i))	graphics.write("( ) " + list[i]);
+		else
+		{
+			graphics.write(left, top + i,"( ) "+list[i]);
+		}
 	}
+	graphics.moveTo(left + 1, selection + top);
 	graphics.setBackground();
 	graphics.setForeground();
-	graphics.moveTo(left+1, top);
 }
 
 void RadioList::keyDown(WORD code, CHAR chr){
-	if (!isListOpen && (code == VK_UP || code == VK_DOWN)){
-		open();
-		return;
-	}
 	switch (code) {
 		case VK_UP:
 		{
@@ -58,18 +47,8 @@ void RadioList::keyDown(WORD code, CHAR chr){
 		}
 		case VK_RETURN:
 		{
-			isListOpen = false;
 			break;
 		}
 	}
 	
-}
-
-void RadioList::getAllControls(vector<Control*>* vector)
-{
-	//	vector->push_back(this);
-}
-
-bool RadioList::canGetFocus(){
-	return true;
 }

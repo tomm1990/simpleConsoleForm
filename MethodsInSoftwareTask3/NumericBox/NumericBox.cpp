@@ -65,7 +65,7 @@ string NumericBox::getValue() const {
 }
 
 void NumericBox::setValue(const string& value){
-	int val = stoi(value);
+	auto val = stoi(value);
 	if (val >= min && val <= 120) {
 		number = val;
 	}

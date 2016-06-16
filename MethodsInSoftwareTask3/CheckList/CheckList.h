@@ -6,15 +6,13 @@ class CheckList :
 {
 private:
 	vector<string> list;
-	int listFlag[5]={0};
+	int listFlag[5] = { 0 };
 	bool isListOpen;
 	size_t size;
 	int selection;
 
 public:
-	CheckList(int width, vector<string> options);
-	void open();
-	void close();
+	CheckList(int height,int width, vector<string> options);
 	void setSelectedIndex(int index) { selection = index - 1; };
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;

@@ -40,15 +40,19 @@ int main()
 	cityCombox.setBorderDrawer(BorderType::Single);
 	Label gendarLabel(10, "Gender:");
 	gendarLabel.setBorderDrawer(BorderType::Double);
-	RadioList genderRadioList(10, { "Male","Female" });
+	RadioList genderRadioList(3,10, { "Male","Female" });
 	genderRadioList.setBorderDrawer(BorderType::Single);
 	Label hobbiesLabel(10, "Hobbies:");
 	hobbiesLabel.setBorderDrawer(BorderType::Double);
-	CheckList hobbiesChecklList(10,{"Music", "Sport", "Movies"});
+	CheckList hobbiesChecklList(3,10,{"Music", "Sport", "Movies"});
+
 	hobbiesChecklList.setBorderDrawer(BorderType::Single);
 	
 	Label ageLabel(10, "Age :");
 	ageLabel.setBorderDrawer(BorderType::Double);
+	
+	Label myLabel(10, "myLabel");
+	myLabel.setBorderDrawer(BorderType::Double);
 	
 	NumericBox ageNumericBox(6, 18, 120);
 	ageNumericBox.setBorderDrawer(BorderType::Single);
@@ -71,6 +75,7 @@ int main()
 	panel.addControl(hobbiesChecklList, 48, 6);
 	panel.addControl(cityLabel, 3, 9);
 	panel.addControl(cityCombox, 15, 9);
+	panel.addControl(myLabel,15, 12);
 	panel.addControl(ageLabel, 35, 11);
 	panel.addControl(ageNumericBox, 48, 11);
 #pragma endregion default

@@ -58,6 +58,25 @@ SHORT Control::getTop(){
 	return top;
 }
 
+size_t Control::get_layer() const
+{
+	return layer;
+}
+
+void Control::set_layer(size_t layer)
+{
+	this->layer = layer;
+}
+
+void Control::getAllControls(vector<Control*>* vector)
+{
+}
+
+bool Control::canGetFocus()
+{
+	return true;
+}
+
 void Control::setFocus(Control& it){
 	onFocus = &it;
 }

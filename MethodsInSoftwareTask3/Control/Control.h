@@ -20,7 +20,8 @@ protected:
 	int width, height, left = 0, top = 0;
 	bool visibility;
 	Color forColor = Color::Black;
-	BorderDrawer* drawer=nullptr; //changed to nullptr to note Panels
+	BorderDrawer* drawer=nullptr; 
+	size_t layer = 0;
 	Color backcolor = Color::White;
 	static Control* onFocus;
 
@@ -32,7 +33,7 @@ public:
 	explicit Control(int width);
 	virtual void show() { visibility = true; }
 	virtual void hide() { visibility = false; }
-	bool isVisible() { return visibility; }
+	bool isVisible() const{ return visibility; }
 	virtual void setForeground(Color color = Color::White);
 	virtual void setBackground(Color color);
 	virtual void setBorderDrawer(BorderType type);
@@ -44,8 +45,10 @@ public:
 	void set_left(int left) { this->left = left; }
 	void set_top(int top) { this->top = top; }
 
-	virtual void getAllControls(vector<Control*>* vector)=0;
-	virtual bool canGetFocus()=0;
+	size_t get_layer() const;
+	void set_layer(size_t layer);
+	virtual void getAllControls(vector<Control*>* vector);
+	virtual bool canGetFocus();
 	static void setFocus(Control& it);
 	static Control* getFocus();
 };
