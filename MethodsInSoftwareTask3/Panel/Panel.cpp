@@ -15,7 +15,7 @@ void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 	Control::draw(graphics, left, top , 0);
 	for (auto it = children.begin(); it != children.end(); ++it)
 	{
-		(*it)->draw(graphics, (*it)->getLeft(), (*it)->getTop(), p);
+		if((*it)->isVisible()) (*it)->draw(graphics, (*it)->getLeft(), (*it)->getTop(), p);
 	}
 	getFocus()->draw(graphics, getFocus()->getLeft(), getFocus()->getTop(),p);
 }
@@ -43,6 +43,7 @@ void Panel::mousePressed(int x, int y, bool isLeft)
 			{
 				(*it)->mousePressed(X, Y, isLeft);
 				setFocus(**it);
+				break;
 			}
 		}
 

@@ -22,9 +22,6 @@ public:
 int main()
 {
 	Panel panel(17,60);
-	SingleBorder single;
-	DoubleBorder Double;
-	NoneBorder none;;
 	panel.setBorderDrawer(BorderType::Double);
 	Label nameLabel(10,"Name:");
 	nameLabel.setBorderDrawer(BorderType::Double);
@@ -54,7 +51,7 @@ int main()
 	Label myLabel(10, "myLabel");
 	myLabel.setBorderDrawer(BorderType::Double);
 	
-	NumericBox ageNumericBox(6, 18, 120);
+	NumericBox ageNumericBox(10, 18, 120);
 	ageNumericBox.setBorderDrawer(BorderType::Single);
 	ageNumericBox.setValue("30");
 
@@ -99,7 +96,7 @@ int main()
 //	Messagebox messageBox(9, 39);
 //	messageBox.setBorderDrawer(BorderType::Double);
 //	
-//	panel.addControl(messageBox, 10, 5);
+//	panel.addControl(messageBox, 10, 7);
 //	messageBox.addControl(messageBoxTitle, 13, 1);
 //	messageBox.addControl(messageBoxText, 2, 4);
 //	messageBox.addControl(buttonOkay, 8, 7);
@@ -108,6 +105,7 @@ int main()
 	
 	MyListener my(panel);
 	button.addListener(my);
+
 	EventEngine events;
 	events.run(panel);
 

@@ -4,7 +4,7 @@
 class Panel :
 	public Control
 {
-private:
+protected:
 	vector < Control* > children;
 public:
 	Panel(int height, int width);
