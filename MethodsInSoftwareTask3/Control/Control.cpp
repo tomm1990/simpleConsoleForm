@@ -43,7 +43,7 @@ void Control::draw(Graphics& graphics, int left, int top, size_t p)
 		graphics.setForeground(forColor);
 		try 
 		{
-			if (!drawer) throw exception();
+			if (!drawer) throw exception();	
 			drawer->draw(graphics, left, top, this->getWidth(), this->getHeight());
 		}
 		catch(exception){}

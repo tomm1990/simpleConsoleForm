@@ -11,7 +11,7 @@ public:
 
 
 	void keyDown(WORD code, CHAR chr) override;
-	void mousePressed(int x, int y, bool isLeft) override;
+	virtual void mousePressed(int x, int y, bool isLeft) override;
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void getAllControls(vector<Control*>* vector) override;
 

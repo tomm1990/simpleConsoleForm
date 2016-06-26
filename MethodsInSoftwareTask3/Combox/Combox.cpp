@@ -1,8 +1,21 @@
 #include "Combox.h"
+#include "../Button/Button.h"
 
-Combox::Combox(int width, vector<string> options) : Control(width), list(options), isListOpen(false), size(static_cast<SHORT>(options.size())), selection(0)
+
+Combox::Combox(int width, vector<string> options) :Panel(options.size(), width),list(options),isListOpen(false), size(options.size()), selection(0)
 {
 	height = 1;
+	onClick = [&]()
+	{
+		if (this->isListOpen)
+		{
+			this->close();
+		}
+		else
+		{
+			this->open();
+		}
+	};
 }
 
 
@@ -22,33 +35,32 @@ void Combox::close()
 }
 
 
-void Combox::mousePressed(int x, int y, bool is)
+Combox::~Combox()
 {
-	if (is)
+	delete (button);
+}
+
+void Combox::mousePressed(int x, int y, bool isLeft)
+{
+	if(x== button->getLeft()-left && y== button->getTop()-top)
 	{
-		if (!isListOpen)
-		{
-			open();
-		}
-		else
-		{
-			selection = y;
-			close();
-		}
+		button->mousePressed(x,y,isLeft);
+		return;
+	}
+	if (isListOpen)
+	{
+		selection = y;
+		close();
 	}
 }
 
-
-
 void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 {
-	Control::draw(graphics, left, top , 0);
+	Control::draw(graphics, left, top, p);
 	if (!isListOpen)
 	{
-		graphics.write(list[selection]);
-		graphics.write(left+width - 1,top, "v");
-		graphics.moveTo(left,top);
-
+		graphics.write(left,top,list[selection]);
+		graphics.moveTo(left, top);
 	}
 	else
 	{
@@ -58,9 +70,17 @@ void Combox::draw(Graphics& graphics, int left, int top, size_t p)
 		}
 		graphics.moveTo(left, selection + top);
 	}
-
+	if (!button)
+	{
+		button = new Button(1);
+		button->addListener(onClick);
+		button->setValue("v");
+		addControl(*button, width - 1, 0);
+	}
+	button->draw(graphics, button->getLeft(), button->getTop(), p);
 	graphics.setBackground();
 	graphics.setForeground();
+	
 }
 
 void Combox::keyDown(WORD code, CHAR chr)

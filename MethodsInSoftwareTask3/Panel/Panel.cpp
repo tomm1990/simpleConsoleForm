@@ -17,7 +17,7 @@ void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 	{
 		(*it)->draw(graphics, (*it)->getLeft(), (*it)->getTop(), p);
 	}
-	getFocus()->draw(graphics, getFocus()->getLeft(), getFocus()->getTop(),p);
+	//getFocus()->draw(graphics, getFocus()->getLeft(), getFocus()->getTop(),p);
 }
 
 void Panel::keyDown(WORD code, CHAR chr) {
@@ -63,6 +63,7 @@ void Panel::setForeground(Color color)
 	{
 		(**it).setForeground(color);
 	}
+	Control::setForeground(color);
 }
 
 void Panel::setBackground(Color color)
@@ -71,6 +72,7 @@ void Panel::setBackground(Color color)
 	{
 		(**it).setBackground(color);
 	}
+	Control::setBackground(color);
 }
 
 bool Panel::canGetFocus()
