@@ -56,7 +56,7 @@ bool TextBox::canGetFocus(){
 
 void TextBox::draw(Graphics& graphics, int left, int top, size_t p){
 	Control::draw(graphics, left, top,0);
-	graphics.write(left, top,value);
+	graphics.write(left+this->left, top+this->top,value);
 	for(auto i=width-value.size();i>0;--i)	graphics.write(" ");
 	graphics.moveTo(left+cursor, top);
 	graphics.setBackground();

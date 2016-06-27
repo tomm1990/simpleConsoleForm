@@ -23,13 +23,6 @@ void Messagebox::keyDown(WORD code, CHAR chr)
 {
 }
 
-void Messagebox::mousePressed(int x, int y, bool isLeft)
-{
-}
-
-void Messagebox::draw(Graphics& graphics, int left, int top, size_t p) {
-	Panel::draw(graphics, left, top, p);
-}
 
 void Messagebox::getAllControls(vector<Control*>* vector)
 {

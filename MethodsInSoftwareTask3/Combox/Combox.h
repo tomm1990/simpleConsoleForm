@@ -19,10 +19,7 @@ public:
 	void close();
 	void setSelectedIndex(int index) { selection = index - 1; };
 
-
 	~Combox() override;
-	virtual void mousePressed(int x, int y, bool isLeft) override;
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;

@@ -5,6 +5,16 @@
 Combox::Combox(int width, vector<string> options) :Panel(options.size(), width),list(options),isListOpen(false), size(options.size()), selection(0)
 {
 	height = 1;
+	for(auto i=0;i<size;i++)
+	{
+		Button *b = new Button(width-2);
+		b->SetText(list[i]);
+		b->hide();
+		b->addListener([&]() {b->show(); });
+		addControl(*b, 0 , 0 + i);
+
+	}
+	children[0]->show();
 	onClick = [&]()
 	{
 		if (this->isListOpen)
@@ -16,6 +26,10 @@ Combox::Combox(int width, vector<string> options) :Panel(options.size(), width),
 			this->open();
 		}
 	};
+	button = new Button(1);
+	button->addListener(onClick);
+	button->setValue("v");
+	addControl(*button, width - 1, 0);
 }
 
 
@@ -24,6 +38,10 @@ void Combox::open()
 {
 	height = size;
 	set_layer(1);
+	for(auto i=children.begin();i<children.end()-1;++i)
+	{
+		(*i)->show();
+	}
 	isListOpen = true;
 }
 
@@ -31,8 +49,14 @@ void Combox::close()
 {
 	height = 1;
 	set_layer(0);
+	for (auto i = children.begin(); i<children.end() - 1; ++i)
+	{
+		(*i)->hide();
+	}
 	isListOpen = false;
 }
+
+
 
 
 Combox::~Combox()
@@ -40,49 +64,7 @@ Combox::~Combox()
 	delete (button);
 }
 
-void Combox::mousePressed(int x, int y, bool isLeft)
-{
-	if(x== button->getLeft()-left && y== button->getTop()-top)
-	{
-		button->mousePressed(x,y,isLeft);
-		return;
-	}
-	if (isListOpen)
-	{
-		selection = y;
-		close();
-	}
-}
-
-void Combox::draw(Graphics& graphics, int left, int top, size_t p)
-{
-	Control::draw(graphics, left, top, p);
-	if (!isListOpen)
-	{
-		graphics.write(left,top,list[selection]);
-		graphics.moveTo(left, top);
-	}
-	else
-	{
-		for (auto i = 0; i < size; i++, graphics.moveTo(left, top + i))
-		{
-			graphics.write(list[i]);
-		}
-		graphics.moveTo(left, selection + top);
-	}
-	if (!button)
-	{
-		button = new Button(1);
-		button->addListener(onClick);
-		button->setValue("v");
-		addControl(*button, width - 1, 0);
-	}
-	button->draw(graphics, button->getLeft(), button->getTop(), p);
-	graphics.setBackground();
-	graphics.setForeground();
 	
-}
-
 void Combox::keyDown(WORD code, CHAR chr)
 {
 	if (!isListOpen && (code==VK_UP  || code == VK_DOWN))

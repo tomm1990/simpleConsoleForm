@@ -1,8 +1,8 @@
 #pragma once
-#include "../Control/Control.h"
+#include "../Panel/Panel.h"
 
 class CheckList :
-	public Control
+	public Panel
 {
 private:
 	vector<string> list;
@@ -14,9 +14,7 @@ private:
 public:
 	CheckList(int height,int width, vector<string> options);
 	void setSelectedIndex(int index) { selection = index - 1; };
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;
-	void mousePressed(int x, int y, bool isLeft) override;
 	void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override;
 };

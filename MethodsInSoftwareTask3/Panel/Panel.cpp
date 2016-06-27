@@ -12,10 +12,10 @@ Panel::Panel(int height, int width) : Control(width)
 
 void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 {
-	Control::draw(graphics, left, top , 0);
+	Control::draw(graphics, left, top, 0);
 	for (auto it = children.begin(); it != children.end(); ++it)
 	{
-		if((*it)->isVisible()) (*it)->draw(graphics, (*it)->getLeft(), (*it)->getTop(), p);
+		if((*it)->isVisible()) (*it)->draw(graphics, left+(this->left), top+(this->top), p);
 	}
 	//getFocus()->draw(graphics, getFocus()->getLeft(), getFocus()->getTop(),p);
 }
@@ -83,8 +83,8 @@ bool Panel::canGetFocus()
 
 void Panel::addControl(Control& element, int left, int top)
 {
-	element.set_left(left+this->left);
-	element.set_top(top+this->top);
+	element.set_left(left);
+	element.set_top(top);
 	children.push_back(&element);
 	setFocus(element);
 }

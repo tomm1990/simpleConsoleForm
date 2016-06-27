@@ -1,7 +1,7 @@
 #pragma once
-#include "../Control/Control.h"
+#include "../Panel/Panel.h"
 
-class RadioList : public Control{
+class RadioList : public Panel{
 	vector<string> list;
 	size_t size;
 	int selection = {};
@@ -9,8 +9,6 @@ class RadioList : public Control{
 public:
 	RadioList(int height,int width, vector<string> options);;
 	void setSelectedIndex(int index) { selection = index - 1; };
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void keyDown(WORD code, CHAR chr) override;
-	void mousePressed(int x, int y, bool isLeft) override;
 
 };

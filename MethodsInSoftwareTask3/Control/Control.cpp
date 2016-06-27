@@ -44,7 +44,7 @@ void Control::draw(Graphics& graphics, int left, int top, size_t p)
 		try 
 		{
 			if (!drawer) throw exception();	
-			drawer->draw(graphics, left, top, this->getWidth(), this->getHeight());
+			drawer->draw(graphics, left+this->left, top+this->top, this->getWidth(), this->getHeight());
 		}
 		catch(exception){}
 		graphics.moveTo(left, top);
