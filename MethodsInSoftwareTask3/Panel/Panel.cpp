@@ -15,7 +15,8 @@ void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 	Control::draw(graphics, left, top, 0);
 	for (auto it = children.begin(); it != children.end(); ++it)
 	{
-		if((*it)->isVisible()) (*it)->draw(graphics, left+(this->left), top+(this->top), p);
+		if((*it)->isVisible()) 
+			(*it)->draw(graphics, left+(this->left), top+(this->top), p);
 	}
 	//getFocus()->draw(graphics, getFocus()->getLeft(), getFocus()->getTop(),p);
 }
