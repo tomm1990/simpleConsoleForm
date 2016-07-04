@@ -10,6 +10,7 @@ private:
 	Control* c;
 public:
 	Button(int width);
+	bool canGetFocus() override { return true; }
 
 	void keyDown(WORD code, CHAR chr) override { action(c); };
 

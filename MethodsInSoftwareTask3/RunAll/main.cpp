@@ -24,11 +24,20 @@ int main()
 	checklist.setBackground(Color::Cyan);
 	checklist.setForeground(Color::Red);*/
 	//panel.addControl(checklist, 10, 10);
+	Label nameLabel(15, "Name : ");
+	nameLabel.setBorderDrawer(BorderType::Single);
+
+	TextBox name(15);
+	name.setBorderDrawer(BorderType::Single);
+
 	NumericBox a(5,18,120);
 	a.setValue("25");
 	a.setBorderDrawer(BorderType::Single);
+	panel.addControl(nameLabel, 3, 2);
+	panel.addControl(name, 22, 2);
 	panel.addControl(a,6,10);
-	Control::setFocus(a);
+
+	Control::setFocus(name);
 	EventEngine events;
 	events.run(panel);
 	return system("pause");

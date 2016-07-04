@@ -48,9 +48,7 @@ void TextBox::mousePressed(int x, int y, bool isLeft){
 
 
 
-bool TextBox::canGetFocus(){
-	return true;
-}
+
 
 void TextBox::draw(Graphics& graphics, int left, int top, size_t p){
 	Control::draw(graphics, left, top,0);
