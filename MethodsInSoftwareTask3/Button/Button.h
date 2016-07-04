@@ -10,6 +10,9 @@ private:
 	Control* c;
 public:
 	Button(int width);
+
+	void keyDown(WORD code, CHAR chr) override { action(c); };
+
 	void addListener(std::function<void(Control*)> listener, Control* c) { action = listener; this->c = c; };
 	void mousePressed(int x, int y, bool isLeft) override { action(c); };
 };

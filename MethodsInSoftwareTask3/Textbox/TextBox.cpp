@@ -46,9 +46,7 @@ void TextBox::mousePressed(int x, int y, bool isLeft){
 	else cursor = value.size();
 }
 
-void TextBox::getAllControls(vector<Control*>* vector)
-{
-}
+
 
 bool TextBox::canGetFocus(){
 	return true;

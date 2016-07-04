@@ -6,19 +6,23 @@ class Panel :
 {
 protected:
 	vector < Control* > children;
+	static vector < Control* > focusVec;
 public:
 	Panel(int height, int width);
 
 
-	void keyDown(WORD code, CHAR chr) override;
+	virtual void keyDown(WORD code, CHAR chr) override;
 	virtual void mousePressed(int x, int y, bool isLeft) override;
 	void draw(Graphics& graphics, int left, int top, size_t p) override;
-	void getAllControls(vector<Control*>* vector) override;
+	virtual void getAllControls(vector<Control*>* vector) override;
 
+
+	bool canGetFocus() override{return false;};
 	void setForeground(Color color) override;
 	void setBackground(Color color) override;
-	bool canGetFocus() override;
 	void addControl(Control& element, int left, int top);
 	virtual ~Panel();
 };
+
+
 

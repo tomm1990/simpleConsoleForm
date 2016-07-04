@@ -70,6 +70,7 @@ void Control::set_layer(size_t layer)
 
 void Control::getAllControls(vector<Control*>* vector)
 {
+	vector->push_back(this);
 }
 
 bool Control::canGetFocus()
@@ -77,7 +78,12 @@ bool Control::canGetFocus()
 	return true;
 }
 
-void Control::setFocus(Control& it){
+void Control::setFocus(Control& it) {
+	if (onFocus)
+	{	
+		swap(onFocus->get_background(), onFocus->get_forground());
+	}
+	swap(it.backcolor, it.forColor);
 	onFocus = &it;
 }
 

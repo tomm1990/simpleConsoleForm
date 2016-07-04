@@ -4,25 +4,17 @@
 
 
 class Combox:
-	public Panel
+	public Scrollable
 {
 private:
-	vector<string> list;
+	Button* button;
 	bool isListOpen;
-	size_t size;
-	int selection;
-	Button* button=nullptr;
-	Label* label;
-
 public:
 	Combox(int width, vector<string> options);
+	void mark() override;
+	void draw(Graphics& graphics, int left, int top, size_t p) override;
 	void open();
 	void close();
-	void setSelectedIndex(int index) { selection = index - 1; };
 	~Combox() override;
-	void getAllControls(vector<Control*>* vector) override;
-	bool canGetFocus() override;
-
-
 };
 

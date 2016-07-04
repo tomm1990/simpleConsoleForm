@@ -2,11 +2,9 @@
 #include "../Button/Button.h"
 
 
-Combox::Combox(int width, vector<string> options) :Panel(options.size(), width),list(options),isListOpen(false), size(options.size()), selection(0)
+Combox::Combox(int width, vector<string> options) :Scrollable(width, options), isListOpen(false)
 {
 	height = 1;
-	label = new Label(width-2, list[0]);
-	addControl(*label, 0,0);
 	auto e = [&](Control* c)
 	{
 		if (!c->isVisible())
@@ -16,45 +14,66 @@ Combox::Combox(int width, vector<string> options) :Panel(options.size(), width),
 
 		else
 		{
-			auto l = static_cast<Button*>(c);
-			//label->setValue(l->getValue());
-			selection = l->getTop();
+			auto b2 = static_cast<Button*>(c);
+			auto b1 = static_cast<Button*>(children[0]);
+			string temp = b1->getValue();
+			b1->setValue(b2->getValue());
+			b2->setValue(temp);
+			set_cursor(b1->getTop());
 			close();
+			setFocus(*this);
 		}
-
 	};
-	for(auto i=0;i<size;i++)
+	for(auto i=0;i<get_size();i++)
 	{
 		auto *b = new Button(width-2);
-		b->SetText(list[i]);
+		b->SetText(get_list()[i]);
 		b->hide();
 		b->addListener(e,b);
-		addControl(*b, 0 , 1 + i);
+		addControl(*b, 0 , i);
 
 	}
 	auto onClick = [&](Control* c)
 	{
-		if (this->isListOpen)
+		if (isListOpen)
 		{
-			this->close();
+			close();
 		}
 		else
 		{
-			this->open();
+			open();
 		}
 	};
 	button = new Button(1);
 	button->addListener(onClick,this);
 	button->setValue("v");
+	children[0]->show();
 	addControl(*button, width - 1, 0);
-	
 }
 
+void Combox::mark()
+{
+	auto b1 = static_cast<Button*>(children[0]);
+	auto b2 = static_cast<Button*>(getFocus());
+	swap(b1->getValue(), b2->getValue());
+}
+
+void Combox::draw(Graphics& graphics, int left, int top, size_t p)
+{
+	for(auto it=children.begin();it!=children.end()-1;++it)
+	{
+		if((*it)==getFocus())
+		{
+			open();
+		}
+	}
+	Scrollable::draw(graphics, left, top, p);
+}
 
 
 void Combox::open()
 {
-	height = size+1;
+	height = get_size();
 	set_layer(1);
 	for(auto i=children.begin();i<children.end();++i)
 	{
@@ -71,10 +90,8 @@ void Combox::close()
 	{
 		(*i)->hide();
 	}
-	selection = 0;
 	isListOpen = false;
 }
-
 
 
 
@@ -87,12 +104,5 @@ Combox::~Combox()
 
 
 
-void Combox::getAllControls(vector<Control*>* vector)
-{
 
-}
 
-bool Combox::canGetFocus()
-{
-	return true;
-}

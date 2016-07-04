@@ -1,20 +1,13 @@
 #pragma once
-#include "../Panel/Panel.h"
+#include "../Control/Scrollable.h"
 
 class CheckList :
-	public Panel
+	public Scrollable
 {
 private:
-	vector<string> list;
-	int listFlag[5] = { 0 };
-	bool isListOpen;
-	size_t size;
-	int selection;
+
 
 public:
-	CheckList(int height,int width, vector<string> options);
-	void setSelectedIndex(int index) { selection = index - 1; };
-	void keyDown(WORD code, CHAR chr) override;
-	void getAllControls(vector<Control*>* vector) override;
-	bool canGetFocus() override;
+	CheckList(int width, const vector<string>& list);
+	void mark() override{};
 };

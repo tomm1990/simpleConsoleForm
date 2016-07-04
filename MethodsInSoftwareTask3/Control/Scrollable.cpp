@@ -1,49 +1,60 @@
 #include "Scrollable.h"
+#include "EventEngine.h"
 
 
-Scrollable::Scrollable(int height, int width, vector<string> list): Panel(height, width), cursor(0),selection(0),list(list),size(list.size())
+Scrollable::Scrollable(int width, vector<string> list): Panel(list.size(), width), cursor(0),selection(0),list(list),size(list.size())
 {
 }
+
+
 
 void Scrollable::keyDown(WORD code, CHAR chr)
 {
-	
-	if ((code == VK_UP || code == VK_DOWN))
+	if(code==VK_RETURN && 	this != getFocus())	
 	{
-		
-		return;
+		mark();
 	}
-	switch (code)
-	{
-	case VK_UP:
-	{
-		if (cursor == 0)
-		{
-			cursor = size - 1;
-		}
-		else
-		{
-			--cursor;
-		}
-		break;
-	}
-	case VK_DOWN:
-	{
-		if (cursor < size - 1)
-		{
-			cursor++;
-		}
-		else
-		{
-			cursor = 0;
-		}
-		break;
-	}
-	case VK_RETURN:
-	{
-		selection=cursor;
-		break;
-	}
-	}
-	
 }
+
+void Scrollable::getAllControls(vector<Control*>* vec)
+{
+	vec->push_back(this);
+	Panel::getAllControls(vec);
+}
+
+
+int Scrollable::get_cursor() const
+{
+	return cursor;
+}
+
+void Scrollable::set_cursor(int cursor)
+{
+	this->cursor = cursor;
+}
+
+int Scrollable::get_selection() const
+{
+	return selection;
+}
+
+void Scrollable::set_selection(int selection)
+{
+	this->selection = selection;
+}
+
+int Scrollable::get_size() const
+{
+	return size;
+}
+
+void Scrollable::set_size(int size)
+{
+	this->size = size;
+}
+
+vector<string> Scrollable::get_list() const
+{
+	return list;
+}
+

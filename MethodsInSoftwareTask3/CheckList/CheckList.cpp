@@ -1,65 +1,25 @@
 #include "CheckList.h"
 
-CheckList::CheckList(int height,int width, vector<string> options) : Panel(height,width), list(options), isListOpen(false), size(static_cast<SHORT>(options.size())), selection(0)
+CheckList::CheckList(int width, const vector<string>& list): Scrollable(width, list)
 {
-	this->height = height;
-}
-
-
-
-
-void CheckList::keyDown(WORD code, CHAR chr)
-{
-	switch (code)
+	auto e = [](Control*c)
 	{
-	case VK_UP:
-	{
-		if (selection == 0)
-		{
-			selection = size - 1;
-		}
+		auto btn = static_cast<Button*>(c);
+		auto word = btn->getValue().substr(3);
+		if (!btn->getValue().compare("[ ]"+word))
+			btn->setValue("[x]" + word);
 		else
-		{
-			--selection;
-		}
-		break;
-	}
-	case VK_DOWN:
+			btn->setValue("[ ]" + word);
+	};
+	for(auto i=0;i<get_size();++i)
 	{
-		if (selection < size - 1)
-		{
-			selection++;
-		}
-		else
-		{
-			selection = 0;
-		}
-		break;
-	}
-	case VK_RETURN:
-	{
-		if (listFlag[selection] != 1)
-		{
-			listFlag[selection] = 1;
-		}
-		else
-		{
-			listFlag[selection] = 0;
-		}
-		isListOpen = false;
-		break;
-	}
+		auto b = new Button(width);
+		b->setValue("[ ]"+ list[i]);
+		b->addListener(e, b);
+		addControl(*b, 0, i);
+
 	}
 }
 
 
 
-void CheckList::getAllControls(vector<Control*>* vector)
-{
-	//	vector->push_back(this);
-}
-
-bool CheckList::canGetFocus()
-{
-	return true;
-}
