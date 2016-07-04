@@ -14,6 +14,7 @@ int main()
 {
 	Panel panel(17,60);
 	panel.setBorderDrawer(BorderType::Double);
+
 	/*Combox cityCombox(15,{"Tel Aviv","Ramat Gan","Givataim","Hertzliya"});
 	cityCombox.setBackground(Color::Green);
 	cityCombox.setForeground(Color::Red);
@@ -24,20 +25,43 @@ int main()
 	checklist.setBackground(Color::Cyan);
 	checklist.setForeground(Color::Red);*/
 	//panel.addControl(checklist, 10, 10);
-	Label nameLabel(15, "Name : ");
-	nameLabel.setBorderDrawer(BorderType::Single);
 
-	TextBox name(15);
-	name.setBorderDrawer(BorderType::Single);
+//#pragma region original
+//	Label nameLabel(5, "Name : ");
+//	nameLabel.setBorderDrawer(BorderType::Single);
+//
+//	TextBox nameTextBox(15);
+//	nameTextBox.setBorderDrawer(BorderType::Double);
+//
+//	Label hobbiesLabel(10, "Hobbies");
+//	hobbiesLabel.setBorderDrawer(BorderType::Single);
+//
+//	CheckList hobbiesCheckList(10,{"Movies", "Sports", "Cars"});
+//	hobbiesCheckList.setBorderDrawer(BorderType::Double);
+//
+//	Label ageLabel(5, "Age :");
+//	ageLabel.setBorderDrawer(BorderType::Single);
+//
+//	NumericBox ageNumericBox(11, 18, 120);
+//	ageNumericBox.setBorderDrawer(BorderType::Double);
+//
+//	panel.addControl(nameLabel, 3, 2);
+//	panel.addControl(nameTextBox, 11, 2);
+//	panel.addControl(hobbiesLabel, 30, 2);
+//	panel.addControl(hobbiesCheckList, 43, 2);
+//	panel.addControl(ageLabel, 3, 5);
+//	panel.addControl(ageNumericBox, 11, 5);
+//#pragma endregion
 
-	NumericBox a(5,18,120);
-	a.setValue("25");
-	a.setBorderDrawer(BorderType::Single);
-	panel.addControl(nameLabel, 3, 2);
-	panel.addControl(name, 22, 2);
-	panel.addControl(a,6,10);
+#pragma region Messagebox
+	Messagebox alert(9,40);
+	alert.setBorderDrawer(BorderType::Single);
+	alert.setTitle("Hello");
+	alert.setText("Methods in Software Engineering");
 
-	Control::setFocus(name);
+#pragma endregion 
+	panel.addControl(alert, 10, 3);
+	//Control::setFocus(nameTextBox);
 	EventEngine events;
 	events.run(panel);
 	return system("pause");

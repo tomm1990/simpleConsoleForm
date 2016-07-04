@@ -58,9 +58,7 @@ void NumericBox::setValue(const string& value){
 	}
 }
 
-bool NumericBox::canGetFocus(){
-	return true;
-}
+
 
 void NumericBox::addControl(Control& element, int left, int top){
 	Panel::addControl(element,  left,  top);

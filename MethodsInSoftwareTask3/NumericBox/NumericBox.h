@@ -9,7 +9,6 @@ public:
 	~NumericBox();
 	string getValue() const;
 	void setValue(const string& value);
-	bool canGetFocus() override;
 	Label* getLabel() const { return val; }
 	void SetText(Label& l, string newText){	val->setValue(newText);}
 
