@@ -1,6 +1,7 @@
 #include "CheckList.h"
+#include "../Button/Button.h"
 
-CheckList::CheckList(int width, const vector<string>& list): Scrollable(width, list)
+CheckList::CheckList(int width, const vector<string>& list): Panel(list.size(), width)
 {
 	auto e = [](Control*c)
 	{
@@ -11,7 +12,7 @@ CheckList::CheckList(int width, const vector<string>& list): Scrollable(width, l
 		else
 			btn->setValue("[ ]" + word);
 	};
-	for(auto i=0;i<get_size();++i)
+	for(auto i=0;i<list.size();++i)
 	{
 		auto b = new Button(width);
 		b->setValue("[ ]"+ list[i]);

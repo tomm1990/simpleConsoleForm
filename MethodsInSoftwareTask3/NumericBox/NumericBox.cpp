@@ -17,7 +17,7 @@ NumericBox::NumericBox(int width, int min, int max) : Panel(6,checkWidth(width))
 	bDOWN = new Button(width / 3);
 	bDOWN->setBorderDrawer(BorderType::Single);
 	bDOWN->SetText(" -");
-	addControl(*val, getLeft()+1, getTop()+getHeight()/3);
+	addControl(*val, 1+getLeft(), getTop()+getHeight()/3);
 	addControl(*bUP, getLeft()+val->getWidth()+4, getTop()+1);
 	addControl(*bDOWN, getLeft() + val->getWidth()+4, getTop()+getHeight()-2);
 	

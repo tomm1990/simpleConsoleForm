@@ -46,8 +46,7 @@ void Control::draw(Graphics& graphics, int left, int top, size_t p)
 			if (!drawer) throw exception();	
 			drawer->draw(graphics, left+this->left, top+this->top, this->getWidth(), this->getHeight());
 		}
-		catch(exception){}
-		graphics.moveTo(left, top);
+		catch(exception &e){}
 }
 
 SHORT Control::getLeft(){
@@ -70,13 +69,11 @@ void Control::set_layer(size_t layer)
 
 void Control::getAllControls(vector<Control*>* vector)
 {
+	if(canGetFocus())
 	vector->push_back(this);
 }
 
-bool Control::canGetFocus()
-{
-	return true;
-}
+
 
 void Control::setFocus(Control& it) {
 	if (onFocus)

@@ -1,13 +1,13 @@
 #pragma once
-#include "../Control/Scrollable.h"
+#include "../Panel/Panel.h"
 
 class CheckList :
-	public Scrollable
+	public Panel
 {
 private:
 
 
 public:
 	CheckList(int width, const vector<string>& list);
-	void mark() override{};
+	//void mark() override{};
 };

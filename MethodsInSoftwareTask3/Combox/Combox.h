@@ -1,20 +1,22 @@
 #pragma once
 #include "../Button/Button.h"
-#include "../Control/Scrollable.h"
+#include "../Panel/Panel.h"
 
 
 class Combox:
-	public Scrollable
+	public Panel
 {
 private:
 	Button* button;
 	bool isListOpen;
+	vector<string> list;
 public:
 	Combox(int width, vector<string> options);
-	void mark() override;
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
+
 	void open();
 	void close();
+	bool canGetFocus() override { return false; };
 	~Combox() override;
+
 };
 

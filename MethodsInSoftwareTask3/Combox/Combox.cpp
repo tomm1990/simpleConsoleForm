@@ -2,32 +2,32 @@
 #include "../Button/Button.h"
 
 
-Combox::Combox(int width, vector<string> options) :Scrollable(width, options), isListOpen(false)
+Combox::Combox(int width, vector<string> options) :Panel(options.size(), width), isListOpen(false),list(options)
 {
 	height = 1;
 	auto e = [&](Control* c)
 	{
 		if (!c->isVisible())
 		{
-			c->show();
+			open();
 		}
 
 		else
 		{
-			auto b2 = static_cast<Button*>(c);
-			auto b1 = static_cast<Button*>(children[0]);
+			auto b2 = dynamic_cast<Button*>(c);
+			auto b1 = dynamic_cast<Button*>(children[0]);
 			string temp = b1->getValue();
 			b1->setValue(b2->getValue());
 			b2->setValue(temp);
-			set_cursor(b1->getTop());
 			close();
-			setFocus(*this);
 		}
+		setFocus(*children[0]);
 	};
-	for(auto i=0;i<get_size();i++)
+	for(auto i=0;i<list.size();i++)
 	{
 		auto *b = new Button(width-2);
-		b->SetText(get_list()[i]);
+		b->SetText(list[i]);
+		b->set_layer(1);
 		b->hide();
 		b->addListener(e,b);
 		addControl(*b, 0 , i);
@@ -51,34 +51,19 @@ Combox::Combox(int width, vector<string> options) :Scrollable(width, options), i
 	addControl(*button, width - 1, 0);
 }
 
-void Combox::mark()
-{
-	auto b1 = static_cast<Button*>(children[0]);
-	auto b2 = static_cast<Button*>(getFocus());
-	swap(b1->getValue(), b2->getValue());
-}
 
-void Combox::draw(Graphics& graphics, int left, int top, size_t p)
-{
-	for(auto it=children.begin();it!=children.end()-1;++it)
-	{
-		if((*it)==getFocus())
-		{
-			open();
-		}
-	}
-	Scrollable::draw(graphics, left, top, p);
-}
+
 
 
 void Combox::open()
 {
-	height = get_size();
+	height = list.size();
 	set_layer(1);
 	for(auto i=children.begin();i<children.end();++i)
 	{
 		(*i)->show();
 	}
+	getFocus()->set_layer(1);
 	isListOpen = true;
 }
 
@@ -90,6 +75,7 @@ void Combox::close()
 	{
 		(*i)->hide();
 	}
+	getFocus()->set_layer(0);
 	isListOpen = false;
 }
 

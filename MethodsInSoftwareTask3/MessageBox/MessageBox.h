@@ -9,9 +9,9 @@ public:
 	~Messagebox();
 	void setText(string text );
 	void setTitle(string title );
-	void keyDown(WORD code, CHAR chr);
-	void getAllControls(vector<Control*>* vector);
-	bool canGetFocus();
+	bool canGetFocus() override;
+
+	virtual void show() override;
 private:
 	Label *title, *description;
 	Button *bOK, *bBack;

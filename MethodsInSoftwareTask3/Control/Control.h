@@ -25,6 +25,7 @@ protected:
 	Color backcolor = Color::White;
 	static Control* onFocus;
 
+
 public:
 	virtual void keyDown(WORD code, CHAR chr)=0;
 	virtual void mousePressed(int x, int y, bool isLeft)=0;
@@ -52,7 +53,7 @@ public:
 	size_t get_layer() const;
 	void set_layer(size_t layer);
 	virtual void getAllControls(vector<Control*>* vector);
-	virtual bool canGetFocus();
+	virtual bool canGetFocus() { return true; };
 	static void setFocus(Control& it);
 	static Control* getFocus();
 };

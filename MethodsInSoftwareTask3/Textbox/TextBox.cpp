@@ -53,14 +53,9 @@ void TextBox::mousePressed(int x, int y, bool isLeft){
 void TextBox::draw(Graphics& graphics, int left, int top, size_t p){
 	Control::draw(graphics, left, top,0);
 	graphics.write(left+this->left, top+this->top,value);
-	if(getFocus()==this)
-		graphics.setCursorVisibility(true);
-	else
-		graphics.setCursorVisibility(false);
 	for(auto i=width-value.size();i>0;--i)	graphics.write(" ");
-	graphics.moveTo(left+cursor, top);
 	graphics.setBackground();
-	graphics.setForeground();
+	graphics.setForeground();	
 }
 
 string TextBox::getValue() const{
@@ -73,4 +68,10 @@ void TextBox::setValue(const string& value){
 	} else {
 		this->value.insert(0, value, 0 , width-1);
 	}
+}
+
+void TextBox::set_cursor(const Graphics& graphics, int left, int top)
+{
+	graphics.moveTo(left + this->left + cursor, top + this->top);
+	graphics.setCursorVisibility(true);
 }

@@ -1,5 +1,6 @@
 #include "Panel.h"
 #include "../Control/EventEngine.h"
+#include "../TextBox/TextBox.h"
 
 vector<Control*> Panel::focusVec;
 
@@ -22,7 +23,10 @@ void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 	{
 		if((*it)->isVisible()) 
 			(*it)->draw(graphics, left+(this->left), top+(this->top), p);
-	}	
+	}
+	auto textbox = dynamic_cast<TextBox*>(getFocus());
+	if (textbox)
+		textbox->set_cursor(graphics, left, top);
 }
 
 void Panel::keyDown(WORD code, CHAR chr) 
@@ -71,9 +75,9 @@ void Panel::mousePressed(int x, int y, bool isLeft)
 			int Y = y - (*it)->getTop();
 			if (X >= 0 && Y >= 0 && X < (*it)->getWidth() && Y < (*it)->getHeight())
 			{
-				(*it)->mousePressed(X, Y, isLeft);
-				if((*it)->canGetFocus())
+				if ((*it)->canGetFocus())
 					setFocus(**it);
+				(*it)->mousePressed(X, Y, isLeft);
 				break;
 			}
 		}

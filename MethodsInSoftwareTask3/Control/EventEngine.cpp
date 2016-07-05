@@ -12,7 +12,7 @@ void EventEngine::run( Control & c )
 		if (redraw)
 		{
 			_graphics.clearScreen();
-			_graphics.setCursorVisibility(false);	//should be false
+			_graphics.setCursorVisibility(false);	
 			for (size_t p = 0; p < 3; ++p) 
 			{
 				if(c.isVisible() && p==c.get_layer())
@@ -79,7 +79,8 @@ void EventEngine::moveFocusForword(Control& main, Control* focused)
 		{
 			it = controls.begin();
 		}
-	while (!(*it)->canGetFocus());
+	while (!(*it)->canGetFocus() || !(*it)->isVisible() 
+		|| (*it)->get_layer()!=focused->get_layer());
 	Control::setFocus(**it);
 }
 
@@ -93,6 +94,7 @@ void EventEngine::moveFocusBackword(Control& main, Control* focused)
 		{
 			it = controls.rbegin();
 		}
-	while (!(*it)->canGetFocus());
+	while (!(*it)->canGetFocus() || !(*it)->isVisible()
+		|| (*it)->get_layer() != focused->get_layer());
 	Control::setFocus(**it);
 }
