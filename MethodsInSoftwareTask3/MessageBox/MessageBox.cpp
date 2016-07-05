@@ -8,6 +8,8 @@ Messagebox::Messagebox(int height, int width) : Panel(height, width) {
 	bBack = new Button(6);
 	bBack->SetText("Back");
 	bBack->setBorderDrawer(BorderType::Single);
+	bOK->set_layer(2);
+	bBack->set_layer(2);
 	addControl(*bOK,  getWidth() / 4,getHeight()-2 );
 	addControl(*bBack, getWidth() / 2 ,getHeight() - 2);
 

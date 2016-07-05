@@ -8,5 +8,6 @@ void Button::keyDown(WORD code, CHAR chr)
 {
 	if(code==VK_SPACE || code==VK_RETURN)
 		action(c);
+
 }
 
