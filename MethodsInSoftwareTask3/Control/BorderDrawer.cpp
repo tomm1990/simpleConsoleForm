@@ -3,22 +3,23 @@
 
 void BorderDrawer::draw(Graphics& graphics, int left, int top, int width, int height) const
 {
-	int i , j;
 	graphics.moveTo(left, top);
 	graphics.write(string(1, _assets[0]));
-	for ( i = 0; i < width; i++) graphics.write(string(1, _assets[1]));
+	for(auto i=0;i<width;++i)
+		graphics.write(string(1, _assets[1]));
 	graphics.write(string(1, _assets[2]));
-	
-	for( j = 0 ; j < height ; j++){
-		graphics.moveTo(left, top + j + 1);
+	for (auto j=1; j <=height; j++) 
+	{
+		graphics.moveTo(left, top + j);
 		graphics.write(string(1, _assets[3]));
-		for (i = 0; i < width; i++) graphics.write(" ");
+		for (auto i=0; i < width; i++) graphics.write(" ");
 		graphics.write(string(1, _assets[3]));
 	}
-	
-	graphics.moveTo(left, top + j +1);
+	graphics.moveTo(left, top + height+1);
 	graphics.write(string(1, _assets[4]));
-	for (i = 0; i < width ; i++) graphics.write(string(1, _assets[1]));
+	for (auto i=0; i < width; i++) 
+		graphics.write(string(1, _assets[1]));
+	graphics.moveTo(left + width + 1, top + height+1);
 	graphics.write(string(1, _assets[5]));
 }
 
@@ -65,7 +66,7 @@ void DoubleBorder::draw(Graphics& graphics, int left, int top, int width, int he
 {
 	if ((left > 0) && (top > 0))
 	{
-		BorderDrawer::draw(graphics, left - 1, top - 1, width, height);
+		BorderDrawer::draw(graphics, left-1 , top - 1, width, height);
 	}
 	else
 	{
@@ -75,11 +76,25 @@ void DoubleBorder::draw(Graphics& graphics, int left, int top, int width, int he
 
 NoneBorder::NoneBorder()
 {
-	char assets[] = { ' '  ,' '  ,' '  ,' '  ,' '  ,' ' };
-	BorderDrawer::setAssets(assets);
 }
 
 
 NoneBorder::~NoneBorder()
 {
+}
+
+void NoneBorder::fillBackground(const Graphics& graphics, int left, int top, int width, int height) const
+{
+	for(auto i=0;i<height;i++)
+	{
+		for(auto j=0;j<width;j++)
+		{
+			graphics.write(j+left, i+top, " ");
+		}
+	}
+}
+
+void NoneBorder::draw(Graphics& graphics, int left, int top, int width, int height) const
+{
+	fillBackground(graphics,left,top,width, height);
 }

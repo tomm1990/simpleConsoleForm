@@ -28,5 +28,6 @@ class NoneBorder : public BorderDrawer{
 public:
 	NoneBorder();
 	~NoneBorder() ;
-	 void draw(Graphics& graphics, int left, int top, int width, int height) const override{ }
+	void fillBackground(const Graphics& graphics, int left, int top, int width, int height) const;
+	void draw(Graphics& graphics, int left, int top, int width, int height) const override;
 };

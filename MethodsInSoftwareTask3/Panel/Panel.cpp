@@ -1,6 +1,7 @@
 #include "Panel.h"
 #include "../Control/EventEngine.h"
 #include "../TextBox/TextBox.h"
+#include <cassert>
 
 vector<Control*> Panel::focusVec;
 
@@ -16,12 +17,12 @@ Panel::Panel(int height, int width) : Control(width)
 
 void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 {
-	Control::draw(graphics, left, top, 0);
+	Control::draw(graphics, left, top, p);
 	if(focusVec.empty())
 		getAllControls(&focusVec);
 	for (auto it = children.begin(); it != children.end(); ++it)
 	{
-		if((*it)->isVisible()) 
+		if((*it)->isVisible() && p==(**it).get_layer())
 			(*it)->draw(graphics, left+(this->left), top+(this->top), p);
 	}
 	auto textbox = dynamic_cast<TextBox*>(getFocus());
@@ -95,34 +96,11 @@ void Panel::getAllControls(vector<Control*>* vec)
 }
 
 
-
-void Panel::setForeground(Color color)
-{
-	for(auto it=children.begin();it!=children.end();++it)
-	{
-		(**it).setForeground(color);
-	}
-	Control::setForeground(color);
-}
-
-void Panel::setBackground(Color color)
-{
-	for (auto it = children.begin(); it != children.end(); ++it)
-	{
-		(**it).setBackground(color);
-	}
-	Control::setBackground(color);
-}
-
-
-
 void Panel::addControl(Control& element, int left, int top)
 {
 	element.set_left(left);
 	element.set_top(top);
 	children.push_back(&element);
-	if (element.canGetFocus());
-		//setFocus(element);
 }
 
 

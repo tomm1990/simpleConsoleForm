@@ -5,27 +5,27 @@ int checkWidth(int width){
 	return width < 11 ?  11 :  width;
 }
 
-NumericBox::NumericBox(int width, int min, int max) : Panel(6,checkWidth(width)) {
+NumericBox::NumericBox(int width, int min, int max) : Panel(3,checkWidth(width)) {
 	width = checkWidth(width);
 	this->min = min;
 	this->max = max;
-	val = new Label(width / 3, static_cast<ostringstream*>(&(ostringstream() << number))->str());
-	val->setBorderDrawer(BorderType::Single);
-	bUP = new Button(width / 3);
-	bUP->setBorderDrawer(BorderType::Single);
-	bUP->SetText(" +");
-	bDOWN = new Button(width / 3);
-	bDOWN->setBorderDrawer(BorderType::Single);
-	bDOWN->SetText(" -");
-	addControl(*val, 1+getLeft(), getTop()+getHeight()/3);
-	addControl(*bUP, getLeft()+val->getWidth()+4, getTop()+1);
-	addControl(*bDOWN, getLeft() + val->getWidth()+4, getTop()+getHeight()-2);
+	val = new Label(std::to_string(max).size(), static_cast<ostringstream*>(&(ostringstream() << number))->str());
+	val->setBorder(BorderType::Single);
+	bUP = new Button(1);
+	bUP->setBorder(BorderType::Single);
+	bUP->SetText("+");
+	bDOWN = new Button(1);
+	bDOWN->setBorder(BorderType::Single);
+	bDOWN->SetText("-");
+	addControl(*val, left+1, top+1);
+	addControl(*bUP, width-5, top+1);
+	addControl(*bDOWN, width-2, top+1);
 	
 	auto upEvenet = [&](Control *c){
 	if(number < this->max)
 		{
 			++number;
-			setValue(to_string(number));
+			setValue((number));
 		}
 	};
 	bUP->addListener(upEvenet, bUP);
@@ -34,7 +34,7 @@ NumericBox::NumericBox(int width, int min, int max) : Panel(6,checkWidth(width))
 	{
 		if (number > this->min) {
 			--number;
-			setValue(to_string(number));
+			setValue((number));
 		}
 	};
 	bDOWN->addListener(downEvent, bDOWN);
@@ -50,8 +50,7 @@ string NumericBox::getValue() const {
 	return to_string(number);
 }
 
-void NumericBox::setValue(const string& value){
-	auto val = stoi(value);
+void NumericBox::setValue(int val){
 	if (val >= min && val <= max) {
 		number = val;
 		this->val->SetText(to_string(number));
@@ -60,6 +59,3 @@ void NumericBox::setValue(const string& value){
 
 
 
-void NumericBox::addControl(Control& element, int left, int top){
-	Panel::addControl(element,  left,  top);
-}

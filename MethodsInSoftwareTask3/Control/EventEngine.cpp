@@ -15,7 +15,7 @@ void EventEngine::run( Control & c )
 			_graphics.setCursorVisibility(false);	
 			for (size_t p = 0; p < 3; ++p) 
 			{
-				if(c.isVisible() && p==c.get_layer())
+				if(c.isVisible())
 				{
 					c.draw(_graphics, 0, 0, p); // changed to control left-top corner
 				}
@@ -51,7 +51,8 @@ void EventEngine::run( Control & c )
 				auto y = coord.Y - c.getTop();
 				if (button == FROM_LEFT_1ST_BUTTON_PRESSED || button == RIGHTMOST_BUTTON_PRESSED)
 				{
-					if (isInside(x, y, c.getLeft(), c.getTop(), c.getWidth(), c.getHeight())) {
+					if (isInside(x, y, c.getLeft(), c.getTop(), c.getWidth(), c.getHeight())) 
+					{
 						c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
 						redraw = true; // changed to false
 					}

@@ -1,4 +1,5 @@
 #include "Control.h"
+#include <cassert>
 
 Control* Control::onFocus;
 
@@ -13,7 +14,7 @@ void Control::setBackground(Color color)
 	backcolor = color;
 }
 
-void Control::setBorderDrawer(BorderType type)
+void Control::setBorder(BorderType type)
 {
 	if (drawer) { delete(drawer); }
 	switch (type)
@@ -33,20 +34,24 @@ void Control::setBorderDrawer(BorderType type)
 		drawer = new DoubleBorder();
 		break;
 	}
-	
 	}
 }
 
 void Control::draw(Graphics& graphics, int left, int top, size_t p)
 {
-		graphics.setBackground(backcolor);
-		graphics.setForeground(forColor);
-		try 
-		{
-			if (!drawer) throw exception();	
-			drawer->draw(graphics, left+this->left, top+this->top, this->getWidth(), this->getHeight());
-		}
-		catch(exception &e){}
+	if(get_layer()!=p) return;
+	graphics.setBackground(backcolor);
+	graphics.setForeground(forColor);
+	try 
+	{
+		if (!drawer) throw exception();	
+	}
+	catch(exception &e)
+	{
+	drawer = new NoneBorder();
+	}
+	drawer->draw(graphics, left + this->left, top + this->top, this->getWidth(), this->getHeight());		
+	graphics.moveTo(left, top);
 }
 
 SHORT Control::getLeft(){
@@ -88,6 +93,16 @@ Control* Control::getFocus(){
 	return onFocus;
 }
 
+void Control::set_width(int width)
+{
+	this->width = width;
+}
+
+void Control::set_height(int height)
+{
+	this->height = height;
+}
+
 Control::~Control()
 {
 	if (drawer)
@@ -95,7 +110,7 @@ Control::~Control()
 }
 
 // ReSharper disable once CppPossiblyUninitializedMember
-Control::Control(int width) : width(width)
+Control::Control(int width) : width(width),height(1),layer(0)
 {
 }
 

@@ -26,10 +26,15 @@ protected:
 	static Control* onFocus;
 
 
+
 public:
 	virtual void keyDown(WORD code, CHAR chr)=0;
 	virtual void mousePressed(int x, int y, bool isLeft)=0;
-
+	
+	size_t get_layer() const;
+	virtual void set_layer(size_t layer);
+	void set_width(int width);
+	void set_height(int height);
 	virtual ~Control() = 0;
 	explicit Control(int width);
 	virtual void show() { visibility = true; }
@@ -39,7 +44,7 @@ public:
 	virtual void setBackground(Color color);
 	virtual Color& get_forground() { return forColor; };
 	virtual Color& get_background() { return backcolor; };
-	virtual void setBorderDrawer(BorderType type);
+	virtual void setBorder(BorderType type);
 	virtual void draw(Graphics& graphics, int left, int top, size_t p)=0;
 	virtual SHORT getLeft();
 	virtual SHORT getTop();
@@ -50,8 +55,7 @@ public:
 	
 	template<typename T> static void swap(T& a, T& b);
 
-	size_t get_layer() const;
-	void set_layer(size_t layer);
+
 	virtual void getAllControls(vector<Control*>* vector);
 	virtual bool canGetFocus() { return true; };
 	static void setFocus(Control& it);

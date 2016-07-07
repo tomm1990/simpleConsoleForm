@@ -9,68 +9,71 @@
 #include "../NumericBox/NumericBox.h"
 #include "../MessageBox/Messagebox.h"
 
+auto e = [](Control* c)
+{
+	auto msg = dynamic_cast<Messagebox*>(c);
+	msg->show();
+};
 
 int main()
 {
-	Panel panel(17,60);
-	panel.setBorderDrawer(BorderType::Double);
+	Label lName(20);
+	lName.setValue("Name: ");
+	Label lAddress(20);
+	lAddress.setValue("Address:");
+	Label lCountry(20);
+	lCountry.setValue("Counrty:");
+	Label lSex(20);
+	lSex.setValue("Sex:");
+	Label lInterests(20);
+	lInterests.setValue("Interests:");
+	Label lAge(20);
+	lAge.setValue("Age:");
+	TextBox tName(20);
+	tName.setValue("Sherlock Holmes");
+	tName.setBorder(BorderType::Single);
+	TextBox tAddress(30);
+	tAddress.setValue("221B Baker Street, London");
+	tAddress.setBorder(BorderType::Single);
+	Combox cCountry(20, { "Israel", "Great Britain", "United States" });
+	cCountry.setSelectedIndex(1);
+	cCountry.setBorder(BorderType::Single);
+	RadioList rSex(2, 15, { "Male", "Female" });
+	rSex.setBorder(BorderType::Single);
+	CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
+	clInterests.selectIndex(1);
+	clInterests.setBorder(BorderType::Single);
+	NumericBox nAge(15, 18, 120);
+	nAge.setValue(23);
+	nAge.setBorder(BorderType::Single);
+	Button bSubmit(10);
+	bSubmit.setValue("Submit");
+	bSubmit.setBorder(BorderType::Single);
+	Messagebox msg(10, 25);
+	msg.setTitle("Registration succeeded!");
+	msg.setText("Bye!");
+	Panel main(28,55);
+	main.setBackground(Color::Green);
+	main.setForeground(Color::Red);
+	main.setBorder(BorderType::Double);
+	main.addControl(lName, 1, 2);
+	main.addControl(lAddress, 1, 5);
+	main.addControl(lCountry, 1, 8);
+	main.addControl(lSex, 1, 11);
+	main.addControl(lInterests, 1, 15);
+	main.addControl(lAge, 1, 20);
+	main.addControl(tName, 25, 2);
+	main.addControl(tAddress, 25, 5);
+	main.addControl(cCountry, 25, 8);
+	main.addControl(rSex, 25, 11);
+	main.addControl(clInterests, 25, 15);
+	main.addControl(nAge, 25, 20);
+	main.addControl(bSubmit, 2, 23);
+	main.addControl(msg, 10, 10);
+	bSubmit.addListener(e, &msg);
+	Control::setFocus(tName);
+	EventEngine engine;
+	engine.run(main);
+	return 0;
 
-	Combox cityCombox(15,{"Tel Aviv","Ramat Gan","Givataim","Hertzliya"});
-	cityCombox.setBackground(Color::Green);
-	cityCombox.setForeground(Color::Red);
-	cityCombox.setBorderDrawer(BorderType::Single);
-	panel.addControl(cityCombox,20,13);
-	/*CheckList checklist(10,{"alo","moshe","ma-kore"});
-	checklist.setBorderDrawer(BorderType::Single);
-	checklist.setBackground(Color::Cyan);
-	checklist.setForeground(Color::Red);*/
-	//panel.addControl(checklist, 10, 10);
-
-#pragma region original
-	auto e = [](Control*c)
-	{
-		c->show();
-	};
-	Button b(10);
-	b.setBorderDrawer(BorderType::Single);
-	b.setValue("showMsgBox");
-	panel.addControl(b, 30, 7);
-	Label nameLabel(5, "Name : ");
-	nameLabel.setBorderDrawer(BorderType::Single);
-
-	TextBox nameTextBox(15);
-	nameTextBox.setBorderDrawer(BorderType::Double);
-	
-	Label hobbiesLabel(10, "Hobbies");
-	hobbiesLabel.setBorderDrawer(BorderType::Single);
-
-	CheckList hobbiesCheckList(10,{"Movies", "Sports", "Cars"});
-	hobbiesCheckList.setBorderDrawer(BorderType::Double);
-
-	Label ageLabel(5, "Age :");
-	ageLabel.setBorderDrawer(BorderType::Single);
-
-	NumericBox ageNumericBox(11, 18, 120);
-	ageNumericBox.setBorderDrawer(BorderType::Double);
-
-	panel.addControl(nameLabel, 3, 2);
-	panel.addControl(nameTextBox, 11, 2);
-	panel.addControl(hobbiesLabel, 30, 2);
-	panel.addControl(hobbiesCheckList, 43, 2);
-	panel.addControl(ageLabel, 3, 5);
-	panel.addControl(ageNumericBox, 11, 5);
-#pragma endregion
-
-#pragma region Messagebox
-	Messagebox alert(9,40);
-	alert.setBorderDrawer(BorderType::Single);
-	alert.setTitle("Hello");
-	alert.setText("Methods in Software Engineering");
-	b.addListener(e, &alert);
-#pragma endregion 
-	panel.addControl(alert, 10, 3);
-	Control::setFocus(nameTextBox);
-	EventEngine events;
-	events.run(panel);
-	return system("pause");
 }
