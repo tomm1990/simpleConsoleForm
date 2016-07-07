@@ -27,7 +27,6 @@ Combox::Combox(int width, const vector<string>& options): Scrollable(width,optio
 	{
 		auto *b = new Button(width-2);
 		b->SetText(list[i]);
-		b->set_layer(1);
 		b->hide();
 		b->addListener(e,b);
 		addControl(*b, 0 , i);
@@ -56,27 +55,33 @@ Combox::Combox(int width, const vector<string>& options): Scrollable(width,optio
 void Combox::open()
 {
 	height = list.size();
-	set_layer(1);
-	for(auto i=children.begin();i<children.end();++i)
+	//set_layer(1);
+	for(auto i=children.begin()+1;i<children.end();++i)
 	{
 		(*i)->show();
 	}
-	getFocus()->set_layer(1);
 	isListOpen = true;
 }
 
 void Combox::close()
 {
 	height = 1;
-	set_layer(0);
+	//set_layer(0);
 	for (auto i = children.begin()+1; i<children.end()-1; ++i)
 	{
 		(*i)->hide();
 	}
-	getFocus()->set_layer(0);
 	isListOpen = false;
 }
 
+void Combox::update()
+{
+	auto b1 = dynamic_cast<TextBox*>(children[0]);
+	auto b2 = dynamic_cast<TextBox*>(children[index]);
+	auto temp = b1->getValue();
+	b1->setValue(b2->getValue());
+	b2->setValue(temp);
+}
 
 
 

@@ -31,8 +31,8 @@ public:
 	virtual void keyDown(WORD code, CHAR chr)=0;
 	virtual void mousePressed(int x, int y, bool isLeft)=0;
 	
-	size_t get_layer() const;
-	virtual void set_layer(size_t layer);
+	virtual size_t get_layer() const;
+	virtual virtual void set_layer(size_t layer);
 	void set_width(int width);
 	void set_height(int height);
 	virtual ~Control() = 0;

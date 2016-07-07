@@ -38,8 +38,8 @@ int main()
 	Combox cCountry(20, { "Israel", "Great Britain", "United States" });
 	cCountry.setSelectedIndex(1);
 	cCountry.setBorder(BorderType::Single);
-	RadioList rSex(2, 15, { "Male", "Female" });
-	rSex.setBorder(BorderType::Single);
+	//RadioList rSex(2, 15, { "Male", "Female" });
+	//rSex.setBorder(BorderType::Single);
 	CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
 	clInterests.selectIndex(1);
 	clInterests.setBorder(BorderType::Single);
@@ -65,7 +65,7 @@ int main()
 	main.addControl(tName, 25, 2);
 	main.addControl(tAddress, 25, 5);
 	main.addControl(cCountry, 25, 8);
-	main.addControl(rSex, 25, 11);
+	//main.addControl(rSex, 25, 11);
 	main.addControl(clInterests, 25, 15);
 	main.addControl(nAge, 25, 20);
 	main.addControl(bSubmit, 2, 23);

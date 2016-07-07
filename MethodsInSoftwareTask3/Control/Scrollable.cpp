@@ -3,7 +3,8 @@
 
 void Scrollable::setSelectedIndex(size_t index)
 {
-	swap(children[0],children[index]);
+	this->index = index;
+	update();
 }
 
 size_t Scrollable::getSelectedIndex() const
