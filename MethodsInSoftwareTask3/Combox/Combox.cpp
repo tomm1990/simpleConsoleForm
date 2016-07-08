@@ -25,7 +25,7 @@ Combox::Combox(int width, const vector<string>& options): Scrollable(width,optio
 	};
 	for(auto i=0;i<size;i++)
 	{
-		auto *b = new Button(width-2);
+		auto *b = new Button(width-3);
 		b->SetText(options[i]);
 		b->hide();
 		b->addListener(e,b);
@@ -43,11 +43,11 @@ Combox::Combox(int width, const vector<string>& options): Scrollable(width,optio
 			open();
 		}
 	};
-	button = new Button(1);
+	button = new Button(3);
 	button->addListener(onClick,this);
-	button->setValue("v");
-	//children[0]->show();
-	addControl(*button, width - 1, 0);
+	button->setValue(" v ");
+	children[0]->show();
+	addControl(*button, width - 3, 0);
 }
 
 
