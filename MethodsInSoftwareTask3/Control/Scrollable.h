@@ -5,6 +5,7 @@
 
 class Scrollable : public Panel {
 public:
+	virtual ~Scrollable();
 	Scrollable(const int, const vector<string>);
 	void setSelectedIndex(const size_t);
 	size_t getSelectedIndex() const { return index; }

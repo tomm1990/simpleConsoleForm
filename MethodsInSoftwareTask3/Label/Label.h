@@ -5,6 +5,7 @@ class Label : public TextBox{
 public:
 	Label(const int , const string);
 	Label(const int);
+	virtual ~Label(){ }
 	void SetText(const string);
 	virtual void draw(Graphics&, const int, const int, const size_t) override;
 	bool canGetFocus() override { return false; }

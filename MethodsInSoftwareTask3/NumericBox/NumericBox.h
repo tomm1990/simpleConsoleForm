@@ -6,7 +6,7 @@
 class NumericBox : public Panel{
 public:
 	NumericBox(int, const int, const int);
-	~NumericBox();
+	virtual ~NumericBox();
 	string getValue() const { return to_string(number); }
 	void setValue(const int value);
 	Label* getLabel() const { return val; }

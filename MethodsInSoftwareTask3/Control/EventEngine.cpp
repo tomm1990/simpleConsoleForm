@@ -7,7 +7,7 @@ EventEngine::EventEngine(DWORD input, DWORD output):_graphics(output),_console(G
 
 void EventEngine::run( Control & c )
 {
-	for (bool redraw = true;;)
+	for (bool redraw = true ; ;  )
 	{
 		if (redraw)
 		{

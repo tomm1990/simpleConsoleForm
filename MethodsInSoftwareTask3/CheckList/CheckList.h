@@ -6,6 +6,7 @@
 class CheckList : public Panel{
 public:
 	CheckList(const int , const int , const vector<string>&);
+	virtual ~CheckList();
 	void deselctIndex(const size_t index) { valsMap[list[index]] = false; }
 	void selectIndex(const size_t index) { valsMap[list[index]] = true; }
 private:

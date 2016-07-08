@@ -17,3 +17,8 @@ CheckList::CheckList(const int height, const int width, const vector<string>& op
 		addControl(*b, 0, i);
 	}	
 }
+
+CheckList::~CheckList(){
+	for ( int i = 0 ; i < children.size() ; i++)
+		if (children[i]) delete children[i]; //} catch(EXCEPINFO){}
+}
