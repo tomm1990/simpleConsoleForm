@@ -2,7 +2,8 @@
 #include "Control.h"
 #include "Graphics.h"
 
-// singleton event engine
+// main engine
+// implemented with Singleton design pattern
 class EventEngine{
 public:
 	void run(Control& c);

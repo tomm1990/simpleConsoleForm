@@ -1,7 +1,7 @@
 #include "RadioList.h"
 
 RadioList::RadioList(const int height, const int width, const vector<string> options) : Scrollable(width, options) {
-	this->height = height;
+	this->set_height(height);
 	auto e = [&](Control*c){
 		auto b = dynamic_cast<Button*> (c);
 		for(auto it : valsMap){

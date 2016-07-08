@@ -13,6 +13,7 @@ enum class BorderType
 	Single, Double, None
 };
 
+// Control abstract class
 class Control{
 public:
 	virtual void keyDown(const WORD, const CHAR ) = 0;
@@ -34,7 +35,6 @@ public:
 	virtual void draw(Graphics&, const int, const int, const size_t) = 0;
 	virtual SHORT getLeft() { return left; }
 	virtual SHORT getTop() { return top; }
-	
 	void set_left(const int left) { this->left = left; }
 	void set_top(const int top) { this->top = top; }
 	virtual void getAllControls(vector<Control*>* vector);
@@ -44,13 +44,14 @@ public:
 	template<typename T> static void swap(T& a, T& b);		// swap tool
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
-
-protected:
-	int width, height, left = 0, top = 0;
-	bool visibility;
-	Color forColor = Color::Black;
-	BorderDrawer* drawer = nullptr;
-	size_t layer = 0;
-	Color backcolor = Color::White;
+	size_t getLayer() const { return layer; }
+	void setLayer(const size_t layer) { this->layer = layer; }
+private:
 	static Control* onFocus;
+	Color backcolor = Color::White;				// default 
+	size_t layer = 0;
+	BorderDrawer* drawer = nullptr;				// border drawer
+	Color forColor = Color::Black;				// default 
+	bool visibility;
+	int width, height, left = 0, top = 0;
 };

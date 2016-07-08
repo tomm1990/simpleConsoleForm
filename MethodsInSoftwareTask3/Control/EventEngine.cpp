@@ -1,6 +1,6 @@
 #include "EventEngine.h"
 
-// singleton event engine object
+// Singleton event engine object
 EventEngine* EventEngine::engine;
 
 EventEngine::EventEngine(DWORD input, DWORD output):_graphics(output),_console(GetStdHandle(input)){
@@ -77,6 +77,7 @@ void EventEngine::stop()
 EventEngine::~EventEngine()
 {
 	SetConsoleMode(_console, _consoleMode);
+	if (engine) delete engine;
 }
 
 void EventEngine::moveFocusForword(Control& main, Control* focused)
@@ -109,9 +110,7 @@ void EventEngine::moveFocusBackword(Control& main, Control* focused)
 	Control::setFocus(**it);
 }
 
-EventEngine& EventEngine::getEngine()
-{
-	if (!engine)
-		engine = new EventEngine;
+EventEngine& EventEngine::getEngine(){
+	if (!engine) engine = new EventEngine;
 	return *engine;
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include "../Control/Control.h"
 
+// Panel abstract class
+// implemented in composite design pattern
 class Panel : public Control{
 public:
 	Panel(const int, const int);

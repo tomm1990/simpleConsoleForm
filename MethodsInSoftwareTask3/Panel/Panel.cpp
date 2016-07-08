@@ -6,8 +6,7 @@
 vector<Control*> Panel::focusVec;
 
 Panel::Panel(const int height, const int width) : Control(width){
-	this->height = height;
-	//this->set_height(height);
+	this->set_height(height);
 }
 
 void Panel::draw(Graphics& graphics, const int left, const int top, const size_t p){
@@ -15,7 +14,7 @@ void Panel::draw(Graphics& graphics, const int left, const int top, const size_t
 	if(focusVec.empty()) getAllControls(&focusVec);
 	for (auto it = children.begin(); it != children.end(); ++it){
 		if((*it)->isVisible() && (*it)->get_layer()==p)
-			(*it)->draw(graphics, left+(this->left), top+(this->top), p);
+			(*it)->draw(graphics, left+(this->getLeft()), top+(this->getTop()), p);
 		else{
 			graphics.setBackground();
 			graphics.setForeground();
@@ -75,6 +74,6 @@ void Panel::restartFocus() {
 }
 
 void Panel::set_layer(const size_t layer){
-	this->layer = layer;
+	this->setLayer(layer);
 	for(auto it : children)	it->set_layer(layer);
 }

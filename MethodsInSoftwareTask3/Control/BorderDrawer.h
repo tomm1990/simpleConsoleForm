@@ -1,6 +1,8 @@
 #pragma once
 #include "Graphics.h"
 
+// Borders class
+// implemented with Strategy design pattern
 class BorderDrawer{
 public:
 	virtual ~BorderDrawer() {}

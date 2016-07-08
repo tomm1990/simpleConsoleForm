@@ -2,7 +2,7 @@
 #include "../Button/Button.h"
 
 Combox::Combox(const int width, const vector<string>& options) : Scrollable(width, options), isListOpen(false){
-	height = 1;
+	this->set_height(1);
 	auto e = [&](Control* c){
 		if (!c->isVisible()) open();
 		else{
@@ -34,20 +34,20 @@ Combox::Combox(const int width, const vector<string>& options) : Scrollable(widt
 }
 
 void Combox::open(){
-	height = getSize();
+	this->set_height(getSize());
 	for(auto i=getChildrens().begin() + 1 ; i < getChildrens().end() - 1 ; ++i){
 		(*i)->show();
-		(*i)->set_width(width);
+		(*i)->set_width(getWidth());
 	}
 	isListOpen = true;
 	set_layer(1);
 }
 
 void Combox::close(){
-	height = 1;
+	this->set_height(1);
 	for (auto i = getChildrens().begin() + 1 ; i < getChildrens().end() - 1 ; ++i){
 		(*i)->hide();
-		(*i)->set_width(width-3);
+		(*i)->set_width(getWidth()-3);
 	}
 	isListOpen = false;
 	set_layer(0);
