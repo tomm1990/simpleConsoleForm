@@ -1,7 +1,7 @@
 #include "Messagebox.h"
 #include "../Control/EventEngine.h"
 
-Messagebox::Messagebox(int height, int width) : Panel(height, width) {
+Messagebox::Messagebox(const int height, const int width) : Panel(height, width) {
 	setBorder(BorderType::Single);
 	bOK = new Button(5);
 	bOK->SetText("OK");
@@ -11,39 +11,28 @@ Messagebox::Messagebox(int height, int width) : Panel(height, width) {
 	bBack->setBorder(BorderType::Single);
 	addControl(*bOK, width/4-1,height-2 );
 	addControl(*bBack, width/2+1,height - 2);
-
-	auto OkEvent = [](Control *c)
-	{
+	// "OK" button event listener
+	auto OkEvent = [](Control *c){
 		c->hide();
 		restartFocus();
-		// need to implement OK click button
 	};
 	bOK->addListener(OkEvent, this);
-
-	auto BackEvent = [](Control *c)
-	{
+	// "Back" button event listener
+	auto BackEvent = [](Control *c){
 		c->hide();
 		restartFocus();
-		// need to implement Back click button
 	};
 	bBack->addListener(BackEvent, this);
 	hide();
 	set_layer(2);
 }
 
-
-Messagebox::~Messagebox()
-{
-	for (int i = 0; i < children.size(); i++)
-		if (children[i]) delete children[i]; //} catch(EXCEPINFO){}
-	//if (title) delete title;
-	//if (description)delete description;
-	//if (bOK) delete bOK;
-	//if (bBack) delete bBack;
+Messagebox::~Messagebox(){
+	for (int i = 0; i < getChildrens().size(); i++)
+		if (getChildrens()[i]) delete getChildrens()[i];
 }
 
-
-void Messagebox::setText(string text ) {
+void Messagebox::setText(string text) {
 	if (text.length() == 0) text = "Title";
 	description = new Label(text.length() , text);
 	addControl(*description, (getWidth()- description->getWidth()) / 2, 4 );
@@ -58,15 +47,7 @@ void Messagebox::setTitle(string title) {
 	this->title->set_layer(2);
 }
 
-
-
-bool Messagebox::canGetFocus()
-{
-	return false;
-}
-
-void Messagebox::show()
-{
+void Messagebox::show(){
 	Control::show();
 	setFocus(*bOK);
 }

@@ -2,6 +2,7 @@
 #include "Control.h"
 #include "Graphics.h"
 
+// singleton event engine
 class EventEngine{
 public:
 	void run(Control& c);

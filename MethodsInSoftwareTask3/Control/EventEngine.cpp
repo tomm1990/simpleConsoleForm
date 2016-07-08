@@ -1,5 +1,6 @@
 #include "EventEngine.h"
 
+// singleton event engine object
 EventEngine* EventEngine::engine;
 
 EventEngine::EventEngine(DWORD input, DWORD output):_graphics(output),_console(GetStdHandle(input)){

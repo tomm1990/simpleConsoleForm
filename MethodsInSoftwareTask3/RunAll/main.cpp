@@ -82,5 +82,4 @@ int main()
 	bExit.addListener(eStop, nullptr);
 	engine.run(main);
 	return 0;
-
 }

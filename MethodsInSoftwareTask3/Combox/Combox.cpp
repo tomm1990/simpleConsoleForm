@@ -1,66 +1,51 @@
 #include "Combox.h"
 #include "../Button/Button.h"
 
-
 Combox::Combox(const int width, const vector<string>& options) : Scrollable(width, options), isListOpen(false){
 	height = 1;
 	auto e = [&](Control* c){
 		if (!c->isVisible()) open();
 		else{
 			auto b2 = dynamic_cast<Button*>(c);
-			auto b1 = dynamic_cast<Button*>(children[0]);
+			auto b1 = dynamic_cast<Button*>(getChildrens()[0]);
 			string temp = b1->getValue();
 			b1->setValue(b2->getValue());
 			b2->setValue(temp);
 			close();
 		}
-		setFocus(*children[0]);
+		setFocus(*getChildrens()[0]);
 	};
-	for(int i = 0 ; i < size ; i++){
+	for(int i = 0 ; i < getSize() ; i++){
 		auto *b = new Button(width-3);
 		b->SetText(options[i]);
 		b->hide();
 		b->addListener(e,b);
 		addControl(*b, 0 , i);
 	}
-	auto onClick = [&](Control* c)
-	{
-		if (isListOpen)
-		{
-			close();
-		}
-		else
-		{
-			open();
-		}
+	auto onClick = [&](Control* c){
+		if (isListOpen)	close();
+		else open();
 	};
 	button = new Button(3);
 	button->addListener(onClick,this);
 	button->setValue(" v ");
-	children[0]->show();
+	getChildrens()[0]->show();
 	addControl(*button, width - 3, 0);
 }
 
-
-
-void Combox::open()
-{
-	height = size;
-	for(auto i=children.begin()+1;i<children.end()-1;++i)
-	{
+void Combox::open(){
+	height = getSize();
+	for(auto i=getChildrens().begin() + 1 ; i < getChildrens().end() - 1 ; ++i){
 		(*i)->show();
 		(*i)->set_width(width);
 	}
 	isListOpen = true;
 	set_layer(1);
-
 }
 
-void Combox::close()
-{
+void Combox::close(){
 	height = 1;
-	for (auto i = children.begin()+1; i<children.end()-1; ++i)
-	{
+	for (auto i = getChildrens().begin() + 1 ; i < getChildrens().end() - 1 ; ++i){
 		(*i)->hide();
 		(*i)->set_width(width-3);
 	}
@@ -68,17 +53,10 @@ void Combox::close()
 	set_layer(0);
 }
 
-void Combox::update()
-{
-	auto b1 = dynamic_cast<TextBox*>(children[0]);
-	auto b2 = dynamic_cast<TextBox*>(children[index]);
+void Combox::update(){
+	auto b1 = dynamic_cast<TextBox*>(getChildrens()[0]);
+	auto b2 = dynamic_cast<TextBox*>(getChildrens()[getIndex()]);
 	auto temp = b1->getValue();
 	b1->setValue(b2->getValue());
 	b2->setValue(temp);
 }
-
-
-
-
-
-

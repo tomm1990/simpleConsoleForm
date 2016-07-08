@@ -3,114 +3,56 @@
 
 Control* Control::onFocus;
 
+void Control::setForeground(const Color color) { forColor = color; }
 
-void Control::setForeground(Color color)
-{
-	forColor = color;
-}
+void Control::setBackground(const Color color) { backcolor = color; }
 
-void Control::setBackground(Color color)
-{
-	backcolor = color;
-}
-
-void Control::setBorder(BorderType type)
-{
-	if (drawer) { delete(drawer); }
-	switch (type)
-	{
-	case BorderType::None:
-	{
-		drawer = new NoneBorder();
-		break;
-	}
-	case BorderType::Single:
-	{
-		drawer = new SingleBorder();
-		break;
-	}
-	case BorderType::Double:
-	{
-		drawer = new DoubleBorder();
-		break;
-	}
+void Control::setBorder(const BorderType type){
+	if (drawer) { delete drawer; }
+	switch (type){
+		case BorderType::None:	{	drawer = new NoneBorder();	break;	}
+		case BorderType::Single:	{	drawer = new SingleBorder();	break;	}
+		case BorderType::Double:	{	drawer = new DoubleBorder();	break;	}
 	}
 }
 
-void Control::draw(Graphics& graphics, int left, int top, size_t p)
-{
+void Control::draw(Graphics& graphics, const int left, const int top, const size_t p){
 	graphics.setBackground(backcolor);
 	graphics.setForeground(forColor);
 	if (get_layer() != p) return;
-	try 
-	{
-		if (!drawer) throw exception();	
-	}
-	catch(exception &e)
-	{
-	drawer = new NoneBorder();
-	}
+	try {	if (!drawer) throw exception();	}
+	catch(exception &e) {	drawer = new NoneBorder();	}
 	drawer->draw(graphics, left + this->left, top + this->top, this->getWidth(), this->getHeight());		
 	graphics.moveTo(left, top);
 }
 
-SHORT Control::getLeft(){
-	return left;
-}
+size_t Control::get_layer() const {	return layer; }
 
-SHORT Control::getTop(){
-	return top;
-}
+void Control::set_layer(const size_t layer) {	this->layer = layer; }
 
-size_t Control::get_layer() const
-{
-	return layer;
-}
-
-void Control::set_layer(size_t layer)
-{
-	this->layer = layer;
-}
-
-void Control::getAllControls(vector<Control*>* vector)
-{
+void Control::getAllControls(vector<Control*>* vector) {
 	if(canGetFocus())
 	vector->push_back(this);
 }
 
-
-
 void Control::setFocus(Control& it) {
-	if (onFocus)
-	{	
-		swap(onFocus->get_background(), onFocus->get_forground());
-	}
+	if (onFocus) swap(onFocus->get_background(), onFocus->get_forground());
 	swap(it.backcolor, it.forColor);
 	onFocus = &it;
 }
 
-Control* Control::getFocus(){
-	return onFocus;
-}
+void Control::set_width(const int width) { this->width = width; }
 
-void Control::set_width(int width)
-{
-	this->width = width;
-}
 
-void Control::set_height(int height)
-{
-	this->height = height;
-}
+void Control::set_height(const int height) { this->height = height;	}
 
-Control::~Control()
-{
-	if (drawer)
-		delete(drawer);
-}
+Control::~Control(){ if (drawer) delete drawer; }
 
-// ReSharper disable once CppPossiblyUninitializedMember
-Control::Control(int width) : width(width),height(1),layer(0)
-{
-}
+Control::Control(const int width) : width(width), height(1), layer(0) { }
 
+template <typename T>
+void Control::swap(T& a, T& b) {
+	T temp = a;
+	a = b;
+	b = temp;
+}
