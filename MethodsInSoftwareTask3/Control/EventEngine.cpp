@@ -1,13 +1,16 @@
 #include "EventEngine.h"
 
+EventEngine* EventEngine::engine;
+
 EventEngine::EventEngine(DWORD input, DWORD output):_graphics(output),_console(GetStdHandle(input)){
+	isRun = true;
 	GetConsoleMode(_console, &_consoleMode);
 	SetConsoleMode(_console, ENABLE_WINDOW_INPUT | ENABLE_MOUSE_INPUT);
 }
 
 void EventEngine::run( Control & c )
 {
-	for (bool redraw = true;;)
+	for (bool redraw = true; isRun;)
 	{
 		if (redraw)
 		{
@@ -65,6 +68,11 @@ void EventEngine::run( Control & c )
 	}
 }
 
+void EventEngine::stop()
+{
+	isRun = false;
+}
+
 EventEngine::~EventEngine()
 {
 	SetConsoleMode(_console, _consoleMode);
@@ -98,4 +106,11 @@ void EventEngine::moveFocusBackword(Control& main, Control* focused)
 	while (!(*it)->canGetFocus() || !(*it)->isVisible()
 		|| (*it)->get_layer() != focused->get_layer());
 	Control::setFocus(**it);
+}
+
+EventEngine& EventEngine::getEngine()
+{
+	if (!engine)
+		engine = new EventEngine;
+	return *engine;
 }

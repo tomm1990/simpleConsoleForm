@@ -36,13 +36,13 @@ int main()
 	tAddress.setValue("221B Baker Street, London");
 	tAddress.setBorder(BorderType::Single);
 	Combox cCountry(20, { "Israel", "Great Britain", "United States" });
-	//cCountry.setSelectedIndex(1);
+	cCountry.setSelectedIndex(1);
 	cCountry.setBorder(BorderType::Single);
 	RadioList rSex(2, 15, { "Male", "Female" });
 	rSex.setBorder(BorderType::Single);
 	CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
 	cCountry.getSelectedIndex();
-	//clInterests.selectIndex(1);
+	clInterests.selectIndex(1);
 	clInterests.setBorder(BorderType::Single);
 	NumericBox nAge(15, 18, 120);
 	nAge.setValue(23);
@@ -50,6 +50,9 @@ int main()
 	Button bSubmit(10);
 	bSubmit.setValue("Submit");
 	bSubmit.setBorder(BorderType::Single);
+	Button bExit(10);
+	bExit.setValue("Exit");
+	bExit.setBorder(BorderType::Single);
 	Messagebox msg(10, 25);
 	msg.setTitle("Registration succeeded!");
 	msg.setText("Bye!");
@@ -70,10 +73,13 @@ int main()
 	main.addControl(clInterests, 25, 15);
 	main.addControl(nAge, 25, 22);
 	main.addControl(bSubmit, 2, 23);
+	main.addControl(bExit, 10, 23);
 	main.addControl(msg, 10, 10);
 	bSubmit.addListener(e, &msg);
 	Control::setFocus(tName);
-	EventEngine engine;
+	auto engine = EventEngine::getEngine();
+	auto eStop = [&](Control* c) {engine.stop(); };
+	bExit.addListener(eStop, nullptr);
 	engine.run(main);
 	return 0;
 
