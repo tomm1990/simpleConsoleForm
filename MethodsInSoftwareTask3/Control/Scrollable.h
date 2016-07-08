@@ -3,21 +3,15 @@
 #include "../Button/Button.h"
 #include <map>
 
-class Scrollable :
-	public Panel
-{
+class Scrollable : public Panel {
+public:
+	Scrollable(const int, const vector<string>);
+	void setSelectedIndex(const size_t);
+	size_t getSelectedIndex() const { return index; }
+	virtual void update() = 0;
+	size_t getSize() const { return size; }
 protected:
 	map<string, bool> valsMap;
 	size_t index;
 	size_t size;
-
-private:
-
-public:
-	Scrollable (int width, vector<string> list);
-	void setSelectedIndex(size_t index);
-	size_t getSelectedIndex() const;
-	virtual void update() = 0;
-
 };
-

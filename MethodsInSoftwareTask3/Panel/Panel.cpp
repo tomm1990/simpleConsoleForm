@@ -122,6 +122,6 @@ void Panel::set_layer(size_t layer)
 	}
 }
 
-Panel::~Panel()
-{
+Panel::~Panel(){
+	for (int i = 0; i < children.size(); i++) if (children[i]) delete children[i];
 }

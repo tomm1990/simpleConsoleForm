@@ -3,16 +3,13 @@
 #include "../Button/Button.h"
 #include "../Control/Scrollable.h"
 
-
-class CheckList :
-	public Panel
-{
+class CheckList : public Panel{
+public:
+	CheckList(const int , const int , const vector<string>&);
+	void deselctIndex(const size_t index) { valsMap[list[index]] = false; }
+	void selectIndex(const size_t index) { valsMap[list[index]] = true; }
 private:
-	map<string, bool> valsMap;
+	map< string, bool > valsMap;
 	size_t size;
 	vector<string> list;
-public:
-	CheckList(int height,int width, const vector<string>& list);
-	void deselctIndex(size_t index);
-	void selectIndex(size_t index);
 };

@@ -5,13 +5,12 @@
 
 class NumericBox : public Panel{
 public:
-	NumericBox(int width, int min, int max);
+	NumericBox(int, const int, const int);
 	~NumericBox();
-	string getValue() const;
-	void setValue(int value);
+	string getValue() const { return to_string(number); }
+	void setValue(const int value);
 	Label* getLabel() const { return val; }
-	void SetText(Label& l, string newText){	val->setValue(newText);}
-
+	void SetText(const Label& l, string newText) const { val->setValue(newText); }
 private:
 	int min, max , number = 20;
 	Label *val;

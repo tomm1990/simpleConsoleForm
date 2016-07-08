@@ -2,8 +2,7 @@
 #include "Control.h"
 #include "Graphics.h"
 
-class EventEngine
-{
+class EventEngine{
 public:
 	EventEngine(DWORD input = STD_INPUT_HANDLE, DWORD output = STD_OUTPUT_HANDLE);
 	void run(Control& c);

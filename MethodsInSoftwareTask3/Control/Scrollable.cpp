@@ -1,23 +1,10 @@
 #include "Scrollable.h"
 
-
-void Scrollable::setSelectedIndex(size_t i)
-{
+void Scrollable::setSelectedIndex(const size_t i){
 	this->index = i;
 	update();
 }
 
-size_t Scrollable::getSelectedIndex() const
-{
-	return index;
+Scrollable::Scrollable(const int width, const vector<string> list) : Panel(list.size(), width), index(0), size(list.size()) {
+	for(int i = 0 ; i < size ; i++ ) valsMap[list[i]] = false;
 }
-
-Scrollable::Scrollable(int width, vector<string> list): Panel(list.size(), width), index(0), size(list.size())
-{
-	for(auto i=0;i<size;i++)
-	{
-		valsMap[list[i]] = false;
-	}
-}
-
-
