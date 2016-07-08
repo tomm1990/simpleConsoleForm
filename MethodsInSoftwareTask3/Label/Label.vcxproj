@@ -84,7 +84,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Label.cpp" />
-    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Label.h" />

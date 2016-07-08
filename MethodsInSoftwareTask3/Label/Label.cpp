@@ -1,26 +1,14 @@
 #include "Label.h"
 
-Label::Label(int width , string value): TextBox(width)
-{
-	SetText(value);
-}
+Label::Label(const int width ,const string value): TextBox(width) { SetText(value); }
 
-Label::Label(int width): TextBox(width) {
-}
+Label::Label(const int width): TextBox(width) { }
 
+void Label::SetText(const string value) { TextBox::setValue(value); }
 
-void Label::SetText(string value) {
-	TextBox::setValue(value);
-}
-
-void Label::draw(Graphics& graphics, int left, int top, size_t p)
-{
+void Label::draw(Graphics& graphics, const int left, const int top, const size_t p){
 	TextBox::draw(graphics, left, top, p);
 	graphics.setCursorVisibility(false);
-
 }
 
-void Label::set_cursor(const Graphics& graphics, int left, int top)
-{
-	graphics.setCursorVisibility(false);
-}
+void Label::set_cursor( Graphics& graphics, const int left, const int top) { graphics.setCursorVisibility(false); }
