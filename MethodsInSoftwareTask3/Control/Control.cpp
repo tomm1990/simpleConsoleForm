@@ -39,9 +39,9 @@ void Control::setBorder(BorderType type)
 
 void Control::draw(Graphics& graphics, int left, int top, size_t p)
 {
-	if(get_layer()!=p) return;
 	graphics.setBackground(backcolor);
 	graphics.setForeground(forColor);
+	if (get_layer() != p) return;
 	try 
 	{
 		if (!drawer) throw exception();	

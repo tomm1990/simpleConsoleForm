@@ -18,6 +18,7 @@ public:
 	virtual void getAllControls(vector<Control*>* vector) override;
 	bool canGetFocus() override{return false;};
 	void addControl(Control& element, int left, int top);
+	static void restartFocus();
 
 	virtual void set_layer(size_t layer) override;
 	virtual ~Panel();

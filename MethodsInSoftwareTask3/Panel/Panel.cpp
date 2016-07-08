@@ -22,8 +22,13 @@ void Panel::draw(Graphics& graphics, int left, int top, size_t p)
 		getAllControls(&focusVec);
 	for (auto it = children.begin(); it != children.end(); ++it)
 	{
-		if((*it)->isVisible())
+		if((*it)->isVisible() && (*it)->get_layer()==p)
 			(*it)->draw(graphics, left+(this->left), top+(this->top), p);
+		else
+		{
+			graphics.setBackground();
+			graphics.setForeground();
+		}
 	}
 	auto textbox = dynamic_cast<TextBox*>(getFocus());
 	if (textbox)
@@ -101,6 +106,11 @@ void Panel::addControl(Control& element, int left, int top)
 	element.set_left(left);
 	element.set_top(top);
 	children.push_back(&element);
+}
+
+void Panel::restartFocus()
+{
+	setFocus(*focusVec[0]);
 }
 
 void Panel::set_layer(size_t layer)

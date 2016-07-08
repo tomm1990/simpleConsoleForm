@@ -39,7 +39,7 @@ int main()
 	//cCountry.setSelectedIndex(1);
 	cCountry.setBorder(BorderType::Single);
 	RadioList rSex(2, 15, { "Male", "Female" });
-	//rSex.setBorder(BorderType::Single);
+	rSex.setBorder(BorderType::Single);
 	CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
 	cCountry.getSelectedIndex();
 	//clInterests.selectIndex(1);

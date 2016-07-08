@@ -55,23 +55,26 @@ Combox::Combox(int width, const vector<string>& options): Scrollable(width,optio
 void Combox::open()
 {
 	height = size;
-	//set_layer(1);
-	for(auto i=children.begin()+1;i<children.end();++i)
+	for(auto i=children.begin()+1;i<children.end()-1;++i)
 	{
 		(*i)->show();
+		(*i)->set_width(width);
 	}
 	isListOpen = true;
+	set_layer(1);
+
 }
 
 void Combox::close()
 {
 	height = 1;
-	//set_layer(0);
 	for (auto i = children.begin()+1; i<children.end()-1; ++i)
 	{
 		(*i)->hide();
+		(*i)->set_width(width-3);
 	}
 	isListOpen = false;
+	set_layer(0);
 }
 
 void Combox::update()
