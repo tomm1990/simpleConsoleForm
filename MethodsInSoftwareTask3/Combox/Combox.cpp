@@ -2,18 +2,11 @@
 #include "../Button/Button.h"
 
 
-Combox::Combox(int width, const vector<string>& options): Scrollable(width,options),isListOpen(false)
-{
+Combox::Combox(const int width, const vector<string>& options) : Scrollable(width, options), isListOpen(false){
 	height = 1;
-	auto e = [&](Control* c)
-	{
-		if (!c->isVisible())
-		{
-			open();
-		}
-
-		else
-		{
+	auto e = [&](Control* c){
+		if (!c->isVisible()) open();
+		else{
 			auto b2 = dynamic_cast<Button*>(c);
 			auto b1 = dynamic_cast<Button*>(children[0]);
 			string temp = b1->getValue();
@@ -23,14 +16,12 @@ Combox::Combox(int width, const vector<string>& options): Scrollable(width,optio
 		}
 		setFocus(*children[0]);
 	};
-	for(auto i=0;i<size;i++)
-	{
+	for(int i = 0 ; i < size ; i++){
 		auto *b = new Button(width-3);
 		b->SetText(options[i]);
 		b->hide();
 		b->addListener(e,b);
 		addControl(*b, 0 , i);
-
 	}
 	auto onClick = [&](Control* c)
 	{

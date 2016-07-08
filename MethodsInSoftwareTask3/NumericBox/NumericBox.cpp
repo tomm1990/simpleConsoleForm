@@ -37,9 +37,11 @@ NumericBox::NumericBox(int width, const int min, const int max) : Panel( 3 , che
 }
 
 NumericBox::~NumericBox(){
-	if (val) delete val;
-	if (bUP) delete bUP;
-	if (bDOWN) delete bDOWN;
+	for (int i = 0; i < children.size(); i++)
+		if (children[i]) delete children[i]; //} catch(EXCEPINFO){}
+	//if (val) delete val;
+	//if (bUP) delete bUP;
+	//if (bDOWN) delete bDOWN;
 }
 
 void NumericBox::setValue(const int val){

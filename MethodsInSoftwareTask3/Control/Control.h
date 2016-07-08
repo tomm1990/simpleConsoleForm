@@ -35,7 +35,7 @@ public:
 	virtual virtual void set_layer(size_t layer);
 	void set_width(int width);
 	void set_height(int height);
-	virtual ~Control() = 0;
+	virtual ~Control();
 	explicit Control(int width);
 	virtual void show() { visibility = true; }
 	virtual void hide() { visibility = false; }

@@ -6,7 +6,7 @@
 class Messagebox : public Panel{
 public:
 	Messagebox(int height, int width);
-	~Messagebox();
+	virtual ~Messagebox();
 	void setText(string text );
 	void setTitle(string title );
 	bool canGetFocus() override;

@@ -34,10 +34,12 @@ Messagebox::Messagebox(int height, int width) : Panel(height, width) {
 
 Messagebox::~Messagebox()
 {
-	if (title) delete title;
-	if (description)delete description;
-	if (bOK) delete bOK;
-	if (bBack) delete bBack;
+	for (int i = 0; i < children.size(); i++)
+		if (children[i]) delete children[i]; //} catch(EXCEPINFO){}
+	//if (title) delete title;
+	//if (description)delete description;
+	//if (bOK) delete bOK;
+	//if (bBack) delete bBack;
 }
 
 
