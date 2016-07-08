@@ -22,6 +22,3 @@ public:
 	virtual void set_layer(size_t layer) override;
 	virtual ~Panel();
 };
-
-
-

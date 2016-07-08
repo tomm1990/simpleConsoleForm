@@ -1,15 +1,13 @@
 #include "NumericBox.h"
 #include <sstream>
 
-int checkWidth(int width){
-	return width < 11 ?  11 :  width;
-}
+int checkWidth(const int width) { return width < 11 ?  11 :  width; }
 
-NumericBox::NumericBox(int width, int min, int max) : Panel(3,checkWidth(width)) {
+NumericBox::NumericBox(int width, const int min, const int max) : Panel( 3 , checkWidth(width) ) {
 	width = checkWidth(width);
 	this->min = min;
 	this->max = max;
-	val = new Label(std::to_string(max).size(), static_cast<ostringstream*>(&(ostringstream() << number))->str());
+	val = new Label(std::to_string(max).size(), to_string(number));
 	val->setBorder(BorderType::Single);
 	bUP = new Button(1);
 	bUP->setBorder(BorderType::Single);
@@ -18,23 +16,21 @@ NumericBox::NumericBox(int width, int min, int max) : Panel(3,checkWidth(width))
 	bDOWN->setBorder(BorderType::Single);
 	bDOWN->SetText("-");
 	addControl(*val, left+1, top+1);
-	addControl(*bUP, width-5, top+1);
+	addControl(*bUP, width-(bDOWN->getWidth()+bUP->getWidth()+3), top+1);
 	addControl(*bDOWN, width-2, top+1);
-	
-	auto upEvenet = [&](Control *c){
-	if(number < this->max)
-		{
+	// event listener to plus button
+	auto upEvenet = [&](Control *c)	{
+		if (number < this->max) {
 			++number;
-			setValue((number));
+			setValue(number);
 		}
 	};
 	bUP->addListener(upEvenet, bUP);
-
-	auto downEvent = [&](Control *c)
-	{
+	// event listener to minus button
+	auto downEvent = [&](Control *c){
 		if (number > this->min) {
 			--number;
-			setValue((number));
+			setValue(number);
 		}
 	};
 	bDOWN->addListener(downEvent, bDOWN);
@@ -46,16 +42,9 @@ NumericBox::~NumericBox(){
 	if (bDOWN) delete bDOWN;
 }
 
-string NumericBox::getValue() const {
-	return to_string(number);
-}
-
-void NumericBox::setValue(int val){
+void NumericBox::setValue(const int val){
 	if (val >= min && val <= max) {
 		number = val;
 		this->val->SetText(to_string(number));
 	}
 }
-
-
-

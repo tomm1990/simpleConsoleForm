@@ -17,7 +17,7 @@ void EventEngine::run( Control & c )
 			{
 				if(c.isVisible())
 				{
-					c.draw(_graphics, 0, 0, p); // changed to control left-top corner
+					c.draw(_graphics, 0, 0, p); 
 				}
 			}
 			redraw = false;
@@ -54,7 +54,7 @@ void EventEngine::run( Control & c )
 					if (isInside(x, y, c.getLeft(), c.getTop(), c.getWidth(), c.getHeight())) 
 					{
 						c.mousePressed(x, y, button == FROM_LEFT_1ST_BUTTON_PRESSED);
-						redraw = true; // changed to false
+						redraw = true; 
 					}
 				}
 				break;
