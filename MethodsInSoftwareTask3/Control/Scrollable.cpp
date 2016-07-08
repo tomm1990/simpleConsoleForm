@@ -4,7 +4,7 @@
 void Scrollable::setSelectedIndex(size_t i)
 {
 	this->index = i;
-	update(i);
+	update();
 }
 
 size_t Scrollable::getSelectedIndex() const

@@ -1,26 +1,26 @@
 #include "RadioList.h"
 
-RadioList::RadioList(int height,int width, vector<string> options) : Scrollable(width,options){
+RadioList::RadioList(int height,int width, vector<string> options) : Scrollable(width,options)
+{
 	this->height = height;
 	auto e = [&](Control*c)
 	{
-		auto btn = dynamic_cast<Button*>(c);
-		auto word = btn->getValue().substr(3);
-		if (1)
+		auto b = dynamic_cast<Button*> (c);
+		for(auto it : valsMap)
 		{
-			btn->setValue("(*)" + word);
+			it.second = false;
+			auto word = it.first->getValue().substr(3);
+			it.first->setValue("( )" + word);
 		}
-		else
-		{
-			btn->setValue("( )" + word);
-		}
-		valsMap[word] = !valsMap[word];
-
+		valsMap[b] = true;
+		auto word2 = b->getValue().substr(3);
+		b->setValue("(*)" + word2);
 	};
 	for (auto i = 0; i<options.size(); ++i)
 	{
 		auto b = new Button(width);
 		b->setValue("( )" + options[i]);
+		valsMap[b] = false;
 		b->addListener(e, b);
 		addControl(*b, 0, i);
 
@@ -28,6 +28,8 @@ RadioList::RadioList(int height,int width, vector<string> options) : Scrollable(
 
 }
 
-void RadioList::update(size_t index)
+void RadioList::update()
 {
+	auto b = dynamic_cast<Button*>(children[index]);
+	b->mousePressed(NULL, NULL, NULL);
 }

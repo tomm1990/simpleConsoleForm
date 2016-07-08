@@ -14,6 +14,6 @@ public:
 	Combox(int width, const vector<string>& options);
 	void open();
 	void close();
-	void update(size_t index) override;
+	void update() override;
 };
 

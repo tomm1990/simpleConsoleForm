@@ -22,6 +22,7 @@ CheckList::CheckList(int height,int width, const vector<string>& options): Panel
 	{
 		auto b = new Button(width);
 		b->setValue("[ ]"+ options[i]);
+		valsMap[options[i]] = false;
 		b->addListener(e, b);
 		addControl(*b, 0, i);
 

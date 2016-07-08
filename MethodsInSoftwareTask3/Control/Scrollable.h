@@ -17,7 +17,7 @@ public:
 	Scrollable (int width, vector<string> list);
 	void setSelectedIndex(size_t index);
 	size_t getSelectedIndex() const;
-	virtual void update(size_t i) = 0;
+	virtual void update() = 0;
 
 };
 

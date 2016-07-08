@@ -74,7 +74,7 @@ void Combox::close()
 	isListOpen = false;
 }
 
-void Combox::update(size_t index)
+void Combox::update()
 {
 	auto b1 = dynamic_cast<TextBox*>(children[0]);
 	auto b2 = dynamic_cast<TextBox*>(children[index]);
