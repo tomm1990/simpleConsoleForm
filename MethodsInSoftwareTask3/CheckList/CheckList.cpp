@@ -1,11 +1,11 @@
 #include "CheckList.h"
 #include "../Button/Button.h"
 
-CheckList::CheckList(int height,int width, const vector<string>& options): Panel(height, width),options(options)
+CheckList::CheckList(int height,int width, const vector<string>& options): Panel(height,width),list(options)
 {
 	auto e = [&](Control*c)
 	{
-		auto btn = static_cast<Button*>(c);
+		auto btn = dynamic_cast<Button*>(c);
 		auto word = btn->getValue().substr(3);
 		if (!btn->getValue().compare("[ ]"+word))
 		{
@@ -15,13 +15,12 @@ CheckList::CheckList(int height,int width, const vector<string>& options): Panel
 		{
 			btn->setValue("[ ]" + word);
 		}
-		list[word].isCheck = !list[word].isCheck;
+		valsMap[word] = !valsMap[word];
 			
 	};
 	for(auto i=0;i<options.size();++i)
 	{
 		auto b = new Button(width);
-		list[options[i]].isCheck = false;
 		b->setValue("[ ]"+ options[i]);
 		b->addListener(e, b);
 		addControl(*b, 0, i);
@@ -29,15 +28,16 @@ CheckList::CheckList(int height,int width, const vector<string>& options): Panel
 	}
 }
 
+
 void CheckList::deselctIndex(size_t index)
 {
-	list[options[index]].isCheck = false;
+	valsMap[list[index]] = false;
 
 }
 
 void CheckList::selectIndex(size_t index)
 {
-	list[options[index]].isCheck = true;
+	valsMap[list[index]] = true;
 }
 
 

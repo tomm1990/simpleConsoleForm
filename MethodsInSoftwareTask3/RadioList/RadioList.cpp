@@ -4,3 +4,6 @@ RadioList::RadioList(int height,int width, vector<string> options) : Scrollable(
 	this->height = height;
 }
 
+void RadioList::update(size_t index)
+{
+}

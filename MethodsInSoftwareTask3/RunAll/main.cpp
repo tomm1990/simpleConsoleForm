@@ -36,12 +36,13 @@ int main()
 	tAddress.setValue("221B Baker Street, London");
 	tAddress.setBorder(BorderType::Single);
 	Combox cCountry(20, { "Israel", "Great Britain", "United States" });
-	cCountry.setSelectedIndex(1);
+	//cCountry.setSelectedIndex(1);
 	cCountry.setBorder(BorderType::Single);
 	//RadioList rSex(2, 15, { "Male", "Female" });
 	//rSex.setBorder(BorderType::Single);
 	CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
-	clInterests.selectIndex(1);
+	cCountry.getSelectedIndex();
+	//clInterests.selectIndex(1);
 	clInterests.setBorder(BorderType::Single);
 	NumericBox nAge(15, 18, 120);
 	nAge.setValue(23);

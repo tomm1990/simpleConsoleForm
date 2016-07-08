@@ -1,16 +1,16 @@
 #pragma once
-#include "../Panel/Panel.h"
 #include <map>
 #include "../Button/Button.h"
+#include "../Control/Scrollable.h"
 
-typedef struct { Button* b; bool isCheck; } bsr;
 
 class CheckList :
 	public Panel
 {
 private:
-	map<string,bsr> list;
-	vector <string> options;
+	map<string, bool> valsMap;
+	size_t size;
+	vector<string> list;
 public:
 	CheckList(int height,int width, const vector<string>& list);
 	void deselctIndex(size_t index);
