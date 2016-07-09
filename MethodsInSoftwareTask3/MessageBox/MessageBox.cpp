@@ -55,3 +55,11 @@ void Messagebox::show(){
 	Control::show();
 	setFocus(*bOK);
 }
+
+void Messagebox::addControl(Control& c, const int x, const int y){
+	Panel::addControl(c, x, y);
+}
+
+void Messagebox::draw(Graphics& graphics, const int x , const int y, const size_t p){
+	Panel::draw(graphics, x, y, p);
+}

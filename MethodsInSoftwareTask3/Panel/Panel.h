@@ -6,12 +6,12 @@
 class Panel : public Control{
 public:
 	Panel(const int, const int);
-	virtual virtual void keyDown(const WORD, const CHAR) override;
+	virtual void keyDown(const WORD, const CHAR) override;
 	virtual void mousePressed(const int, const int, const bool) override;
 	void draw(Graphics& graphics, const int, const int, const size_t) override;
 	virtual void getAllControls(vector<Control*>*) override;
-	bool canGetFocus() override{ return false; }
-	void addControl(Control&, const int, const int);
+	virtual bool canGetFocus() override { return false; }
+	virtual void addControl(Control&, const int, const int);
 	static void restartFocus();
 	virtual void set_layer(const size_t) override;
 	virtual ~Panel() { }

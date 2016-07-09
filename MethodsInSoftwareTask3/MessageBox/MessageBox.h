@@ -9,8 +9,13 @@ public:
 	virtual ~Messagebox();
 	void setText(string);
 	void setTitle(string);
-	bool canGetFocus() override { return false; }
 	void show() override;
+
+protected:
+	void addControl(Control&, const int, const int) override;
+	bool canGetFocus() override { return false; }
+	void draw(Graphics& graphics, const int, const int, const size_t) override ;
+
 private:
 	// each MessageBox object contains these :
 	Label *title, *description;

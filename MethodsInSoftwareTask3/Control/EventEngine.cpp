@@ -74,12 +74,6 @@ void EventEngine::stop()
 	isRun = false;
 }
 
-EventEngine::~EventEngine()
-{
-	SetConsoleMode(_console, _consoleMode);
-	if (engine) delete engine;
-}
-
 void EventEngine::moveFocusForword(Control& main, Control* focused)
 {
 	vector<Control*> controls;

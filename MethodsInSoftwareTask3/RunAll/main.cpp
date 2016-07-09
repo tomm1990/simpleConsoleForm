@@ -49,8 +49,10 @@ int main(){
 	RadioList rSex(2, 10, { "Male", "Female" });
 	rSex.setBorder(BorderType::Double);
 	CheckList clInterests(3, 10, { "Sports", "Books", "Movies" });
-	cCountry.getSelectedIndex();
 	clInterests.selectIndex(1);
+	clInterests.selectIndex(2);
+	auto v = clInterests.getSelectedIndices();
+	cCountry.getSelectedIndex();
 	clInterests.setBorder(BorderType::Double);
 	NumericBox nAge(15, 18, 120);
 	nAge.setValue(23);
@@ -62,8 +64,7 @@ int main(){
 	bExit.setValue("    Exit");
 	bExit.setBorder(BorderType::Double);
 	Messagebox msg(10, 35);
-	//msg.setTitle("Registration succeeded!");
-	//msg.setText("Bye!");
+	
 	Panel main(26,75);
 	main.setBackground(Color::Cyan);
 	main.setForeground(Color::White);

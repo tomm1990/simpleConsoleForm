@@ -22,3 +22,24 @@ CheckList::~CheckList(){
 	for ( int i = 0 ; i < getChildrens().size() ; i++)
 		if (getChildrens()[i]) delete getChildrens()[i]; 
 }
+
+void CheckList::selectIndex(const size_t i)
+{
+	if(!valsMap[list[i]])
+	{
+		valsMap[list[i]] = true;
+		getChildrens()[i]->mousePressed(NULL, NULL, NULL);
+	}
+	
+}
+
+vector<size_t> CheckList::getSelectedIndices()
+{
+	vector<size_t> v;
+	for(auto it:valsMap)
+	{
+		if (it.second == true)
+			v.push_back(valsMap.at(it.first));
+	}
+	return v;
+}

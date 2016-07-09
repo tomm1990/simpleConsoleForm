@@ -8,7 +8,6 @@ class EventEngine{
 public:
 	void run(Control& c);
 	void stop();
-	virtual ~EventEngine();
 	static void moveFocusForword(Control& main, Control* focused);
 	static void moveFocusBackword(Control& main, Control* focused);
 	static EventEngine& getEngine();
