@@ -8,7 +8,9 @@ public:
 	CheckList(const int , const int , const vector<string>&);
 	virtual ~CheckList();
 	void deselctIndex(const size_t index) { valsMap[list[index]] = false; }
-	void selectIndex(const size_t index) { valsMap[list[index]] = true; }
+
+	void selectIndex(const size_t index);
+	vector<size_t> getSelectedIndices();
 private:
 	map< string, bool > valsMap; // map of string values and bool type
 	size_t size;
