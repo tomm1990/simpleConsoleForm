@@ -19,34 +19,11 @@ void TextBox::keyDown(const WORD code, const CHAR chr) {
 				}
 				break;
 			}
-			case VK_RIGHT:
-			{
-				if (cursor < value.size())	cursor++;
-				break;
-			}
-			case VK_LEFT:
-			{
-				if (cursor > 0) cursor--;
-				break;
-			}
-			case VK_HOME:
-			{
-				cursor = 0;
-				break;
-			}
-			case VK_END:
-			{
-				cursor = value.size();
-				break;
-			}
-			case VK_DELETE:
-			{
-				if (cursor <= value.size()) {
-					value.erase(cursor, 1);
-					break;
-				}
-			}
-			}
+			case VK_RIGHT: { if (cursor < value.size())	cursor++; break; }
+			case VK_LEFT: { if (cursor > 0) cursor--; break; }
+			case VK_HOME: { cursor = 0; break; }
+			case VK_END: { cursor = value.size(); break; }
+			case VK_DELETE: { if (cursor <= value.size()) { value.erase(cursor, 1); break; } } }
 		}
 	}
 }

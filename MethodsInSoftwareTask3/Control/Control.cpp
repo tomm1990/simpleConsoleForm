@@ -43,7 +43,6 @@ void Control::setFocus(Control& it) {
 
 void Control::set_width(const int width) { this->width = width; }
 
-
 void Control::set_height(const int height) { this->height = height;	}
 
 Control::~Control(){ if (drawer) delete drawer; }

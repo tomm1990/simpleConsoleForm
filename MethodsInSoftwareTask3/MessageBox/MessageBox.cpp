@@ -17,11 +17,14 @@ Messagebox::Messagebox(const int height, const int width) : Panel(height, width)
 	bOK = new Button(5);
 	bOK->SetText(" OK");
 	bOK->setBorder(BorderType::Single);
+	
 	bBack = new Button(5);
 	bBack->SetText(" Back");
 	bBack->setBorder(BorderType::Single);
+	
 	addControl(*bOK, width/4-1,height-2 );
 	addControl(*bBack, width/2+1,height - 2);
+	
 	// "OK" button event listener
 	auto OkEvent = [](Control *c){
 		c->hide();
