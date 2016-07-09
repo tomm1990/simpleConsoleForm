@@ -49,11 +49,12 @@ void Graphics::write(const int x, const int y, const wstring s)const {
 	write(s);
 }
 
-void Graphics::setCursorVisibility(const bool isVisible) const {
+void Graphics::setCursorVisibility(const bool isVisible) {
 	CONSOLE_CURSOR_INFO cci;
 	GetConsoleCursorInfo(_console, &cci);
 	cci.bVisible = isVisible;
 	SetConsoleCursorInfo(_console, &cci);
+	cursorVisbility = isVisible;
 }
 
 void Graphics::updateConsoleAttributes() const {

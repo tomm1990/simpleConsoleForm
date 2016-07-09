@@ -27,9 +27,11 @@ public:
 	void write(const int, const int, const string) const;
 	void write(const wstring) const;
 	void write(const int, const int, const wstring) const;
-	void setCursorVisibility(const bool) const ;
+	void setCursorVisibility(const bool) ;
 	void updateConsoleAttributes() const;
+	bool getCursorVisbility() const { return cursorVisbility; };
 private:
+	bool cursorVisbility;
 	HANDLE _console;
 	Color _background, _foreground;
 };

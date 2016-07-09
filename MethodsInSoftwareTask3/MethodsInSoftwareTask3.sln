@@ -23,7 +23,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RadioList", "RadioList\Radi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RunAll", "RunAll\RunAll.vcxproj", "{EEEA5ABA-8C83-45D9-954F-BA3D2BFF94AA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Textbox", "TextBox\Textbox.vcxproj", "{2FC07EC6-E803-436F-A159-AE6E0B41378D}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Textbox", "Textbox\Textbox.vcxproj", "{2FC07EC6-E803-436F-A159-AE6E0B41378D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTest", "UnitTest\UnitTest.vcxproj", "{7051C7F4-A966-4432-95A2-524AAF2B46DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -109,6 +111,14 @@ Global
 		{2FC07EC6-E803-436F-A159-AE6E0B41378D}.Release|Win32.ActiveCfg = Release|Win32
 		{2FC07EC6-E803-436F-A159-AE6E0B41378D}.Release|Win32.Build.0 = Release|Win32
 		{2FC07EC6-E803-436F-A159-AE6E0B41378D}.Release|x64.ActiveCfg = Release|Win32
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Debug|Win32.Build.0 = Debug|Win32
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Debug|x64.ActiveCfg = Debug|x64
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Debug|x64.Build.0 = Debug|x64
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Release|Win32.ActiveCfg = Release|Win32
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Release|Win32.Build.0 = Release|Win32
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Release|x64.ActiveCfg = Release|x64
+		{7051C7F4-A966-4432-95A2-524AAF2B46DF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
