@@ -17,23 +17,25 @@ namespace UnitTest{
 		TEST_METHOD(getVisibilty)	{
 			Graphics *graphics = new Graphics(STD_INPUT_HANDLE);
 			graphics->setCursorVisibility(true);
-			assert(graphics->getCursorVisbility()==true);
+			Assert::AreEqual(graphics->getCursorVisbility(),true);
+			graphics->setCursorVisibility(false);
+			Assert::AreEqual(graphics->getCursorVisbility(), false);
 		}
 		// getWidth() test
 		TEST_METHOD(getWidth){
 			label->set_width(10);
-			assert(label->getWidth()==10);
+			Assert::AreEqual(label->getWidth(),10);
 		}
 		// getHeight() test
 		TEST_METHOD(getHeight){
 			label->set_height(10);
-			assert(label->getHeight() == 10);
+			Assert::AreEqual(label->getHeight(),10);
 		}
 		// getValue() test
 		TEST_METHOD(getValue){
 			string var = "testVar";
 			label->setValue(var);
-			assert(!label->getValue().compare(var));
+			Assert::AreEqual(label->getValue().compare(var),0);
 		}
 	};
 }
