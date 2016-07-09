@@ -11,6 +11,10 @@ public:
 	void setTitle(string);
 	bool canGetFocus() override { return false; }
 	void show() override;
+
+protected:
+	void addControl(Control&, const int, const int) override;
+
 private:
 	// each MessageBox object contains these :
 	Label *title, *description;
