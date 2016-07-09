@@ -48,7 +48,8 @@ void Panel::mousePressed(const int x, const int y, const bool isLeft){
 		for (auto it = children.begin(); it != children.end(); ++it){
 			int X = x - (*it)->getLeft();
 			int Y = y - (*it)->getTop();
-			if (X >= 0 && Y >= 0 && X < (*it)->getWidth() && Y < (*it)->getHeight()){
+			if (X >= 0 && Y >= 0 && X < (*it)->getWidth() && Y < (*it)->getHeight() 
+				&& (*it)->getLayer() ==getFocus()->getLayer()){
 				if ((*it)->canGetFocus()) setFocus(**it);
 				(*it)->mousePressed(X, Y, isLeft);
 				break;
