@@ -17,6 +17,7 @@ public:
 	virtual ~Panel() { }
 	vector<Control*>& getChildrens() { return children; }
 	vector<Control*>& getFocusVec() { return focusVec; }
+
 private:
 	vector < Control* > children;				// childrens of panel
 	static vector < Control* > focusVec;		// focusable controls
