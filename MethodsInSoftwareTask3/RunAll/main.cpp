@@ -73,7 +73,7 @@ int main()
 	main.addControl(clInterests, 25, 15);
 	main.addControl(nAge, 25, 22);
 	main.addControl(bSubmit, 2, 23);
-	main.addControl(bExit, 10, 23);
+	main.addControl(bExit, 13, 23);
 	main.addControl(msg, 10, 10);
 	bSubmit.addListener(e, &msg);
 	Control::setFocus(tName);

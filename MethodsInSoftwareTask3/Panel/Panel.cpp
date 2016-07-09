@@ -79,7 +79,8 @@ void Panel::mousePressed(int x, int y, bool isLeft)
 		{
 			int X = x - (*it)->getLeft();
 			int Y = y - (*it)->getTop();
-			if (X >= 0 && Y >= 0 && X < (*it)->getWidth() && Y < (*it)->getHeight())
+			if (X >= 0 && Y >= 0 && X < (*it)->getWidth() && Y < (*it)->getHeight() && 
+				(*it)->get_layer()==getFocus()->get_layer())
 			{
 				if ((*it)->canGetFocus())
 					setFocus(**it);
