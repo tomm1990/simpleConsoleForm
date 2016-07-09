@@ -1,4 +1,4 @@
-# MethodsTask3
+# Methods in Software Engineering - final project
 
 Shanker College of engineering and design @ Software engineering department
 Methods in Software engineering
