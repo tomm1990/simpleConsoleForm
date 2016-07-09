@@ -57,7 +57,7 @@ void TextBox::mousePressed(const int x, const int y, const bool isLeft){
 }
 
 void TextBox::draw(Graphics& graphics, const int left, const int top, const size_t p){
-	Control::draw(graphics, left, top,0);
+	Control::draw(graphics, left, top , p);
 	graphics.write(left+this->getLeft(), top+this->getTop(),value);
 	for(auto i = getWidth() -value.size() ; i > 0 ; --i )	graphics.write(" ");
 	graphics.setBackground();

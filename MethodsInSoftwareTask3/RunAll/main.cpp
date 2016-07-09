@@ -64,6 +64,7 @@ int main(){
 	bExit.setValue("    Exit");
 	bExit.setBorder(BorderType::Double);
 	Messagebox msg(10, 35);
+	
 	Panel main(26,75);
 	main.setBackground(Color::Cyan);
 	main.setForeground(Color::White);
