@@ -13,59 +13,45 @@ enum class BorderType
 	Single, Double, None
 };
 
-// ReSharper disable once CppClassNeedsConstructorBecauseOfUninitializedMember
-class Control
-{
-protected:
-	int width, height, left = 0, top = 0;
-	bool visibility;
-	Color forColor = Color::Black;
-	BorderDrawer* drawer=nullptr; 
-	size_t layer = 0;
-	Color backcolor = Color::White;
-	static Control* onFocus;
-
-
-
+// Control abstract class
+class Control{
 public:
-	virtual void keyDown(WORD code, CHAR chr)=0;
-	virtual void mousePressed(int x, int y, bool isLeft)=0;
-	
+	virtual void keyDown(const WORD, const CHAR ) = 0;
+	virtual void mousePressed(const int, const int, const bool) = 0;
 	virtual size_t get_layer() const;
-	virtual virtual void set_layer(size_t layer);
-	void set_width(int width);
-	void set_height(int height);
+	virtual void set_layer(const size_t);
+	void set_width(const int);
+	void set_height(const int);
 	virtual ~Control();
-	explicit Control(int width);
+	explicit Control(const int);
 	virtual void show() { visibility = true; }
 	virtual void hide() { visibility = false; }
-	bool isVisible() const{ return visibility; }
-	virtual void setForeground(Color color = Color::White);
-	virtual void setBackground(Color color);
-	virtual Color& get_forground() { return forColor; };
-	virtual Color& get_background() { return backcolor; };
-	virtual void setBorder(BorderType type);
-	virtual void draw(Graphics& graphics, int left, int top, size_t p)=0;
-	virtual SHORT getLeft();
-	virtual SHORT getTop();
+	bool isVisible() const { return visibility; }
+	virtual void setForeground(const Color color = Color::White);
+	virtual void setBackground(const Color);
+	virtual Color& get_forground() { return forColor; }
+	virtual Color& get_background() { return backcolor; }
+	virtual void setBorder(const BorderType);
+	virtual void draw(Graphics&, const int, const int, const size_t) = 0;
+	virtual SHORT getLeft() { return left; }
+	virtual SHORT getTop() { return top; }
+	void set_left(const int left) { this->left = left; }
+	void set_top(const int top) { this->top = top; }
+	virtual void getAllControls(vector<Control*>* vector);
+	virtual bool canGetFocus() { return true; }
+	static void setFocus(Control& it);
+	static Control* getFocus() { return onFocus; }
+	template<typename T> static void swap(T& a, T& b);		// swap tool
 	int getWidth() const { return width; }
 	int getHeight() const { return height; }
-	void set_left(int left) { this->left = left; }
-	void set_top(int top) { this->top = top; }
-	
-	template<typename T> static void swap(T& a, T& b);
-
-
-	virtual void getAllControls(vector<Control*>* vector);
-	virtual bool canGetFocus() { return true; };
-	static void setFocus(Control& it);
-	static Control* getFocus();
+	size_t getLayer() const { return layer; }
+	void setLayer(const size_t layer) { this->layer = layer; }
+private:
+	static Control* onFocus;
+	Color backcolor = Color::White;				// default 
+	size_t layer = 0;
+	BorderDrawer* drawer = nullptr;				// border drawer
+	Color forColor = Color::Black;				// default 
+	bool visibility;
+	int width, height, left = 0, top = 0;
 };
-
-template <typename T>
-void Control::swap(T& a, T& b)
-{
-	T temp = a;
-	a = b;
-	b = temp;
-}

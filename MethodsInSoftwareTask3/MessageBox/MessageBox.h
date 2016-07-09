@@ -5,14 +5,14 @@
 
 class Messagebox : public Panel{
 public:
-	Messagebox(int height, int width);
+	Messagebox(const int, const int);
 	virtual ~Messagebox();
-	void setText(string text );
-	void setTitle(string title );
-	bool canGetFocus() override;
-
-	virtual void show() override;
+	void setText(string);
+	void setTitle(string);
+	bool canGetFocus() override { return false; }
+	void show() override;
 private:
+	// each MessageBox object contains these :
 	Label *title, *description;
 	Button *bOK, *bBack;
 };

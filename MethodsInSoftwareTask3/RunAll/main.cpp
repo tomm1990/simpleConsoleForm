@@ -9,72 +9,81 @@
 #include "../NumericBox/NumericBox.h"
 #include "../MessageBox/Messagebox.h"
 
-auto e = [](Control* c)
-{
+auto e = [](Control* c){
 	auto msg = dynamic_cast<Messagebox*>(c);
 	msg->show();
 };
 
-int main()
-{
-	Label lName(20);
-	lName.setValue("Name: ");
-	Label lAddress(20);
+int main(){
+	Label lTitle(20);
+	lTitle.setValue("    Student Form");
+	lTitle.setBorder(BorderType::Double);
+	lTitle.setForeground(Color::Purple);
+	Label lName(10);
+	lName.setValue("Name:");
+	lName.setBorder(BorderType::Single);
+	Label lAddress(10);
 	lAddress.setValue("Address:");
-	Label lCountry(20);
+	lAddress.setBorder(BorderType::Single);
+	Label lCountry(18);
 	lCountry.setValue("Counrty:");
-	Label lSex(20);
-	lSex.setValue("Sex:");
-	Label lInterests(20);
+	lCountry.setBorder(BorderType::Single);
+	Label lSex(10);
+	lSex.setValue("Gender:");
+	lSex.setBorder(BorderType::Single);
+	Label lInterests(10);
 	lInterests.setValue("Interests:");
-	Label lAge(20);
+	lInterests.setBorder(BorderType::Single);
+	Label lAge(15);
 	lAge.setValue("Age:");
-	TextBox tName(20);
+	lAge.setBorder(BorderType::Single);
+	TextBox tName(30);
 	tName.setValue("Sherlock Holmes");
-	tName.setBorder(BorderType::Single);
+	tName.setBorder(BorderType::Double);
 	TextBox tAddress(30);
 	tAddress.setValue("221B Baker Street, London");
-	tAddress.setBorder(BorderType::Single);
-	Combox cCountry(20, { "Israel", "Great Britain", "United States" });
+	tAddress.setBorder(BorderType::Double);
+	Combox cCountry(18, { "Israel", "Great Britain", "United States" });
 	cCountry.setSelectedIndex(1);
-	cCountry.setBorder(BorderType::Single);
-	RadioList rSex(2, 15, { "Male", "Female" });
-	rSex.setBorder(BorderType::Single);
-	CheckList clInterests(3, 15, { "Sports", "Books", "Movies" });
+	cCountry.setBorder(BorderType::Double);
+	RadioList rSex(2, 10, { "Male", "Female" });
+	rSex.setBorder(BorderType::Double);
+	CheckList clInterests(3, 10, { "Sports", "Books", "Movies" });
 	cCountry.getSelectedIndex();
 	clInterests.selectIndex(1);
-	clInterests.setBorder(BorderType::Single);
+	clInterests.setBorder(BorderType::Double);
 	NumericBox nAge(15, 18, 120);
 	nAge.setValue(23);
-	nAge.setBorder(BorderType::Single);
-	Button bSubmit(10);
-	bSubmit.setValue("Submit");
-	bSubmit.setBorder(BorderType::Single);
-	Button bExit(10);
-	bExit.setValue("Exit");
-	bExit.setBorder(BorderType::Single);
-	Messagebox msg(10, 25);
-	msg.setTitle("Registration succeeded!");
-	msg.setText("Bye!");
-	Panel main(28,55);
-	main.setBackground(Color::Green);
-	main.setForeground(Color::Red);
+	nAge.setBorder(BorderType::Double);
+	Button bSubmit(13);
+	bSubmit.setValue("   Submit");
+	bSubmit.setBorder(BorderType::Double);
+	Button bExit(13);
+	bExit.setValue("    Exit");
+	bExit.setBorder(BorderType::Double);
+	Messagebox msg(10, 35);
+	//msg.setTitle("Registration succeeded!");
+	//msg.setText("Bye!");
+	Panel main(26,75);
+	main.setBackground(Color::Cyan);
+	main.setForeground(Color::White);
 	main.setBorder(BorderType::Double);
-	main.addControl(lName, 1, 2);
-	main.addControl(lAddress, 1, 5);
-	main.addControl(lCountry, 1, 8);
-	main.addControl(lSex, 1, 11);
-	main.addControl(lInterests, 1, 15);
-	main.addControl(lAge, 1, 20);
-	main.addControl(tName, 25, 2);
-	main.addControl(tAddress, 25, 5);
-	main.addControl(cCountry, 25, 8);
-	main.addControl(rSex, 25, 11);
-	main.addControl(clInterests, 25, 15);
-	main.addControl(nAge, 25, 22);
-	main.addControl(bSubmit, 2, 23);
-	main.addControl(bExit, 13, 23);
-	main.addControl(msg, 10, 10);
+	main.addControl(lTitle, (main.getWidth() - lTitle.getWidth()) / 2, 2);
+	main.addControl(lName, 13, 6);
+	main.addControl(lAddress, 13, 10);
+	main.addControl(lCountry, 3, 14);
+	main.addControl(lSex, 26, 14);
+	main.addControl(lInterests, 41, 14);
+	main.addControl(lAge, 57, 14);
+	main.addControl(tName, 27, 6);
+	main.addControl(tAddress, 27, 10);
+	main.addControl(cCountry, 3, 18);
+	main.addControl(rSex, 26, 18);
+	main.addControl(clInterests, 41, 18);
+	main.addControl(nAge, 57, 18);
+	main.addControl(bSubmit, (main.getWidth()*1/4) , 24);
+	main.addControl(bExit, (main.getWidth() * 3 / 5), 24);
+	main.addControl(msg, (main.getWidth()-msg.getWidth())/2, 10);
 	bSubmit.addListener(e, &msg);
 	Control::setFocus(tName);
 	auto engine = EventEngine::getEngine();
@@ -82,5 +91,4 @@ int main()
 	bExit.addListener(eStop, nullptr);
 	engine.run(main);
 	return 0;
-
 }

@@ -1,72 +1,57 @@
 #include "Messagebox.h"
 #include "../Control/EventEngine.h"
 
-Messagebox::Messagebox(int height, int width) : Panel(height, width) {
+Messagebox::Messagebox(const int height, const int width) : Panel(height, width) {
 	setBorder(BorderType::Single);
+	string tit = "Welcome!", des = "Methods in software Engineering";
+	description = new Label(des.length(), des);
+	addControl(*description, (getWidth() - description->getWidth()) / 2, 4);
+	description->setBorder(BorderType::Double);
+	description->set_layer(2);
+	
+	this->title = new Label(tit.length(), tit);
+	this->title->setBorder(BorderType::Double);
+	addControl(*this->title, (getWidth() - this->title->getWidth()) / 2, 1);
+	this->title->set_layer(2);
+
 	bOK = new Button(5);
-	bOK->SetText("OK");
+	bOK->SetText(" OK");
 	bOK->setBorder(BorderType::Single);
 	bBack = new Button(5);
-	bBack->SetText("Back");
+	bBack->SetText(" Back");
 	bBack->setBorder(BorderType::Single);
 	addControl(*bOK, width/4-1,height-2 );
 	addControl(*bBack, width/2+1,height - 2);
-
-	auto OkEvent = [](Control *c)
-	{
+	// "OK" button event listener
+	auto OkEvent = [](Control *c){
 		c->hide();
 		restartFocus();
-		// need to implement OK click button
 	};
 	bOK->addListener(OkEvent, this);
-
-	auto BackEvent = [](Control *c)
-	{
+	// "Back" button event listener
+	auto BackEvent = [](Control *c){
 		c->hide();
 		restartFocus();
-		// need to implement Back click button
 	};
 	bBack->addListener(BackEvent, this);
 	hide();
 	set_layer(2);
 }
 
-
-Messagebox::~Messagebox()
-{
-	for (int i = 0; i < children.size(); i++)
-		if (children[i]) delete children[i]; //} catch(EXCEPINFO){}
-	//if (title) delete title;
-	//if (description)delete description;
-	//if (bOK) delete bOK;
-	//if (bBack) delete bBack;
+Messagebox::~Messagebox(){
+	for (int i = 0; i < getChildrens().size(); i++)
+		if (getChildrens()[i]) delete getChildrens()[i];
 }
 
-
-void Messagebox::setText(string text ) {
-	if (text.length() == 0) text = "Title";
-	description = new Label(text.length() , text);
-	addControl(*description, (getWidth()- description->getWidth()) / 2, 4 );
-	description->set_layer(2);
+void Messagebox::setText(string text) {
+	if (text.length()!=0) description->setValue(text);
 }
 
 void Messagebox::setTitle(string title) {
-	if (title.length() == 0) title = "Title";
-	this->title = new Label(title.length(), title);
-	this->title->setBorder(BorderType::Double);
-	addControl(*this->title, (getWidth() - this->title->getWidth())/2, 1);
-	this->title->set_layer(2);
+	if (title.length() == 0) this->title->setValue(title);
 }
 
-
-
-bool Messagebox::canGetFocus()
-{
-	return false;
-}
-
-void Messagebox::show()
-{
+void Messagebox::show(){
 	Control::show();
 	setFocus(*bOK);
 }

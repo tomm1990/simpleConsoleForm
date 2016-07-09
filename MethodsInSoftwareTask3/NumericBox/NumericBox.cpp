@@ -15,9 +15,9 @@ NumericBox::NumericBox(int width, const int min, const int max) : Panel( 3 , che
 	bDOWN = new Button(1);
 	bDOWN->setBorder(BorderType::Single);
 	bDOWN->SetText("-");
-	addControl(*val, left+1, top+1);
-	addControl(*bUP, width-(bDOWN->getWidth()+bUP->getWidth()+3), top+1);
-	addControl(*bDOWN, width-2, top+1);
+	addControl(*val, getLeft()+1, getTop()+1);
+	addControl(*bUP, width-(bDOWN->getWidth()+bUP->getWidth()+3), getTop()+1);
+	addControl(*bDOWN, width-2, getTop()+1);
 	// event listener to plus button
 	auto upEvenet = [&](Control *c)	{
 		if (number < this->max) {
@@ -37,11 +37,8 @@ NumericBox::NumericBox(int width, const int min, const int max) : Panel( 3 , che
 }
 
 NumericBox::~NumericBox(){
-	for (int i = 0; i < children.size(); i++)
-		if (children[i]) delete children[i]; //} catch(EXCEPINFO){}
-	//if (val) delete val;
-	//if (bUP) delete bUP;
-	//if (bDOWN) delete bDOWN;
+	for (int i = 0; i < getChildrens().size(); i++)
+		if (getChildrens()[i]) delete getChildrens()[i];
 }
 
 void NumericBox::setValue(const int val){

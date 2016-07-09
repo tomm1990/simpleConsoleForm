@@ -1,25 +1,23 @@
 #pragma once
 #include "../Control/Control.h"
 
-class Panel :
-	public Control
-{
-
-protected:
-	vector < Control* > children;
-	static vector < Control* > focusVec;
+// Panel abstract class
+// implemented in composite design pattern
+class Panel : public Control{
 public:
-	Panel(int height, int width);
-
-
-	virtual virtual void keyDown(WORD code, CHAR chr) override;
-	virtual void mousePressed(int x, int y, bool isLeft) override;
-	void draw(Graphics& graphics, int left, int top, size_t p) override;
-	virtual void getAllControls(vector<Control*>* vector) override;
-	bool canGetFocus() override{return false;};
-	void addControl(Control& element, int left, int top);
+	Panel(const int, const int);
+	virtual virtual void keyDown(const WORD, const CHAR) override;
+	virtual void mousePressed(const int, const int, const bool) override;
+	void draw(Graphics& graphics, const int, const int, const size_t) override;
+	virtual void getAllControls(vector<Control*>*) override;
+	bool canGetFocus() override{ return false; }
+	void addControl(Control&, const int, const int);
 	static void restartFocus();
-
-	virtual void set_layer(size_t layer) override;
-	virtual ~Panel();
+	virtual void set_layer(const size_t) override;
+	virtual ~Panel() { }
+	vector<Control*>& getChildrens() { return children; }
+	vector<Control*>& getFocusVec() { return focusVec; }
+private:
+	vector < Control* > children;				// childrens of panel
+	static vector < Control* > focusVec;		// focusable controls
 };

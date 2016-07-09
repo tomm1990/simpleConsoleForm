@@ -84,7 +84,6 @@
     <ClInclude Include="RadioList.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="RadioList.cpp" />
   </ItemGroup>
   <ItemGroup>

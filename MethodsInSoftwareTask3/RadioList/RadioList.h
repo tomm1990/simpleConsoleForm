@@ -1,14 +1,11 @@
 #pragma once
 #include "../Control/Scrollable.h"
 
-
-class RadioList : 
-	public Scrollable{
-
-private:
-	map <Button*, bool> valsMap;
+class RadioList : public Scrollable {
 public:
-	RadioList(int height,int width, vector<string> options);
+	RadioList(const int, const int, const vector<string>);
 	virtual ~RadioList() { }
 	void update() override;
+private:
+	map <Button*, bool> valsMap;		// map for button select
 };
